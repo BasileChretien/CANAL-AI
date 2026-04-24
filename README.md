@@ -8,7 +8,7 @@ and Nagoya University Hospital (Japan).
 > Only model parameters cross the border, never patient data
 > (FedBioMed / OMOP-CDM / GDPR + APPI compliant).
 
-Public site: **<https://>** *(enable GitHub Pages from the `site/` folder — see below.)*
+Public site: **<https://basilechretien.github.io/CANAL-AI/>** (trilingual EN / 日本語 / FR).
 
 ---
 
@@ -80,7 +80,20 @@ python -m http.server --directory site 8080
 # http://localhost:8080
 ```
 
-## Partners
+## Team (principal investigators)
+
+- **Basile Chrétien** — Principal investigator. Nagoya University, Graduate
+  School of Medicine ([ORCID](https://orcid.org/0000-0002-7483-2489) ·
+  [LinkedIn](https://www.linkedin.com/in/basile-chretien/)).
+- **Dr Charles Dolladille** — French scientific responsible. CHU de Caen
+  Normandie, INSERM U1086 ANTICIPE
+  ([ORCID](https://orcid.org/0000-0003-0449-6261) ·
+  [LinkedIn](https://www.linkedin.com/in/charles-dolladille-30090b2b0/)).
+- **Dr Kazuki Nishida** — Biostatistician. Nagoya University
+  ([ORCID](https://orcid.org/0000-0003-0367-8557) ·
+  [LinkedIn](https://www.linkedin.com/in/kazuki-nishida-509bb0272/)).
+
+## Institutional partners
 
 - **Nagoya University** — Graduate School of Medicine (Japanese side).
 - **CHU de Caen Normandie** — Entrepôt de Données de Santé,
@@ -88,7 +101,8 @@ python -m http.server --directory site 8080
 - **Université de Caen Normandie** — institutional partner (French side).
 - **FedBioMed** — INRIA / Université Côte d'Azur (methodology, in-kind).
 
-Individual collaborators are listed in internal documents only.
+Pilot funding: [SECOM](https://www.secom.co.jp/). Internal planning and
+further collaborators are listed in gitignored documents only.
 
 ## Status (high level)
 
