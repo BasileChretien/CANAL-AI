@@ -177,7 +177,7 @@
       <h2 data-i18n="why.title">Why cardio-oncology needs federated learning</h2>
     </div>
     <div class="section__body">
-      <p data-i18n="why.p1">Androgen-deprivation therapy (ADT) is a cornerstone of prostate-cancer management but carries clinically meaningful cardiovascular and metabolic risks. GnRH agonists, GnRH antagonists, and ARSI do not share the same cardiovascular risk profile; HERO (NEJM, 2020) and PRONOUNCE (Circulation, 2021) are mixed, with the antagonist advantage concentrated in men with pre-existing CVD.</p>
+      <p data-i18n-html="why.p1">Androgen-deprivation therapy (ADT) is a cornerstone of prostate-cancer management but carries clinically meaningful cardiovascular and metabolic risks. GnRH agonists, GnRH antagonists, and ARSI do not share the same cardiovascular risk profile; <a href="https://doi.org/10.1056/NEJMoa2004325" rel="noopener">HERO (NEJM, 2020)</a> and <a href="https://doi.org/10.1161/CIRCULATIONAHA.121.056810" rel="noopener">PRONOUNCE (Circulation, 2021)</a> are mixed, with the antagonist advantage concentrated in men with pre-existing CVD.</p>
       <p data-i18n-html="why.p2">Single-country models fail to generalise across populations with different practices. International data is the answer; GDPR and APPI are the barrier. <strong>Federated learning is the bridge.</strong></p>
     </div>
   </div>
@@ -353,9 +353,9 @@
         <dt data-i18n="how.eval_label">Evaluation</dt>
         <dd data-i18n="how.eval">Leave-one-site-out validation — AUROC, AUPRC, calibration (Brier, ICI), decision-curve analysis.</dd>
       </div>
-      <div class="stack__item stack__item--accent">
+      <div class="stack__item">
         <dt data-i18n="how.endpoint_label">Endpoint</dt>
-        <dd data-i18n="how.endpoint">4-point MACE within 24 months of ADT initiation (HERO definition).</dd>
+        <dd data-i18n="how.endpoint">Major Adverse Cardiovascular Events (MACE) within 12 months of ADT initiation — a 4-point composite (myocardial infarction, ischaemic stroke, heart-failure hospitalisation, cardiovascular death) aligned with the HERO definition.</dd>
       </div>
     </dl>
 
@@ -365,6 +365,41 @@
       <p data-i18n-html="reg.p1"><strong>Research-use-only pilot.</strong> Caen Scientific &amp; Ethics Committee favourable opinion received 30 March 2026. Nagoya IRB application and GDPR DPIA in progress. <strong>No patient data has been processed to date.</strong></p>
       <p data-i18n="reg.p2">Any clinical deployment would require separate CE-marking (EU MDR 2017/745, Class IIa software, Rule 11) and PMDA SaMD clearance in Japan. French processing will follow MR-003/MR-004; Japanese processing will follow APPI Article 76 — final modalities subject to IRB approval.</p>
     </div>
+
+    <!-- Glossary -->
+    <details class="glossary">
+      <summary>
+        <span class="glossary__title" data-i18n="glossary.title">Glossary of abbreviations</span>
+        <span class="glossary__toggle" data-i18n="glossary.summary">Show / hide definitions</span>
+      </summary>
+      <dl class="glossary__list">
+        <div class="glossary__item"><dt data-i18n="glossary.ADT_term">ADT</dt><dd data-i18n="glossary.ADT_def">Androgen-Deprivation Therapy — the hormone therapy that lowers testosterone.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.ARSI_term">ARSI</dt><dd data-i18n="glossary.ARSI_def">Androgen-Receptor Signalling Inhibitors.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.GnRH_term">GnRH</dt><dd data-i18n="glossary.GnRH_def">Gonadotropin-Releasing Hormone.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.MACE_term">MACE</dt><dd data-i18n="glossary.MACE_def">Major Adverse Cardiovascular Events.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.CVD_term">CVD</dt><dd data-i18n="glossary.CVD_def">Cardiovascular Disease.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.OMOP_term">OMOP-CDM</dt><dd data-i18n="glossary.OMOP_def">International common data model for electronic health records.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.ETL_term">ETL</dt><dd data-i18n="glossary.ETL_def">Extract, Transform, Load — data-engineering pipeline.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.EDS_term">EDS</dt><dd data-i18n="glossary.EDS_def">Entrepôt de Données de Santé — Caen health-data warehouse.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.GDPR_term">GDPR</dt><dd data-i18n="glossary.GDPR_def">EU personal-data protection regulation.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.APPI_term">APPI</dt><dd data-i18n="glossary.APPI_def">Japanese personal-data protection law.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.DPIA_term">DPIA</dt><dd data-i18n="glossary.DPIA_def">Data Protection Impact Assessment.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.IRB_term">IRB</dt><dd data-i18n="glossary.IRB_def">Institutional Review Board — research ethics committee.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.MR003_term">MR-003 / MR-004</dt><dd data-i18n="glossary.MR003_def">French CNIL reference frameworks for health-data research.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.CE_term">CE / MDR / SaMD</dt><dd data-i18n="glossary.CE_def">EU Medical Device Regulation; Software as a Medical Device.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.PMDA_term">PMDA</dt><dd data-i18n="glossary.PMDA_def">Japanese Pharmaceuticals and Medical Devices Agency.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.FL_term">Federated learning</dt><dd data-i18n="glossary.FL_def">Training across sites by exchanging model parameters, not data.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.FedBioMed_term">FedBioMed</dt><dd data-i18n="glossary.FedBioMed_def">INRIA / UCA open-source federated-learning framework.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.FedAvg_term">FedAvg</dt><dd data-i18n="glossary.FedAvg_def">Standard federated averaging algorithm.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.FedProx_term">FedProx</dt><dd data-i18n="glossary.FedProx_def">FedAvg variant robust to heterogeneous (non-IID) sites.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.SecAgg_term">SecAgg (Joye-Libert)</dt><dd data-i18n="glossary.SecAgg_def">Cryptographic sum of encrypted updates.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.OPACUS_term">OPACUS</dt><dd data-i18n="glossary.OPACUS_def">PyTorch differential-privacy library (DP-SGD).</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.SHAP_term">SHAP</dt><dd data-i18n="glossary.SHAP_def">SHapley Additive exPlanations — feature-importance scores.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.AUROC_term">AUROC / AUPRC</dt><dd data-i18n="glossary.AUROC_def">Area under ROC / precision-recall curves — discrimination metrics.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.Brier_term">Brier / ICI</dt><dd data-i18n="glossary.Brier_def">Calibration metrics.</dd></div>
+        <div class="glossary__item"><dt data-i18n="glossary.DCA_term">DCA</dt><dd data-i18n="glossary.DCA_def">Decision Curve Analysis — clinical-utility metric.</dd></div>
+      </dl>
+    </details>
   </div>
 </section>
 
@@ -548,7 +583,7 @@
 <section id="ack" class="section">
   <div class="container">
     <h2 data-i18n="ack.title">With thanks to</h2>
-    <p class="section__lede" data-i18n="ack.intro">CANAL-AI would not exist without the support of the people and institutions below. Each person listed has given us their consent.</p>
+    <p class="section__lede" data-i18n="ack.intro">CANAL-AI would not exist without the support of the people and institutions below.</p>
     <ul class="thanks">
       <li><a href="https://www.chu-caen.fr/personnes/aurelie-villers/" target="_blank" rel="noopener noreferrer">
         <span class="thanks__name" data-i18n="ack.villers_name">Mrs Aurélie Villers</span>
