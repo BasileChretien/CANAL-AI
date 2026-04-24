@@ -10,6 +10,16 @@
   const DEFAULT = "en";
   const STORAGE_KEY = "canal-ai.lang";
 
+  // Single source of truth for the three principal-investigator mailboxes.
+  // To change a contact, edit here only — every CTA picks it up.
+  const TEAM_MAILBOXES = {
+    team: [
+      "nishida.kazuki.n6@f.mail.nagoya-u.ac.jp",
+      "charles.dolladille@unicaen.fr",
+      "chretien.basile.jean.bernard.u4@s.mail.nagoya-u.ac.jp"
+    ]
+  };
+
   // Whitelist parser for data-i18n-html: only <strong>, <em>, and <a href="https?://"> are kept.
   // Defence-in-depth: the JSON is author-controlled today, but this removes any
   // future XSS path if delivery is ever compromised.
@@ -66,9 +76,14 @@
     return SUPPORTED.includes(nav) ? nav : DEFAULT;
   }
 
-  function buildMailto(to, subject, body) {
+  function resolveRecipients(token) {
+    if (Array.isArray(TEAM_MAILBOXES[token])) return TEAM_MAILBOXES[token].slice();
+    return (token || "").split(",").map((s) => s.trim()).filter(Boolean);
+  }
+
+  function buildMailto(token, subject, body) {
     // RFC 6068: put first recipient in the path, additional in cc= query param.
-    const recipients = (to || "").split(",").map((s) => s.trim()).filter(Boolean);
+    const recipients = resolveRecipients(token);
     if (recipients.length === 0) return "#";
     const primary = encodeURIComponent(recipients[0]);
     const cc = recipients.slice(1).map(encodeURIComponent).join(",");
