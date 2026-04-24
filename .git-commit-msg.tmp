@@ -1,0 +1,23 @@
+feat(site): abbr tooltips + SCORE2/HFA-ICOS DOI links
+
+Hover definitions
+- Added abbr title tooltips to the acronyms that carry most weight in
+  the scientific paragraphs: ADT, GnRH, ARSI, MACE, OMOP-CDM, GDPR,
+  APPI. Hovering the term shows its expansion and a short definition.
+- Applied across why.p1, why.p2, how.p1, and how.endpoint, in EN / JA
+  / FR. Titles are localised per language.
+- how.endpoint markup switched from data-i18n to data-i18n-html so the
+  new abbr + anchor tags render.
+- i18n.js sanitiser extended to allow abbr elements with the title
+  attribute (still blocks any other tag).
+- CSS: abbr title now renders with a dotted underline and cursor help,
+  and the underline turns accent-blue on hover for discoverability.
+
+References
+- SCORE2 now links to Eur Heart J 2021 (doi.org/10.1093/eurheartj/ehab309).
+- HFA-ICOS now links to Lyon et al., Eur J Heart Fail 2020
+  (doi.org/10.1002/ejhf.1920).
+- HERO reference on how.endpoint also linked via DOI so the mention
+  in the endpoint tile is navigable.
+
+i18n parity preserved at 235 keys.

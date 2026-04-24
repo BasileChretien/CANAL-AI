@@ -79,6 +79,15 @@ p { margin: 0 0 1em; }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 
+/* Abbreviation tooltips — dotted underline + help cursor so users know the term has a definition on hover. */
+abbr[title] {
+  text-decoration: underline dotted var(--muted-2);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+abbr[title]:hover { text-decoration-color: var(--accent); }
+
 /* Skip link */
 .skip-link {
   position: absolute;

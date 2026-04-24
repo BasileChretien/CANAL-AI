@@ -43,6 +43,14 @@
           dst.appendChild(safe);
           return;
         }
+        if (name === "abbr") {
+          const safe = document.createElement("abbr");
+          const title = n.getAttribute("title");
+          if (title) safe.setAttribute("title", title);
+          walk(n, safe);
+          dst.appendChild(safe);
+          return;
+        }
         if (name === "a") {
           const href = n.getAttribute("href") || "";
           if (/^(https?:\/\/|#|mailto:)/i.test(href)) {
