@@ -56,6 +56,11 @@ html[lang="ja"] body { font-family: var(--sans-jp); }
 
 img { max-width: 100%; display: block; }
 
+/* <picture> should not affect layout — only its <img> child does. Without
+   this, a <picture> inside a sized flex container (logo chips, partner
+   tiles) takes the img's natural dimensions and overflows the container. */
+picture { display: contents; }
+
 h1, h2, h3, h4 {
   font-family: var(--serif);
   line-height: 1.2;
@@ -316,8 +321,7 @@ a:hover { text-decoration-thickness: 2px; }
   max-width: 100%;
 }
 
-.hero__figure img,
-.hero__figure picture {
+.hero__figure img {
   width: 100%;
   max-width: 520px;
   height: auto;
@@ -711,8 +715,6 @@ a:hover { text-decoration-thickness: 2px; }
   box-shadow: 0 0 0 2px var(--line), var(--shadow-sm);
 }
 
-.person picture { display: block; text-align: center; }
-
 .person__name {
   margin: 0.25rem 0 0.1rem;
   font-family: var(--serif);
@@ -794,14 +796,6 @@ a:hover { text-decoration-thickness: 2px; }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-}
-
-.partners__logo-wrap picture {
-  max-height: 100%;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .partners__logo {
@@ -918,11 +912,11 @@ a:hover { text-decoration-thickness: 2px; }
   color: var(--accent);
 }
 
-.logo-chip picture,
 .logo-chip img {
   max-height: 100%;
   max-width: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
   display: block;
 }
