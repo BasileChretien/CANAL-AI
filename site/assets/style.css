@@ -656,52 +656,49 @@ a:hover { text-decoration-thickness: 2px; }
   gap: 1rem;
 }
 
-.partners li {
-  padding: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  list-style: none;
-}
-
 .partners__card {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   text-align: center;
-  text-decoration: none;
-  color: inherit;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 1.1rem 1.2rem 1.2rem;
   box-shadow: var(--shadow-sm);
   height: 100%;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  list-style: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .partners__card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--accent);
 }
 
 .partners__ext {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.35rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
+  margin: auto auto 0;
+  padding: 0.5rem 0.9rem;
   color: var(--accent);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid rgba(11, 77, 143, 0.25);
+  border-radius: 999px;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.partners__ext:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 .partners__ext svg { stroke: currentColor; }
-
-.partners__card:hover .partners__ext { text-decoration: underline; }
 
 .partners__logo-wrap {
   height: 80px;
