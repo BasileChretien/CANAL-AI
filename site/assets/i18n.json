@@ -65,7 +65,7 @@
 
     "team.title": "Principal investigators",
     "team.basile_name": "Dr. Basile Chrétien",
-    "team.basile_aff": "PharmD, MPH, MSc — PhD candidate, Graduate School of Medicine, Nagoya University. On leave from Caen University Hospital.",
+    "team.basile_aff": "PharmD, MPH, MSc — pharmacologist. PhD candidate, Graduate School of Medicine, Nagoya University. On leave from Caen University Hospital.",
     "team.charles_name": "Dr. Charles Dolladille",
     "team.charles_aff": "MD, PhD — cardiologist and pharmacologist. MCU-PH, Department of Pharmacology, Caen University Hospital; INSERM U1086 ANTICIPE; Head of the Pharmacoepidemiology and Health Data Analysis Unit.",
     "team.nishida_name": "Dr. Kazuki Nishida",
@@ -85,6 +85,7 @@
     "partners.unicaen_body": "Institutional partner on the French side, including legal and regulatory support.",
     "partners.fedbiomed_title": "FedBioMed — INRIA / Université Côte d'Azur",
     "partners.fedbiomed_body": "Federated-learning framework and methodological partner (in-kind).",
+    "partners.visit": "Official site",
 
     "ack.title": "With thanks to",
     "ack.intro": "CANAL-AI would not exist without the support of the people and institutions below.",
@@ -216,7 +217,7 @@
 
     "team.title": "主任研究者",
     "team.basile_name": "Basile Chrétien 博士",
-    "team.basile_aff": "薬剤師・公衆衛生学修士・医療情報学修士。名古屋大学大学院医学系研究科 博士課程。Caen University Hospital よりディスポニビリテ中。",
+    "team.basile_aff": "薬剤師・公衆衛生学修士・医療情報学修士 — 薬理学者。名古屋大学大学院医学系研究科 博士課程。Caen University Hospital よりディスポニビリテ中。",
     "team.charles_name": "Charles Dolladille 博士",
     "team.charles_aff": "MD, PhD — 循環器内科医・薬理学者。Caen University Hospital 薬理学教室、MCU-PH。INSERM U1086 ANTICIPE。薬剤疫学・医療データ解析部門長。",
     "team.nishida_name": "西田 和樹 博士",
@@ -236,6 +237,7 @@
     "partners.unicaen_body": "フランス側の機関パートナー。法務・規制面の支援を含みます。",
     "partners.fedbiomed_title": "FedBioMed — INRIA / コートダジュール大学",
     "partners.fedbiomed_body": "連合学習フレームワークの提供と方法論支援（現物協力）。",
+    "partners.visit": "公式サイト",
 
     "ack.title": "謝辞",
     "ack.intro": "以下の皆様・機関のご支援なくしてCANAL-AIは成立しません。",
@@ -367,7 +369,7 @@
 
     "team.title": "Investigateurs principaux",
     "team.basile_name": "Dr Basile Chrétien",
-    "team.basile_aff": "PharmD, MPH, MSc — doctorant, Graduate School of Medicine, Université de Nagoya. En disponibilité du Caen University Hospital.",
+    "team.basile_aff": "PharmD, MPH, MSc — pharmacologue. Doctorant, Graduate School of Medicine, Université de Nagoya. En disponibilité du Caen University Hospital.",
     "team.charles_name": "Dr Charles Dolladille",
     "team.charles_aff": "MD, PhD — cardiologue et pharmacologue. MCU-PH, service de pharmacologie, Caen University Hospital&nbsp;; INSERM U1086 ANTICIPE&nbsp;; responsable de l'unité de pharmacoépidémiologie et d'analyse des données de santé.",
     "team.nishida_name": "Dr Kazuki Nishida",
@@ -387,6 +389,7 @@
     "partners.unicaen_body": "Partenaire institutionnel côté français, incluant le soutien juridique et réglementaire.",
     "partners.fedbiomed_title": "FedBioMed — INRIA / Université Côte d'Azur",
     "partners.fedbiomed_body": "Cadre d'apprentissage fédéré et partenaire méthodologique (contribution en nature).",
+    "partners.visit": "Site officiel",
 
     "ack.title": "Remerciements",
     "ack.intro": "CANAL-AI n'existerait pas sans le soutien des personnes et institutions ci-dessous.",
