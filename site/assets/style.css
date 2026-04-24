@@ -399,10 +399,13 @@ a:hover { text-decoration-thickness: 2px; }
 /* ---------- How it works: diagram + stack ---------- */
 
 .fed-diagram {
-  margin: 1.5rem auto 2.5rem;
+  margin: 1.5rem auto 2rem;
   max-width: 56rem;
-  padding: 1rem;
-  background: var(--cream);
+  padding: 1.25rem 1rem;
+  background:
+    radial-gradient(600px 200px at 20% 30%, rgba(0, 85, 164, 0.05), transparent 70%),
+    radial-gradient(600px 200px at 80% 70%, rgba(188, 0, 45, 0.05), transparent 70%),
+    var(--cream);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
@@ -411,6 +414,101 @@ a:hover { text-decoration-thickness: 2px; }
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Flowing dashed connection lines */
+.fed-line {
+  stroke-dasharray: 6 6;
+  animation: fed-flow 1.4s linear infinite;
+}
+.fed-line--future {
+  stroke-dasharray: 3 5;
+  animation-duration: 2.4s;
+  opacity: 0.6;
+}
+
+@keyframes fed-flow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -24; }
+}
+
+/* Gentle pulse on each hospital node's halo */
+.fed-node__halo {
+  opacity: 0.18;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: fed-pulse 2.6s ease-in-out infinite;
+}
+.fed-node--delay .fed-node__halo {
+  animation-delay: 1.3s;
+}
+
+@keyframes fed-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.16; }
+  50%      { transform: scale(1.12); opacity: 0.32; }
+}
+
+/* Aggregator gets a subtle glow when packets are arriving */
+.fed-agg rect {
+  animation: fed-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes fed-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(11, 77, 143, 0));   }
+  50%      { filter: drop-shadow(0 0 6px rgba(11, 77, 143, 0.35)); }
+}
+
+.fed-future { opacity: 0.55; }
+
+/* Steps explanation below the diagram */
+.fed-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.85rem;
+  counter-reset: fed-step;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.fed-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.fed-steps__n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--fr-blue), var(--jp-red));
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  font-family: var(--serif);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fed-line,
+  .fed-node__halo,
+  .fed-agg rect {
+    animation: none !important;
+  }
+  .fed-diagram animate { display: none; }
 }
 
 .stack__title {
@@ -577,12 +675,18 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 .partners__logo-wrap {
-  height: 72px;
+  height: 80px;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 0.95rem;
+  padding: 0.55rem 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.85rem;
-  padding: 0.2rem 0.3rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.02);
 }
 
 .partners__logo {
@@ -592,14 +696,6 @@ a:hover { text-decoration-thickness: 2px; }
   height: auto;
   object-fit: contain;
   display: block;
-}
-
-.partners__logo-wrap--text {
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.01em;
 }
 
 .partners h3 { margin: 0 0 0.35rem; font-size: 1rem; }
@@ -663,49 +759,76 @@ a:hover { text-decoration-thickness: 2px; }
   border: 1px solid var(--line);
   border-left: 4px solid var(--jp-red);
   border-radius: var(--radius-sm);
-  padding: 1.2rem 1.4rem;
+  padding: 1.25rem 1.5rem;
   box-shadow: var(--shadow-sm);
   max-width: 48rem;
+}
+
+.funding h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--jp-red);
+}
+
+.funding p { margin: 0 0 1rem; color: var(--ink-2); font-size: 0.98rem; }
+
+.funding__logos {
   display: flex;
-  align-items: center;
-  gap: 1.4rem;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 0;
 }
 
-@media (max-width: 560px) {
-  .funding { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
-}
-
-.funding__logo {
+/* Reusable logo chip: uniform size across SECOM + placeholders. */
+.logo-chip {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 120px;
+  height: 56px;
+  padding: 0.4rem 0.6rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--muted);
   flex-shrink: 0;
-  height: 52px;
-  padding: 0.2rem 0.4rem;
-  transition: transform 0.18s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
 }
 
-.funding__logo:hover { transform: scale(1.04); }
+.logo-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  color: var(--accent);
+}
 
-.funding__logo img {
+.logo-chip img {
   max-height: 100%;
-  max-width: 140px;
+  max-width: 100%;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
-.funding__body { flex: 1; min-width: 0; }
-
-.funding h3 {
-  margin: 0 0 0.4rem;
-  font-size: 0.88rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--jp-red);
+.logo-chip--placeholder {
+  border-style: dashed;
+  background: transparent;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
-.funding p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+.logo-chip__plus {
+  font-size: 1.1rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.logo-chip__label { letter-spacing: 0.01em; }
 
 /* ---------- News / timeline ---------- */
 

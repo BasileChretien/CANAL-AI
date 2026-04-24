@@ -137,7 +137,7 @@
     <p class="section__subtitle" data-i18n="how.subtitle">A FedBioMed-based federation, realistic by design</p>
     <p class="section__lede" data-i18n-html="how.p1"></p>
 
-    <!-- Federated-learning diagram -->
+    <!-- Federated-learning diagram (animated) -->
     <figure class="fed-diagram" aria-label="Federated learning diagram">
       <svg viewBox="0 0 800 260" role="img" aria-hidden="false">
         <defs>
@@ -147,44 +147,77 @@
           </linearGradient>
         </defs>
 
-        <!-- Connection lines -->
-        <line x1="140" y1="130" x2="400" y2="130" stroke="url(#gradBlueRed)" stroke-width="2" stroke-dasharray="4 4"/>
-        <line x1="660" y1="130" x2="400" y2="130" stroke="url(#gradBlueRed)" stroke-width="2" stroke-dasharray="4 4"/>
-        <line x1="400" y1="130" x2="400" y2="220" stroke="#b9bec6" stroke-width="2" stroke-dasharray="4 4"/>
+        <!-- Flowing connection lines -->
+        <line class="fed-line" x1="140" y1="130" x2="340" y2="130" stroke="url(#gradBlueRed)" stroke-width="2.5"/>
+        <line class="fed-line" x1="460" y1="130" x2="660" y2="130" stroke="url(#gradBlueRed)" stroke-width="2.5"/>
+        <line class="fed-line fed-line--future" x1="400" y1="160" x2="400" y2="215" stroke="#b9bec6" stroke-width="2"/>
 
         <!-- Caen node (blue) -->
-        <g>
-          <circle cx="100" cy="130" r="48" fill="#0055A4" opacity="0.08"/>
+        <g class="fed-node">
+          <circle class="fed-node__halo" cx="100" cy="130" r="48" fill="#0055A4"/>
           <circle cx="100" cy="130" r="34" fill="#0055A4"/>
-          <text x="100" y="135" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#fff" data-i18n="how.diagram_caen">Caen University Hospital</text>
+          <text x="100" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff">Caen</text>
+          <text x="100" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_caen_sub">Univ. Hospital</text>
         </g>
 
         <!-- Nagoya node (red) -->
-        <g>
-          <circle cx="700" cy="130" r="48" fill="#BC002D" opacity="0.08"/>
+        <g class="fed-node fed-node--delay">
+          <circle class="fed-node__halo" cx="700" cy="130" r="48" fill="#BC002D"/>
           <circle cx="700" cy="130" r="34" fill="#BC002D"/>
-          <text x="700" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#fff" data-i18n="how.diagram_nagoya">Nagoya</text>
-          <text x="700" y="143" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#fff">Univ. Hospital</text>
+          <text x="700" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_nagoya">Nagoya</text>
+          <text x="700" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_nagoya_sub">Univ. Hospital</text>
         </g>
 
         <!-- Aggregator (center) -->
-        <g>
-          <rect x="340" y="100" width="120" height="60" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+        <g class="fed-agg">
+          <rect x="340" y="100" width="120" height="60" rx="10" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
           <text x="400" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1a1a1a">FedBioMed</text>
-          <text x="400" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1a1a1a" data-i18n="how.diagram_agg">Aggregator</text>
+          <text x="400" y="143" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1a1a1a" data-i18n="how.diagram_agg">Aggregator</text>
         </g>
 
         <!-- Future partner node -->
-        <g opacity="0.55">
+        <g class="fed-future">
           <circle cx="400" cy="230" r="22" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="3 3"/>
           <text x="400" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#1a1a1a" data-i18n="how.diagram_future">Future partner</text>
         </g>
 
+        <!-- Animated parameter packets: Caen → Agg and back -->
+        <circle r="5" fill="#0055A4">
+          <animate attributeName="cx" values="140;340" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="130;130" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="4" fill="#0055A4" opacity="0.7">
+          <animate attributeName="cx" values="340;140" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Animated parameter packets: Nagoya → Agg and back -->
+        <circle r="5" fill="#BC002D">
+          <animate attributeName="cx" values="660;460" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="130;130" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="4" fill="#BC002D" opacity="0.7">
+          <animate attributeName="cx" values="460;660" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+        </circle>
+
         <!-- Labels on the connections -->
-        <text x="260" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
-        <text x="540" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
+        <text x="240" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
+        <text x="560" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
       </svg>
     </figure>
+
+    <!-- Plain-language steps for the animation -->
+    <ol class="fed-steps" aria-label="How the federation works">
+      <li><span class="fed-steps__n">1</span><span data-i18n="how.step1">Each hospital trains a model on its own patient data — locally, inside its own firewall.</span></li>
+      <li><span class="fed-steps__n">2</span><span data-i18n="how.step2">Only the resulting model parameters are sent to the FedBioMed aggregator in a secure, aggregated form.</span></li>
+      <li><span class="fed-steps__n">3</span><span data-i18n="how.step3">The aggregator averages parameters across sites and sends the updated model back.</span></li>
+      <li><span class="fed-steps__n">4</span><span data-i18n="how.step4">Repeat. After many rounds, every hospital holds a model that has learned from all of them — without any patient data ever leaving.</span></li>
+    </ol>
 
     <h3 class="stack__title" data-i18n="how.stack_title">The stack, in plain terms</h3>
     <dl class="stack">
@@ -225,8 +258,7 @@
       <article class="person">
         <img class="person__photo" src="assets/photos/charles.png" alt="Dr. Charles Dolladille">
         <h3 class="person__name" data-i18n="team.charles_name">Dr. Charles Dolladille</h3>
-        <p class="person__role" data-i18n="team.charles_role">French scientific responsible</p>
-        <p class="person__aff"  data-i18n="team.charles_aff">MCU-PH, Caen University Hospital; INSERM U1086 ANTICIPE.</p>
+        <p class="person__aff"  data-i18n="team.charles_aff">MD, PhD — cardiologist and pharmacologist. MCU-PH, Caen University Hospital; INSERM U1086 ANTICIPE.</p>
         <ul class="person__links" aria-label="Profile links">
           <li><a href="https://orcid.org/0000-0003-0449-6261" rel="noopener" aria-label="ORCID" data-i18n-attr="aria-label:team.orcid">
             <svg width="22" height="22" aria-hidden="true"><use href="#icon-orcid"/></svg></a></li>
@@ -240,7 +272,6 @@
       <article class="person">
         <img class="person__photo" src="assets/photos/image_Basile.jpg" alt="Dr. Basile Chrétien">
         <h3 class="person__name" data-i18n="team.basile_name">Dr. Basile Chrétien</h3>
-        <p class="person__role" data-i18n="team.basile_role">Principal investigator</p>
         <p class="person__aff"  data-i18n="team.basile_aff">PharmD, MPH, MSc — PhD candidate, Nagoya University.</p>
         <ul class="person__links" aria-label="Profile links">
           <li><a href="https://orcid.org/0000-0002-7483-2489" rel="noopener" aria-label="ORCID" data-i18n-attr="aria-label:team.orcid">
@@ -255,8 +286,7 @@
       <article class="person">
         <img class="person__photo" src="assets/photos/nishida.png" alt="Dr. Kazuki Nishida">
         <h3 class="person__name" data-i18n="team.nishida_name">Dr. Kazuki Nishida</h3>
-        <p class="person__role" data-i18n="team.nishida_role">Biostatistician</p>
-        <p class="person__aff"  data-i18n="team.nishida_aff">Nagoya University.</p>
+        <p class="person__aff"  data-i18n="team.nishida_aff">MD, PhD — biostatistician with machine-learning expertise, Nagoya University.</p>
         <ul class="person__links" aria-label="Profile links">
           <li><a href="https://orcid.org/0000-0003-0367-8557" rel="noopener" aria-label="ORCID" data-i18n-attr="aria-label:team.orcid">
             <svg width="22" height="22" aria-hidden="true"><use href="#icon-orcid"/></svg></a></li>
@@ -303,8 +333,10 @@
         <h3 data-i18n="partners.unicaen_title">Université de Caen Normandie</h3>
         <p data-i18n="partners.unicaen_body">Institutional partner on the French side.</p>
       </li>
-      <li class="partners__item--nologo">
-        <div class="partners__logo-wrap partners__logo-wrap--text">FedBioMed</div>
+      <li>
+        <div class="partners__logo-wrap">
+          <img class="partners__logo" src="assets/logos/fedbiomed.png" alt="FedBioMed">
+        </div>
         <h3 data-i18n="partners.fedbiomed_title">FedBioMed — INRIA / Université Côte d'Azur</h3>
         <p data-i18n="partners.fedbiomed_body">Federated-learning framework and methodological partner.</p>
       </li>
@@ -361,12 +393,20 @@
     </ul>
 
     <div class="funding">
-      <a href="https://www.secom.co.jp/" rel="noopener" class="funding__logo" aria-label="SECOM">
-        <img src="assets/logos/secom.png" alt="SECOM">
-      </a>
-      <div class="funding__body">
-        <h3 data-i18n="ack.funding_title">Pilot funding</h3>
-        <p data-i18n-html="ack.funding_body">The CANAL-AI pilot is funded in part by SECOM.</p>
+      <h3 data-i18n="ack.funding_title">Pilot funding</h3>
+      <p data-i18n-html="ack.funding_body">SECOM is our first supporter. We are actively seeking additional funders to help grow the federation.</p>
+      <div class="funding__logos" aria-label="Funders">
+        <a class="logo-chip logo-chip--filled" href="https://www.secom.co.jp/" rel="noopener" aria-label="SECOM (first supporter)">
+          <img src="assets/logos/secom.png" alt="SECOM">
+        </a>
+        <a class="logo-chip logo-chip--placeholder" href="#fund" aria-label="Open slot for a future funder">
+          <span class="logo-chip__plus" aria-hidden="true">+</span>
+          <span class="logo-chip__label" data-i18n="ack.funding_slot">Your logo?</span>
+        </a>
+        <a class="logo-chip logo-chip--placeholder" href="#fund" aria-label="Open slot for a future funder">
+          <span class="logo-chip__plus" aria-hidden="true">+</span>
+          <span class="logo-chip__label" data-i18n="ack.funding_slot">Your logo?</span>
+        </a>
       </div>
     </div>
   </div>
