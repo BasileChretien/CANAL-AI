@@ -8,7 +8,7 @@ it except this `README.md` and the `.gitkeep` sentinel is gitignored.
 
 ## Where the real data lives
 
-- **Caen side.** Inside the CHU de Caen Entrepôt de Données de Santé
+- **Caen side.** Inside the Caen University Hospital Entrepôt de Données de Santé
   infrastructure, accessed via a collaborateur-bénévole arrangement
   under the French scientific responsible. Extracts stay on the
   hospital's secure storage.

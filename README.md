@@ -2,7 +2,7 @@
 
 **Caen-Nagoya Alliance for AI in Health Data** — a Franco-Japanese federated-
 learning project predicting cardiovascular adverse events of hormone therapy
-in prostate cancer, using hospital data warehouses at CHU de Caen (France)
+in prostate cancer, using hospital data warehouses at Caen University Hospital (France)
 and Nagoya University Hospital (Japan).
 
 > Only model parameters cross the border, never patient data
@@ -85,7 +85,7 @@ python -m http.server --directory site 8080
 - **Basile Chrétien** — Principal investigator. Nagoya University, Graduate
   School of Medicine ([ORCID](https://orcid.org/0000-0002-7483-2489) ·
   [LinkedIn](https://www.linkedin.com/in/basile-chretien/)).
-- **Dr Charles Dolladille** — French scientific responsible. CHU de Caen
+- **Dr Charles Dolladille** — French scientific responsible. Caen University Hospital
   Normandie, INSERM U1086 ANTICIPE
   ([ORCID](https://orcid.org/0000-0003-0449-6261) ·
   [LinkedIn](https://www.linkedin.com/in/charles-dolladille-30090b2b0/)).
@@ -96,7 +96,7 @@ python -m http.server --directory site 8080
 ## Institutional partners
 
 - **Nagoya University** — Graduate School of Medicine (Japanese side).
-- **CHU de Caen Normandie** — Entrepôt de Données de Santé,
+- **Caen University Hospital** — Entrepôt de Données de Santé,
   Department of Pharmacology, INSERM U1086 ANTICIPE (French clinical side).
 - **Université de Caen Normandie** — institutional partner (French side).
 - **FedBioMed** — INRIA / Université Côte d'Azur (methodology, in-kind).
@@ -106,7 +106,7 @@ further collaborators are listed in gitignored documents only.
 
 ## Status (high level)
 
-- Letter of Intent Nagoya ↔ CHU de Caen: **signed**.
+- Letter of Intent Nagoya ↔ Caen University Hospital: **signed**.
 - Caen Scientific & Ethics Committee: **favourable opinion**.
 - Nagoya IRB: **in progress**.
 - French data-access convention: **in progress**.
@@ -119,4 +119,4 @@ further collaborators are listed in gitignored documents only.
 ## Contact
 
 Enquiries should be addressed through Nagoya University's Graduate School
-of Medicine or through CHU de Caen's Department of Pharmacology.
+of Medicine or through Caen University Hospital's Department of Pharmacology.
