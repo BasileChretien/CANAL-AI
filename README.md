@@ -27,7 +27,7 @@ Nagoya IRB and GDPR DPIA in progress.
 | Primary model | PyTorch MLP on OMOP tabular features, trained with FedAvg (FedProx fallback) |
 | Baseline | Federated logistic regression via FedBioMed's scikit-learn training plan (`FedSGDClassifier`) |
 | Privacy | Joye-Libert secure aggregation; OPACUS differential privacy evaluated |
-| Endpoint | 4-point MACE within 24 months of ADT initiation (HERO definition) |
+| Endpoint | 4-point MACE within 12 months of ADT initiation (HERO definition) |
 | Evaluation | Leave-one-site-out — AUROC, AUPRC, calibration (Brier, ICI), DCA |
 | Funder | [SECOM](https://www.secom.co.jp/) (first supporter) |
 
