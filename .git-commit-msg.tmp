@@ -1,28 +1,25 @@
-feat(news): add Nagoya visit tile (Dolladille + French Embassy)
+refactor(news): flip-card for Dolladille visit tile
 
-A new news item covering Dr Charles Dolladille's visit to Nagoya
-University on 13 and 14 April 2026 to meet the CANAL-AI team on site,
-and the day-2 joining of Adeline Lassaux and Sonia Ciechelski from
-the French Embassy in Japan to discuss the project and the
-cooperation opportunities that follow from it.
+The previous implementation (.timeline__item--visual) made the visit
+tile span two grid columns, which stretched the adjacent news tiles
+to match its height and made the row look anemic. Replaced with an
+auto-flipping card that takes exactly one grid column like every
+other news tile:
 
-Assets
-- photos/Visit_Charles_Nagoya.jpg resized and re-encoded into
-  site/assets/photos/visit-nagoya.webp (59 KB) and
-  site/assets/photos/visit-nagoya.jpg (80 KB) as the JPEG fallback,
-  both at 800x600, via Pillow. Displayed with a picture element so
-  modern browsers fetch the webp.
+- Front: date, title, and a 3-line clamped body excerpt, plus a
+  subtle circular refresh hint in the top-right corner.
+- Back: the visit photo, full-bleed with object-fit: cover.
+- Both faces share the same grid cell (grid-template-areas: "face")
+  so the parent sizes to the larger face; height: 100% lets the grid
+  stretch us to the row's natural height.
+- 12-second cycle: front visible 0-42%, flip to back at 52%, back
+  visible until 92%, flip back to front at 100%. Cubic-bezier easing
+  makes the rotation feel decisive rather than mechanical.
+- Hover or keyboard focus pauses the flip (animation-play-state).
+- prefers-reduced-motion disables the animation entirely; front face
+  stays visible with the text content.
+- Red border-top on the back + blue border-top on the front echo the
+  Franco-Japanese palette used on the other timeline cards.
 
-Layout
-- New .timeline__item--visual variant: spans two grid columns on
-  desktop, collapses to one column below 800px. The photo sits flush
-  with the card top edge inside a 4:3 figure, the date chip, title,
-  and body follow beneath with standard padding. Keeps the colour
-  accent stripe on top.
-
-i18n
-- Four new keys in en / ja / fr: news.visit_date, news.visit_title,
-  news.visit_body, news.visit_alt (localised image alt text).
-- 235 -> 239 keys; parity preserved.
-
-Placed at the top of the news timeline as the most recent event.
+.claude/launch.json now configured (port 8282) so the preview server
+can be reused for subsequent verification.
