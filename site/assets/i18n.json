@@ -195,6 +195,10 @@
     "ack.funding_slot": "Your logo?",
 
     "news.title": "News",
+    "news.visit_date": "13–14 April 2026",
+    "news.visit_title": "Dr Dolladille visits Nagoya University",
+    "news.visit_body": "Dr Charles Dolladille visited Nagoya University on 13 and 14 April 2026 to meet the CANAL-AI team on site. On day 2, Adeline Lassaux and Sonia Ciechelski from the French Embassy in Japan joined the discussions about the project and the cooperation opportunities that follow from it.",
+    "news.visit_alt": "Dr Charles Dolladille with the CANAL-AI team at Nagoya University, 13 April 2026",
     "news.item1_date": "30 March 2026",
     "news.item1_title": "Caen Ethics Committee approves the CANAL-AI protocol",
     "news.item1_body": "The CHU de Caen Scientific and Ethics Committee issued a favourable opinion on the CANAL-AI protocol.",
@@ -451,6 +455,10 @@
     "ack.funding_slot": "貴団体のロゴを？",
 
     "news.title": "ニュース",
+    "news.visit_date": "2026年4月13日–14日",
+    "news.visit_title": "Dolladille 博士、名古屋大学を訪問",
+    "news.visit_body": "Charles Dolladille 博士は2026年4月13日・14日に名古屋大学を訪問し、CANAL-AIチームと現地で意見交換を行いました。2日目には、駐日フランス大使館の Adeline Lassaux 氏および Sonia Ciechelski 氏も来学され、CANAL-AIプロジェクトおよびそこから派生する協働機会について議論しました。",
+    "news.visit_alt": "2026年4月13日、名古屋大学にてCANAL-AIチームと面会するCharles Dolladille博士",
     "news.item1_date": "2026年3月30日",
     "news.item1_title": "カーン科学・倫理委員会（CSE）よりCANAL-AIプロトコルへの肯定的意見を取得",
     "news.item1_body": "カーン大学病院の科学・倫理委員会が CANAL-AI プロトコルに対して肯定的意見を表明しました。",
@@ -707,6 +715,10 @@
     "ack.funding_slot": "Votre logo&nbsp;?",
 
     "news.title": "Actualités",
+    "news.visit_date": "13–14 avril 2026",
+    "news.visit_title": "Le Dr Dolladille en visite à l'Université de Nagoya",
+    "news.visit_body": "Le Dr Charles Dolladille s'est rendu à l'Université de Nagoya les 13 et 14 avril 2026 pour rencontrer sur place l'équipe CANAL-AI. Le deuxième jour, Adeline Lassaux et Sonia Ciechelski, de l'Ambassade de France au Japon, ont rejoint les échanges autour du projet CANAL-AI et des coopérations qui en découlent.",
+    "news.visit_alt": "Le Dr Charles Dolladille avec l'équipe CANAL-AI à l'Université de Nagoya, 13 avril 2026",
     "news.item1_date": "30 mars 2026",
     "news.item1_title": "Le Comité scientifique et éthique du CHU de Caen approuve le protocole",
     "news.item1_body": "Le Comité scientifique et éthique du CHU de Caen Normandie a rendu un avis favorable sur le protocole CANAL-AI.",

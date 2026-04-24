@@ -1,44 +1,28 @@
-feat(site): kill native tooltip, colour icons, detailed ack roles
+feat(news): add Nagoya visit tile (Dolladille + French Embassy)
 
-Tooltip behaviour
-- The native browser tooltip appeared below the cursor after a ~1s
-  delay alongside the custom CSS tooltip, which was confusing. Fixed
-  by moving abbr title -> aria-label in the sanitiser: browsers do
-  not render a native tooltip from aria-label, screen readers still
-  read the expansion, and the CSS tooltip reads content via
-  attr(aria-label). Inline abbr fallbacks in index.html also
-  title -> aria-label via sed so no-JS users get the same behaviour.
+A new news item covering Dr Charles Dolladille's visit to Nagoya
+University on 13 and 14 April 2026 to meet the CANAL-AI team on site,
+and the day-2 joining of Adeline Lassaux and Sonia Ciechelski from
+the French Embassy in Japan to discuss the project and the
+cooperation opportunities that follow from it.
 
-More abbr coverage
-- pilot.p1: GDPR and APPI wrapped (EN / JA / FR); switched the HTML
-  attr to data-i18n-html.
-- how.p1: INRIA wrapped (EN / JA / FR).
-- how.item_model: PyTorch wrapped (EN / JA / FR).
-- Total abbr tags: 40 (en), 40 (ja), 39 (fr).
-
-Coloured icons on team cards
-- ORCID in ORCID green #A6CE39, LinkedIn in LinkedIn blue #0A66C2,
-  Mail in Nagoya red (brand), using :has() selectors so no HTML
-  changes required. Hover state fills the whole chip with the brand
-  colour and white icon.
-
-Acknowledgement roles
-- All eight acknowledgees now show their actual role instead of just
-  the affiliation, in EN / JA / FR:
-  * Mrs Villers    -- Director, Research Department, Caen Univ. Hosp.
-  * Mr Varnier     -- General Director, Caen Univ. Hosp.
-  * Prof Lelong    -- Medical Head, Pharmacology, Caen Univ. Hosp.
-  * Prof Parienti  -- Medical Head, Research Dept, Caen Univ. Hosp.
-  * Dr Imaizumi    -- Lecturer, Clinical Research Education, NUGSM;
-                       Dept of Nephrology, Nagoya Univ. Hospital
-  * Prof Hashizume -- Professor, Advanced Medicine / Clinical Research
-                       Education, Nagoya Univ. Hosp. & NUGSM
-  * Prof Katsuno   -- Dean, Nagoya Univ. Graduate School of Medicine
-  * Prof Kasuya    -- Vice-Dean for International Affairs, NUGSM
+Assets
+- photos/Visit_Charles_Nagoya.jpg resized and re-encoded into
+  site/assets/photos/visit-nagoya.webp (59 KB) and
+  site/assets/photos/visit-nagoya.jpg (80 KB) as the JPEG fallback,
+  both at 800x600, via Pillow. Displayed with a picture element so
+  modern browsers fetch the webp.
 
 Layout
-- Thanks cards switched from flex-row to a 2-column grid so the
-  (now multi-line) role wraps cleanly beneath the name while the
-  external-site arrow stays pinned to the right side of the card.
+- New .timeline__item--visual variant: spans two grid columns on
+  desktop, collapses to one column below 800px. The photo sits flush
+  with the card top edge inside a 4:3 figure, the date chip, title,
+  and body follow beneath with standard padding. Keeps the colour
+  accent stripe on top.
 
-i18n parity preserved at 235 keys.
+i18n
+- Four new keys in en / ja / fr: news.visit_date, news.visit_title,
+  news.visit_body, news.visit_alt (localised image alt text).
+- 235 -> 239 keys; parity preserved.
+
+Placed at the top of the news timeline as the most recent event.
