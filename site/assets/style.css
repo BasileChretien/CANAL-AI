@@ -202,20 +202,52 @@ a:hover { text-decoration-thickness: 2px; }
     linear-gradient(135deg, var(--fr-blue-2) 0%, var(--fr-blue) 38%, var(--jp-red) 62%, var(--jp-red-2) 100%);
 }
 
-.hero__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("photos/CANAL_AI_Normandie.png");
-  background-repeat: no-repeat;
-  background-position: right -40px bottom -60px;
-  background-size: min(520px, 55vw);
-  opacity: 0.18;
-  mix-blend-mode: screen;
-  pointer-events: none;
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3rem;
 }
 
-.hero__inner { position: relative; }
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.hero__text { min-width: 0; }
+
+.hero__figure {
+  margin: 0;
+  position: relative;
+  justify-self: end;
+  max-width: 100%;
+}
+
+.hero__figure img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: 18px;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.25);
+  display: block;
+  transform: rotate(-1deg);
+  transition: transform 0.5s ease;
+}
+
+.hero__figure img:hover { transform: rotate(0deg) scale(1.015); }
+
+@media (max-width: 900px) {
+  .hero__figure { justify-self: center; }
+  .hero__figure img {
+    transform: none;
+    max-width: 420px;
+  }
+}
 
 .eyebrow {
   text-transform: uppercase;
@@ -515,14 +547,14 @@ a:hover { text-decoration-thickness: 2px; }
   transform: translateY(-2px);
 }
 
-/* ---------- Partners (simple cards) ---------- */
+/* ---------- Partners (logo cards) ---------- */
 
 .partners {
   list-style: none;
   padding: 0;
   margin: 1.5rem 0 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1rem;
 }
 
@@ -530,12 +562,48 @@ a:hover { text-decoration-thickness: 2px; }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  padding: 1.1rem 1.2rem;
+  padding: 1.1rem 1.2rem 1.2rem;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.partners h3 { margin: 0 0 0.35rem; font-size: 1.02rem; }
-.partners p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+.partners li:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.partners__logo-wrap {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+  padding: 0.2rem 0.3rem;
+}
+
+.partners__logo {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.partners__logo-wrap--text {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.partners h3 { margin: 0 0 0.35rem; font-size: 1rem; }
+.partners p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 
 /* ---------- Thanks + Funding ---------- */
 
@@ -598,7 +666,36 @@ a:hover { text-decoration-thickness: 2px; }
   padding: 1.2rem 1.4rem;
   box-shadow: var(--shadow-sm);
   max-width: 48rem;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
 }
+
+@media (max-width: 560px) {
+  .funding { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+}
+
+.funding__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 52px;
+  padding: 0.2rem 0.4rem;
+  transition: transform 0.18s ease;
+}
+
+.funding__logo:hover { transform: scale(1.04); }
+
+.funding__logo img {
+  max-height: 100%;
+  max-width: 140px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.funding__body { flex: 1; min-width: 0; }
 
 .funding h3 {
   margin: 0 0 0.4rem;
