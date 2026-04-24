@@ -359,27 +359,27 @@
     <dl class="stack">
       <div class="stack__item">
         <dt data-i18n="how.item_model_label">Primary model</dt>
-        <dd data-i18n="how.item_model">PyTorch MLP on OMOP-derived tabular features, trained with FedAvg. FedProx as a non-IID fallback.</dd>
+        <dd data-i18n-html="how.item_model">PyTorch MLP on OMOP-derived tabular features, trained with FedAvg. FedProx as a non-IID fallback.</dd>
       </div>
       <div class="stack__item">
         <dt data-i18n="how.item_baseline_label">Baseline</dt>
-        <dd data-i18n="how.item_baseline">Federated logistic regression via FedBioMed's scikit-learn training plan (FedSGDClassifier, log-loss).</dd>
+        <dd data-i18n-html="how.item_baseline">Federated logistic regression via FedBioMed's scikit-learn training plan (FedSGDClassifier, log-loss).</dd>
       </div>
       <div class="stack__item">
         <dt data-i18n="how.item_privacy_label">Privacy layer</dt>
-        <dd data-i18n="how.item_privacy">Secure aggregation (Joye-Libert). Differential privacy via OPACUS evaluated as an additional layer, with reported (ε, δ) budgets.</dd>
+        <dd data-i18n-html="how.item_privacy">Secure aggregation (Joye-Libert). Differential privacy via OPACUS evaluated as an additional layer, with reported (ε, δ) budgets.</dd>
       </div>
       <div class="stack__item">
         <dt data-i18n="how.item_harmo_label">Harmonisation</dt>
-        <dd data-i18n="how.item_harmo">OMOP-CDM at each site with a custom ETL. Publishing this ETL is one of our deliverables.</dd>
+        <dd data-i18n-html="how.item_harmo">OMOP-CDM at each site with a custom ETL. Publishing this ETL is one of our deliverables.</dd>
       </div>
       <div class="stack__item">
         <dt data-i18n="how.item_explain_label">Explainability</dt>
-        <dd data-i18n="how.item_explain">SHAP + permutation importance, computed locally on each site's held-out cohort; rankings aggregated across sites; clinician review by cardio-oncology experts.</dd>
+        <dd data-i18n-html="how.item_explain">SHAP + permutation importance, computed locally on each site's held-out cohort; rankings aggregated across sites; clinician review by cardio-oncology experts.</dd>
       </div>
       <div class="stack__item">
         <dt data-i18n="how.eval_label">Evaluation</dt>
-        <dd data-i18n="how.eval">Leave-one-site-out validation — AUROC, AUPRC, calibration (Brier, ICI), decision-curve analysis.</dd>
+        <dd data-i18n-html="how.eval">Leave-one-site-out validation — AUROC, AUPRC, calibration (Brier, ICI), decision-curve analysis.</dd>
       </div>
       <div class="stack__item">
         <dt data-i18n="how.endpoint_label">Endpoint</dt>
@@ -391,7 +391,7 @@
     <div class="reg-status">
       <h3 data-i18n="reg.title">Regulatory status and ethics</h3>
       <p data-i18n-html="reg.p1"><strong>Research-use-only pilot.</strong> Caen Scientific &amp; Ethics Committee favourable opinion received 30 March 2026. Nagoya IRB application and GDPR DPIA in progress. <strong>No patient data has been processed to date.</strong></p>
-      <p data-i18n="reg.p2">Any clinical deployment would require separate CE-marking (EU MDR 2017/745, Class IIa software, Rule 11) and PMDA SaMD clearance in Japan. French processing will follow MR-003/MR-004; Japanese processing will follow APPI Article 76 — final modalities subject to IRB approval.</p>
+      <p data-i18n-html="reg.p2">Any clinical deployment would require separate CE-marking (EU MDR 2017/745, Class IIa software, Rule 11) and PMDA SaMD clearance in Japan. French processing will follow MR-003/MR-004; Japanese processing will follow APPI Article 76 — final modalities subject to IRB approval.</p>
     </div>
 
     <!-- Glossary -->

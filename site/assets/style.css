@@ -79,14 +79,57 @@ p { margin: 0 0 1em; }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 
-/* Abbreviation tooltips — dotted underline + help cursor so users know the term has a definition on hover. */
+/* Abbreviation tooltips — dotted underline + instant styled tooltip on hover / focus. */
 abbr[title] {
+  position: relative;
   text-decoration: underline dotted var(--muted-2);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   cursor: help;
 }
-abbr[title]:hover { text-decoration-color: var(--accent); }
+
+abbr[title]:hover,
+abbr[title]:focus-visible { text-decoration-color: var(--accent); }
+
+abbr[title]:hover::after,
+abbr[title]:focus-visible::after {
+  content: attr(title);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #fff;
+  padding: 0.55rem 0.85rem;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.45;
+  white-space: normal;
+  width: max-content;
+  max-width: 280px;
+  text-align: left;
+  letter-spacing: normal;
+  text-decoration: none;
+  text-transform: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+abbr[title]:hover::before,
+abbr[title]:focus-visible::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+  pointer-events: none;
+  z-index: 1000;
+}
 
 /* Skip link */
 .skip-link {

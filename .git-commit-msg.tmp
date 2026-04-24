@@ -1,23 +1,28 @@
-feat(site): abbr tooltips + SCORE2/HFA-ICOS DOI links
+feat(site): instant CSS tooltip for abbr + wider abbr coverage
 
-Hover definitions
-- Added abbr title tooltips to the acronyms that carry most weight in
-  the scientific paragraphs: ADT, GnRH, ARSI, MACE, OMOP-CDM, GDPR,
-  APPI. Hovering the term shows its expansion and a short definition.
-- Applied across why.p1, why.p2, how.p1, and how.endpoint, in EN / JA
-  / FR. Titles are localised per language.
-- how.endpoint markup switched from data-i18n to data-i18n-html so the
-  new abbr + anchor tags render.
-- i18n.js sanitiser extended to allow abbr elements with the title
-  attribute (still blocks any other tag).
-- CSS: abbr title now renders with a dotted underline and cursor help,
-  and the underline turns accent-blue on hover for discoverability.
+Hover behaviour
+- Native browser title tooltips take ~1 second to appear in most
+  browsers, and several users found "nothing happens on hover". Added
+  a custom CSS tooltip on abbr[title] using an ::after pseudo-element
+  with content: attr(title). It appears instantly on :hover and on
+  :focus-visible, keyboard users included. Also rendered a small
+  tooltip arrow via ::before. Styled with the ink background, 280px
+  max width, rounded corners, shadow, clean sans-serif.
 
-References
-- SCORE2 now links to Eur Heart J 2021 (doi.org/10.1093/eurheartj/ehab309).
-- HFA-ICOS now links to Lyon et al., Eur J Heart Fail 2020
-  (doi.org/10.1002/ejhf.1920).
-- HERO reference on how.endpoint also linked via DOI so the mention
-  in the endpoint tile is navigable.
+Wider abbr coverage
+- Stack tiles now wrap: MLP, OMOP (+ OMOP-CDM), FedAvg, FedProx,
+  FedSGDClassifier, Joye-Libert, OPACUS, ETL, APPI, GDPR, SHAP.
+- Evaluation tile wraps: AUROC, AUPRC, Brier, ICI, DCA.
+- Regulatory status wraps: CSE, IRB, DPIA, GDPR, CE, MDR, PMDA,
+  SaMD, MR-003/MR-004, APPI.
+- Each abbr uses a localised title: English definitions in en,
+  Japanese in ja, French in fr. Total: 36 abbr tags in en / 36 in
+  ja / 35 in fr (MR-003/MR-004 consolidates to one tag).
+- HTML attrs for how.item_model, how.item_baseline, how.item_privacy,
+  how.item_harmo, how.item_explain, how.eval, how.endpoint, reg.p2
+  switched from data-i18n to data-i18n-html so the new abbr / anchor
+  tags render through the sanitiser.
+- Sanitiser in i18n.js already permits abbr + title from the last
+  commit; no further JS changes needed.
 
 i18n parity preserved at 235 keys.
