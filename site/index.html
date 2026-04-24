@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CANAL-AI — Caen-Nagoya Alliance for AI in Health Data</title>
+<meta name="description" content="A Franco-Japanese federated-learning project predicting cardiovascular adverse events of hormone therapy in prostate cancer. Only model parameters cross the border — never patient data.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='20' cy='32' r='14' fill='%230055A4'/%3E%3Ccircle cx='44' cy='32' r='14' fill='%23BC002D'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow">Franco-Japanese federated learning in health</p>
+    <h1>CANAL-AI</h1>
+    <p class="tagline">Caen-Nagoya Alliance for AI in Health Data</p>
+    <p class="lede">
+      A federated-learning collaboration predicting cardiovascular adverse
+      events of hormone therapy in prostate cancer, trained across the
+      hospital data warehouses of <strong>CHU de Caen</strong> (France) and
+      <strong>Nagoya University Hospital</strong> (Japan).
+    </p>
+    <p class="pledge">
+      Only model parameters cross the border &mdash; never patient data.
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section id="what" class="container">
+  <h2>What CANAL-AI does</h2>
+  <p>
+    Androgen deprivation therapy (ADT) is a cornerstone of prostate-cancer
+    management but carries clinically meaningful cardiovascular and
+    metabolic risks. The available agents &mdash; GnRH agonists, GnRH
+    antagonists, and androgen-receptor signalling inhibitors &mdash; do not
+    share the same cardiovascular risk profile, yet clinicians lack a
+    predictive tool to choose the agent with the best benefit-risk ratio
+    for a given patient.
+  </p>
+  <p>
+    Single-country models typically fail to generalise across populations
+    with different clinical practices, prescribing patterns, and
+    comorbidity distributions. International data would solve this, but
+    patient-level records cannot cross borders under GDPR (EU) or APPI
+    (Japan). <strong>Federated learning</strong> is the bridge: model
+    parameters are shared while patient data remain local.
+  </p>
+</section>
+
+<section id="aims" class="band">
+  <div class="container">
+    <h2>Aims</h2>
+    <ol class="aims">
+      <li>
+        <h3>Primary</h3>
+        Develop and externally validate a federated, interpretable
+        deep-learning model predicting Major Adverse Cardiovascular Events
+        (MACE) within 24 months of ADT initiation, trained on the union of
+        the CHU de Caen Entrep&ocirc;t de Donn&eacute;es de Sant&eacute;
+        and the Nagoya University Hospital Data Warehouse.
+      </li>
+      <li>
+        <h3>APPI&ndash;GDPR blueprint</h3>
+        Produce a reusable operational blueprint for Franco-Japanese
+        federated health-data research &mdash; beyond CANAL-AI itself.
+      </li>
+      <li>
+        <h3>Benchmark</h3>
+        Compare privacy-preserving architectures (MLP, TabNet,
+        federated-XGBoost variants) on discrimination, calibration, and
+        cross-site generalisation.
+      </li>
+      <li>
+        <h3>Explainability</h3>
+        Deliver clinician-facing SHAP / attention-based explanations
+        validated against cardio-oncology expertise.
+      </li>
+      <li>
+        <h3>Extensibility</h3>
+        Establish a sustainable Caen&ndash;Nagoya pipeline, extensible to
+        additional partners (Singapore foreseen for external validation).
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="design" class="container">
+  <h2>Design in brief</h2>
+  <dl class="design">
+    <dt>Design</dt>
+    <dd>Retrospective two-site federated training, prospective external validation.</dd>
+
+    <dt>Cohort</dt>
+    <dd>Adult men with confirmed prostate cancer initiating ADT between 2018 and 2025.</dd>
+
+    <dt>Federation</dt>
+    <dd>FedBioMed framework, OMOP-CDM for variable harmonisation.</dd>
+
+    <dt>Primary endpoint</dt>
+    <dd>MACE within 24 months (composite: myocardial infarction, ischaemic stroke, heart-failure hospitalisation, cardiovascular death).</dd>
+
+    <dt>Secondary endpoints</dt>
+    <dd>New-onset diabetes, arterial hypertension, thromboembolic events; drug-specific risk ranking.</dd>
+
+    <dt>Target performance</dt>
+    <dd>AUC-ROC &ge; 0.80 on held-out site validation, calibration slope 0.9&ndash;1.1.</dd>
+  </dl>
+</section>
+
+<section id="partners" class="band">
+  <div class="container">
+    <h2>Institutional partners</h2>
+    <ul class="partners">
+      <li>
+        <h3>Nagoya University</h3>
+        <p>Graduate School of Medicine &mdash; scientific and institutional home of the project on the Japanese side.</p>
+      </li>
+      <li>
+        <h3>CHU de Caen Normandie</h3>
+        <p>Entrep&ocirc;t de Donn&eacute;es de Sant&eacute;, Department of Pharmacology, and INSERM&nbsp;U1086 ANTICIPE &mdash; French scientific and clinical partner.</p>
+      </li>
+      <li>
+        <h3>Universit&eacute; de Caen Normandie</h3>
+        <p>Institutional partner on the French side, including legal and regulatory support.</p>
+      </li>
+      <li>
+        <h3>FedBioMed &mdash; INRIA / Universit&eacute; C&ocirc;te d'Azur</h3>
+        <p>Federated-learning framework and methodological partner (in-kind).</p>
+      </li>
+    </ul>
+    <p class="note">
+      Individual collaborators are named in internal documents only. For
+      correspondence, please reach the project through an institutional
+      channel.
+    </p>
+  </div>
+</section>
+
+<section id="governance" class="container">
+  <h2>Data governance</h2>
+  <p>
+    CANAL-AI is designed under the dual constraint of the European
+    <strong>GDPR</strong> and the Japanese <strong>APPI</strong>. Patient
+    data never leave the hospital that holds them. Each site trains
+    locally; only updated model parameters are exchanged through a
+    federated aggregator. Ethical review is sought independently at each
+    site (Caen Scientific and Ethics Committee on the French side; Nagoya
+    IRB on the Japanese side).
+  </p>
+</section>
+
+<section id="status" class="band">
+  <div class="container">
+    <h2>Current status</h2>
+    <ul class="status">
+      <li>Letter of Intent Nagoya &harr; CHU de Caen &mdash; <span class="done">signed</span></li>
+      <li>Caen Scientific and Ethics Committee &mdash; <span class="done">favourable opinion</span></li>
+      <li>Nagoya IRB submission &mdash; <span class="inprogress">in progress</span></li>
+      <li>French data-access convention &mdash; <span class="inprogress">in progress</span></li>
+      <li>FedBioMed kickoff with INRIA / UCA &mdash; <span class="upcoming">upcoming</span></li>
+    </ul>
+    <p class="note">
+      Detailed milestones, deadlines, and individual responsibilities are
+      tracked internally and are not published here.
+    </p>
+  </div>
+</section>
+
+<section id="outputs" class="container">
+  <h2>Planned outputs</h2>
+  <ul>
+    <li>A trained federated model with a reproducible R + Python pipeline (MIT-licensed).</li>
+    <li>A primary methods paper and a clinical paper reporting the validated risk score.</li>
+    <li>The APPI&ndash;GDPR operational blueprint (CC&nbsp;BY&nbsp;4.0).</li>
+    <li>IRB packages from both sites, released in redacted form.</li>
+    <li>Open-source FedBioMed extensions and wrappers produced along the way.</li>
+  </ul>
+</section>
+
+<section id="contact" class="band">
+  <div class="container contact">
+    <h2>Contact</h2>
+    <p>
+      Enquiries about CANAL-AI should be addressed through Nagoya
+      University's Graduate School of Medicine or through the CHU de
+      Caen Department of Pharmacology.
+    </p>
+    <p>
+      Source and reproducibility artefacts:
+      <a href="https://github.com/">GitHub repository</a>.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>
+      &copy; CANAL-AI project. Code released under MIT; documentation
+      under CC&nbsp;BY&nbsp;4.0.
+    </p>
+    <p class="small">
+      CANAL-AI &mdash; Caen-Nagoya Alliance for AI in Health Data.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

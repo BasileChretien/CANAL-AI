@@ -1,0 +1,105 @@
+# ===== CANAL-AI .gitignore =====
+# Protects patient data, credentials, internal planning docs, and the
+# identities of potential / current collaborators. This repository is
+# public; anything sensitive must stay local.
+
+# ----- Patient data (NEVER commit) -----
+data/*
+!data/README.md
+!data/.gitkeep
+
+# Local extracts, parquet/fst caches, pickles
+*.parquet
+*.fst
+*.rds
+*.rda
+*.RData
+*.pkl
+*.joblib
+
+# ----- Output (commit README / .gitkeep only; review before committing anything else) -----
+output/*
+!output/README.md
+!output/.gitkeep
+
+# ----- Internal documentation (names of participants, plans, status) -----
+# Everything under docs/ is internal by default. Only the public README is
+# tracked. To publish a doc, explicitly un-ignore it below.
+docs/*
+!docs/README.md
+
+# Common internal-doc filename patterns, in case they live elsewhere
+**/plan.md
+**/PLAN.md
+**/*_plan.md
+**/*_PLAN.md
+**/roadmap_internal.md
+**/team_internal.md
+**/participants.md
+**/PARTICIPANTS.md
+**/contacts.md
+**/CONTACTS.md
+**/charter_internal.md
+**/context_for_claude*.md
+**/00_context*.md
+
+# ----- Admin / institutional correspondence (never public) -----
+admin/*
+!admin/README.md
+
+# ----- Credentials and site-specific config -----
+config.yml
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+secrets.yml
+
+# ----- R / RStudio -----
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.user
+renv/library/
+renv/local/
+renv/cellar/
+renv/staging/
+# keep renv.lock tracked (project-wide reproducibility)
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env/
+env/
+*.egg-info/
+.ipynb_checkpoints/
+
+# ----- OS cruft -----
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ----- Editors -----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ----- Logs and temp -----
+*.log
+tmp/
+temp/
+
+# ----- Built docs / site build artefacts -----
+docs/_site/
+docs/_book/
+site/_site/
+_site/
+*.html.aux
