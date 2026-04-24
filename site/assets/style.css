@@ -1450,6 +1450,29 @@ abbr[aria-label]:focus-visible::before {
   animation-play-state: paused;
 }
 
+/* Manual control: once the user clicks a flip button the card stops
+   auto-flipping and obeys the data-flip-state attribute. */
+.timeline__flip[data-flip-state="front"] .timeline__flip-inner {
+  animation: none;
+  transform: rotateY(0deg);
+  transition: transform 0.55s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.timeline__flip[data-flip-state="back"] .timeline__flip-inner {
+  animation: none;
+  transform: rotateY(180deg);
+  transition: transform 0.55s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Expanded body: remove the 3-line clamp so users can read the whole text. */
+.timeline__flip[data-expanded="true"] .timeline__flip-face--front .timeline__body {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  -webkit-box-orient: unset;
+  overflow: visible;
+}
+
 .timeline__flip-face {
   grid-area: face;
   display: flex;
@@ -1495,23 +1518,61 @@ abbr[aria-label]:focus-visible::before {
   overflow: hidden;
 }
 
-.timeline__flip-hint {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.75rem;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--cream-2);
-  color: var(--muted);
-  display: inline-flex;
+.timeline__flip-controls {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1;
-  pointer-events: none;
 }
+
+.timeline__flip-link {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--accent);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.timeline__flip-link:hover,
+.timeline__flip-link:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.timeline__flip-link--icon::after {
+  content: "↻";
+  margin-left: 0.3rem;
+  font-weight: 700;
+}
+
+.timeline__flip-link--overlay {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 0.7rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.92);
+  border-color: transparent;
+  color: var(--ink);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.timeline__flip-link--overlay:hover,
+.timeline__flip-link--overlay:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.timeline__flip-face--back { position: relative; }
 
 @keyframes timeline-flip {
   0%   { transform: rotateY(0deg); }

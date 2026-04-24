@@ -680,15 +680,22 @@
     <h2 data-i18n="news.title">News</h2>
     <p class="news-notice" data-i18n="news.none_yet">No patient data has been processed to date — these are regulatory and institutional milestones ahead of the federated training phase.</p>
     <ol class="timeline">
-      <li class="timeline__flip">
+      <li class="timeline__flip" data-flip-state="auto">
         <div class="timeline__flip-inner">
           <div class="timeline__flip-face timeline__flip-face--front">
             <time class="timeline__date" data-i18n="news.visit_date">13–14 April 2026</time>
             <h3 class="timeline__title" data-i18n="news.visit_title">Dr Dolladille visits Nagoya University</h3>
             <p class="timeline__body" data-i18n="news.visit_body">Dr Charles Dolladille visited Nagoya University on 13 and 14 April 2026 to meet the CANAL-AI team on site. On day 2, Adeline Lassaux and Sonia Ciechelski from the French Embassy in Japan joined the discussions about the project and the cooperation opportunities that follow from it.</p>
-            <span class="timeline__flip-hint" aria-hidden="true">↻</span>
+            <div class="timeline__flip-controls">
+              <button type="button" class="timeline__flip-link" data-action="expand"
+                      data-i18n="news.visit_read_more"
+                      data-i18n-more="news.visit_read_more"
+                      data-i18n-less="news.visit_show_less">Read more</button>
+              <button type="button" class="timeline__flip-link timeline__flip-link--icon" data-action="flip"
+                      data-i18n="news.visit_see_photo">See photo</button>
+            </div>
           </div>
-          <div class="timeline__flip-face timeline__flip-face--back" aria-hidden="true">
+          <div class="timeline__flip-face timeline__flip-face--back">
             <picture>
               <source type="image/webp" srcset="assets/photos/visit-nagoya.webp">
               <img src="assets/photos/visit-nagoya.jpg"
@@ -696,6 +703,8 @@
                    data-i18n-attr="alt:news.visit_alt"
                    alt="Dr Charles Dolladille with the CANAL-AI team at Nagoya University, 13 April 2026">
             </picture>
+            <button type="button" class="timeline__flip-link timeline__flip-link--overlay" data-action="flip"
+                    data-i18n="news.visit_see_text">Read text</button>
           </div>
         </div>
       </li>

@@ -163,6 +163,9 @@
   }
 
   function init(dict) {
+    // Expose the dictionary for small enhancements (flip card "Read more"
+    // label swap) without reimplementing language detection.
+    window.__CANAL_AI_I18N__ = dict;
     const lang = pickInitialLang();
     applyLang(dict, lang);
 
@@ -235,6 +238,43 @@
     }
 
     initStory();
+    initFlipCards();
+  }
+
+  // ---------- Manual flip + expand controls for the news flip-card ----------
+  function initFlipCards() {
+    const flips = document.querySelectorAll(".timeline__flip");
+    flips.forEach((card) => {
+      const flipButtons = card.querySelectorAll('[data-action="flip"]');
+      flipButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const state = card.getAttribute("data-flip-state") || "auto";
+          card.setAttribute("data-flip-state", state === "back" ? "front" : "back");
+        });
+      });
+
+      const expandBtn = card.querySelector('[data-action="expand"]');
+      if (expandBtn) {
+        expandBtn.addEventListener("click", () => {
+          const expanded = card.getAttribute("data-expanded") === "true";
+          if (expanded) {
+            card.removeAttribute("data-expanded");
+          } else {
+            card.setAttribute("data-expanded", "true");
+            card.setAttribute("data-flip-state", "front");
+          }
+          // Swap the button label between "Read more" and "Show less".
+          const nextKey = expanded ? expandBtn.dataset.i18nMore : expandBtn.dataset.i18nLess;
+          if (nextKey) expandBtn.setAttribute("data-i18n", nextKey);
+          // Re-hydrate this node's label in the active language.
+          const active = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
+          const bundle = window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[active];
+          if (bundle && nextKey && bundle[nextKey] !== undefined) {
+            expandBtn.textContent = bundle[nextKey];
+          }
+        });
+      }
+    });
   }
 
   // ---------- How-it-works story controller ----------

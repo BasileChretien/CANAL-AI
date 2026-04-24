@@ -1,25 +1,33 @@
-refactor(news): flip-card for Dolladille visit tile
+feat(news): manual flip + Read more expand on the Dolladille tile
 
-The previous implementation (.timeline__item--visual) made the visit
-tile span two grid columns, which stretched the adjacent news tiles
-to match its height and made the row look anemic. Replaced with an
-auto-flipping card that takes exactly one grid column like every
-other news tile:
+Two controls were missing, both added now.
 
-- Front: date, title, and a 3-line clamped body excerpt, plus a
-  subtle circular refresh hint in the top-right corner.
-- Back: the visit photo, full-bleed with object-fit: cover.
-- Both faces share the same grid cell (grid-template-areas: "face")
-  so the parent sizes to the larger face; height: 100% lets the grid
-  stretch us to the row's natural height.
-- 12-second cycle: front visible 0-42%, flip to back at 52%, back
-  visible until 92%, flip back to front at 100%. Cubic-bezier easing
-  makes the rotation feel decisive rather than mechanical.
-- Hover or keyboard focus pauses the flip (animation-play-state).
-- prefers-reduced-motion disables the animation entirely; front face
-  stays visible with the text content.
-- Red border-top on the back + blue border-top on the front echo the
-  Franco-Japanese palette used on the other timeline cards.
+Manual flip
+- A "See photo" pill button sits inside the front face controls row,
+  and a "Read text" translucent pill overlays the bottom-right of the
+  back photo. Clicking either button toggles the card between front
+  and back via a new data-flip-state attribute.
+- Manual mode stops the auto-flip: CSS selectors on
+  [data-flip-state="front"|"back"] override the animation with a
+  transform so the card stays on the user-chosen face.
+- Hover and keyboard focus already pause the auto-animation
+  (animation-play-state: paused).
 
-.claude/launch.json now configured (port 8282) so the preview server
-can be reused for subsequent verification.
+Read more / Show less
+- A "Read more" pill button toggles data-expanded on the card. CSS
+  removes the 3-line clamp on the body so the full paragraph is
+  readable inline; the card grows, the grid handles the reflow.
+- Expanding also snaps the card to the front face so the user reads
+  what they expanded. Button label swaps Read more / Show less on
+  each click, localised via the dictionary (data-i18n-more /
+  data-i18n-less).
+
+i18n (en / ja / fr)
+- 4 new keys: news.visit_read_more, news.visit_show_less,
+  news.visit_see_photo, news.visit_see_text.
+- 239 -> 243 keys; parity preserved.
+
+JS
+- initFlipCards wired after initStory. It handles the flip and
+  expand actions, plus the localised label swap using
+  window.__CANAL_AI_I18N__ (newly exposed by init).
