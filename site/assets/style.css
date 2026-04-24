@@ -785,9 +785,9 @@ a:hover { text-decoration-thickness: 2px; }
 .partners__card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
 .partners__logo-wrap {
-  height: 80px;
   width: 100%;
   max-width: 200px;
+  height: 80px;
   margin: 0 auto 0.95rem;
   padding: 0.55rem 0.85rem;
   display: flex;
@@ -796,15 +796,19 @@ a:hover { text-decoration-thickness: 2px; }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 .partners__logo {
-  max-height: 100%;
-  max-width: 100%;
   width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: 64px;
   object-fit: contain;
   display: block;
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
 }
 
 .partners h3 { margin: 0 0 0.35rem; font-size: 1rem; }
@@ -912,13 +916,20 @@ a:hover { text-decoration-thickness: 2px; }
   color: var(--accent);
 }
 
+.logo-chip {
+  overflow: hidden;
+}
+
 .logo-chip img {
-  max-height: 100%;
-  max-width: 100%;
   width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: 40px;
   object-fit: contain;
   display: block;
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
 }
 
 .logo-chip--placeholder {
