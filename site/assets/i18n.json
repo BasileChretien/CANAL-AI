@@ -29,7 +29,7 @@
     "pilot.title": "One pilot. A network to come.",
     "pilot.p1": "CANAL-AI starts as a two-hospital pilot between Caen and Nagoya. That is a deliberate choice: two sites are enough to prove a GDPR-and-APPI-compliant federation works end-to-end, and small enough that every step — governance, harmonisation, secure aggregation — can be documented in detail.",
     "pilot.p2": "The outputs we care most about are not just a model — they are a <strong>reusable protocol</strong> and an <strong>APPI–GDPR operational blueprint</strong> that let additional hospitals plug in without reinventing the legal, ethical, and technical groundwork.",
-    "pilot.p3": "Beyond the Caen-Nagoya pilot, any hospital willing to keep patient data on-site is a candidate partner. If you have a hospital data warehouse and a clinical champion in cardio-oncology, urology, or pharmacology, we would like to hear from you.",
+    "pilot.p3": "Beyond the Caen-Nagoya pilot, any hospital willing to keep patient data on-site and participate in federated learning is a candidate partner. If you have a hospital data warehouse and the willingness to contribute, we would like to hear from you.",
 
     "why.title": "Why this matters",
     "why.p1": "Androgen deprivation therapy (ADT) is a cornerstone of prostate-cancer management, but it carries clinically meaningful cardiovascular and metabolic risks. GnRH agonists, GnRH antagonists, and androgen-receptor signalling inhibitors do not share the same cardiovascular risk profile — and clinicians still lack a predictive tool to choose the agent with the best benefit-risk ratio for a given patient.",
@@ -126,11 +126,11 @@
 
     "join.kicker": "Partnership",
     "join.title": "Want to join us?",
-    "join.p1": "CANAL-AI is designed to grow. If your hospital has a data warehouse and a clinical champion in cardio-oncology, urology, or pharmacology, you may be a natural next node.",
+    "join.p1": "CANAL-AI is designed to grow. If your hospital has a data warehouse and is willing to participate in federated learning, you may be a natural next node.",
     "join.what_title": "What a partner site needs",
     "join.what_1": "Access to a hospital data warehouse (or an equivalent structured EHR extract).",
     "join.what_2": "Willingness to harmonise relevant variables to OMOP-CDM.",
-    "join.what_3": "Local IRB support and a clinical champion.",
+    "join.what_3": "Local IRB support and the willingness to participate in federated learning.",
     "join.what_4": "A workstation capable of running a FedBioMed node. No patient data ever leaves your institution.",
     "join.cta": "Talk to us about joining",
 
@@ -176,7 +176,7 @@
     "pilot.title": "一つのパイロット、そして広がるネットワークへ",
     "pilot.p1": "CANAL-AIはCaenと名古屋の二病院パイロットとして始動します。これは意図的な選択です。二サイトあれば、GDPRとAPPIの両方に適合する連合学習がエンドツーエンドで機能することを証明でき、ガバナンス・データ調和・セキュア集約といった各ステップを丁寧に文書化できる規模でもあります。",
     "pilot.p2": "我々が最も重視する成果はモデルそのものだけではなく、<strong>再利用可能なプロトコル</strong>と<strong>APPI–GDPR運用ブループリント</strong>です。これにより、新たな病院が法的・倫理的・技術的な土台を一から作り直すことなく参加できるようになります。",
-    "pilot.p3": "Caen–名古屋パイロットのその先は、患者データを院内に留めて協力いただける病院すべてが連携候補となります。病院データウェアハウスを備え、心臓腫瘍学・泌尿器科・薬理学のいずれかに臨床リーダーを有する施設があれば、ぜひご連絡ください。",
+    "pilot.p3": "Caen–名古屋パイロットのその先は、患者データを院内に留めたまま連合学習に参加いただける病院すべてが連携候補となります。病院データウェアハウスを備え、参加にご関心のある施設があれば、ぜひご連絡ください。",
 
     "why.title": "なぜこのテーマか",
     "why.p1": "アンドロゲン除去療法（ADT）は前立腺がん治療の中心ですが、臨床的に重要な心血管・代謝リスクを伴います。GnRHアゴニスト、GnRHアンタゴニスト、アンドロゲン受容体シグナル阻害薬は、心血管リスクのプロファイルが同一ではなく、個々の患者に最も適した薬剤を選ぶための予測ツールは依然として存在しません。",
@@ -273,11 +273,11 @@
 
     "join.kicker": "パートナーシップ",
     "join.title": "参加をお考えの方へ",
-    "join.p1": "CANAL-AIは拡大することを前提に設計されています。貴施設にデータウェアハウスと、心臓腫瘍学・泌尿器科・薬理学のいずれかに臨床リーダーがいらっしゃれば、次のノード候補となり得ます。",
+    "join.p1": "CANAL-AIは拡大することを前提に設計されています。貴施設にデータウェアハウスがあり、連合学習への参加意欲があれば、次のノード候補となり得ます。",
     "join.what_title": "パートナーサイトに必要なもの",
     "join.what_1": "病院データウェアハウス（または同等の構造化EHR抽出）へのアクセス。",
     "join.what_2": "対象変数をOMOP-CDMへ調和する意欲。",
-    "join.what_3": "ローカルIRBの支援と臨床リーダーの存在。",
+    "join.what_3": "ローカルIRBの支援と、連合学習への参加意欲。",
     "join.what_4": "FedBioMedノードを動かせる計算機。患者データは貴施設の外へ一切出ません。",
     "join.cta": "参加について相談する",
 
@@ -323,7 +323,7 @@
     "pilot.title": "Un pilote. Un réseau à venir.",
     "pilot.p1": "CANAL-AI démarre comme un pilote à deux hôpitaux, entre Caen et Nagoya. Ce format est choisi à dessein&nbsp;: deux sites suffisent à prouver qu'une fédération conforme au RGPD et à l'APPI fonctionne de bout en bout, tout en gardant chaque étape — gouvernance, harmonisation, agrégation sécurisée — documentable en détail.",
     "pilot.p2": "Nos livrables essentiels ne se limitent pas au modèle&nbsp;: ce sont un <strong>protocole réutilisable</strong> et un <strong>blueprint opérationnel APPI–RGPD</strong> qui permettront à de nouveaux hôpitaux de rejoindre la fédération sans avoir à reconstruire tout le socle juridique, éthique et technique.",
-    "pilot.p3": "Au-delà du pilote Caen–Nagoya, tout hôpital disposé à conserver les données patients en interne peut devenir partenaire. Si votre établissement dispose d'un entrepôt de données de santé et d'un référent clinique en cardio-oncologie, urologie ou pharmacologie, nous serions heureux d'en discuter.",
+    "pilot.p3": "Au-delà du pilote Caen–Nagoya, tout hôpital disposé à conserver les données patients en interne et à participer à l'apprentissage fédéré peut devenir partenaire. Si votre établissement dispose d'un entrepôt de données de santé et souhaite contribuer, nous serions heureux d'en discuter.",
 
     "why.title": "Pourquoi c'est important",
     "why.p1": "La thérapie de suppression androgénique (ADT) est un pilier du traitement du cancer de la prostate, mais elle s'accompagne de risques cardiovasculaires et métaboliques cliniquement significatifs. Agonistes et antagonistes de la GnRH et inhibiteurs des récepteurs aux androgènes ne partagent pas le même profil de risque cardiovasculaire — et les cliniciens ne disposent toujours pas d'un outil prédictif permettant de choisir l'agent au meilleur rapport bénéfice-risque pour un patient donné.",
@@ -420,11 +420,11 @@
 
     "join.kicker": "Partenariat",
     "join.title": "Rejoindre le réseau",
-    "join.p1": "CANAL-AI est conçu pour grandir. Si votre hôpital dispose d'un entrepôt de données de santé et d'un référent clinique en cardio-oncologie, urologie ou pharmacologie, vous êtes un candidat naturel au rôle de prochain nœud.",
+    "join.p1": "CANAL-AI est conçu pour grandir. Si votre hôpital dispose d'un entrepôt de données de santé et souhaite participer à l'apprentissage fédéré, vous êtes un candidat naturel au rôle de prochain nœud.",
     "join.what_title": "Ce dont un site partenaire a besoin",
     "join.what_1": "Un accès à un entrepôt de données hospitalier (ou un extrait EHR structuré équivalent).",
     "join.what_2": "La volonté d'harmoniser les variables pertinentes à OMOP-CDM.",
-    "join.what_3": "Un soutien IRB local et un référent clinique.",
+    "join.what_3": "Un soutien IRB local et la volonté de participer à l'apprentissage fédéré.",
     "join.what_4": "Une machine capable de faire tourner un nœud FedBioMed. Aucune donnée patient ne quitte votre établissement.",
     "join.cta": "Échanger sur une adhésion",
 
