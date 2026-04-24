@@ -45,8 +45,11 @@
         }
         if (name === "abbr") {
           const safe = document.createElement("abbr");
-          const title = n.getAttribute("title");
-          if (title) safe.setAttribute("title", title);
+          // Move title -> aria-label so the browser does NOT show its native
+          // delayed tooltip underneath. Screen readers still pick up the
+          // aria-label; the visible tooltip is driven by CSS attr(aria-label).
+          const title = n.getAttribute("title") || n.getAttribute("aria-label");
+          if (title) safe.setAttribute("aria-label", title);
           walk(n, safe);
           dst.appendChild(safe);
           return;

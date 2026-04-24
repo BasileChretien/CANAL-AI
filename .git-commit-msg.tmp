@@ -1,28 +1,44 @@
-feat(site): instant CSS tooltip for abbr + wider abbr coverage
+feat(site): kill native tooltip, colour icons, detailed ack roles
 
-Hover behaviour
-- Native browser title tooltips take ~1 second to appear in most
-  browsers, and several users found "nothing happens on hover". Added
-  a custom CSS tooltip on abbr[title] using an ::after pseudo-element
-  with content: attr(title). It appears instantly on :hover and on
-  :focus-visible, keyboard users included. Also rendered a small
-  tooltip arrow via ::before. Styled with the ink background, 280px
-  max width, rounded corners, shadow, clean sans-serif.
+Tooltip behaviour
+- The native browser tooltip appeared below the cursor after a ~1s
+  delay alongside the custom CSS tooltip, which was confusing. Fixed
+  by moving abbr title -> aria-label in the sanitiser: browsers do
+  not render a native tooltip from aria-label, screen readers still
+  read the expansion, and the CSS tooltip reads content via
+  attr(aria-label). Inline abbr fallbacks in index.html also
+  title -> aria-label via sed so no-JS users get the same behaviour.
 
-Wider abbr coverage
-- Stack tiles now wrap: MLP, OMOP (+ OMOP-CDM), FedAvg, FedProx,
-  FedSGDClassifier, Joye-Libert, OPACUS, ETL, APPI, GDPR, SHAP.
-- Evaluation tile wraps: AUROC, AUPRC, Brier, ICI, DCA.
-- Regulatory status wraps: CSE, IRB, DPIA, GDPR, CE, MDR, PMDA,
-  SaMD, MR-003/MR-004, APPI.
-- Each abbr uses a localised title: English definitions in en,
-  Japanese in ja, French in fr. Total: 36 abbr tags in en / 36 in
-  ja / 35 in fr (MR-003/MR-004 consolidates to one tag).
-- HTML attrs for how.item_model, how.item_baseline, how.item_privacy,
-  how.item_harmo, how.item_explain, how.eval, how.endpoint, reg.p2
-  switched from data-i18n to data-i18n-html so the new abbr / anchor
-  tags render through the sanitiser.
-- Sanitiser in i18n.js already permits abbr + title from the last
-  commit; no further JS changes needed.
+More abbr coverage
+- pilot.p1: GDPR and APPI wrapped (EN / JA / FR); switched the HTML
+  attr to data-i18n-html.
+- how.p1: INRIA wrapped (EN / JA / FR).
+- how.item_model: PyTorch wrapped (EN / JA / FR).
+- Total abbr tags: 40 (en), 40 (ja), 39 (fr).
+
+Coloured icons on team cards
+- ORCID in ORCID green #A6CE39, LinkedIn in LinkedIn blue #0A66C2,
+  Mail in Nagoya red (brand), using :has() selectors so no HTML
+  changes required. Hover state fills the whole chip with the brand
+  colour and white icon.
+
+Acknowledgement roles
+- All eight acknowledgees now show their actual role instead of just
+  the affiliation, in EN / JA / FR:
+  * Mrs Villers    -- Director, Research Department, Caen Univ. Hosp.
+  * Mr Varnier     -- General Director, Caen Univ. Hosp.
+  * Prof Lelong    -- Medical Head, Pharmacology, Caen Univ. Hosp.
+  * Prof Parienti  -- Medical Head, Research Dept, Caen Univ. Hosp.
+  * Dr Imaizumi    -- Lecturer, Clinical Research Education, NUGSM;
+                       Dept of Nephrology, Nagoya Univ. Hospital
+  * Prof Hashizume -- Professor, Advanced Medicine / Clinical Research
+                       Education, Nagoya Univ. Hosp. & NUGSM
+  * Prof Katsuno   -- Dean, Nagoya Univ. Graduate School of Medicine
+  * Prof Kasuya    -- Vice-Dean for International Affairs, NUGSM
+
+Layout
+- Thanks cards switched from flex-row to a 2-column grid so the
+  (now multi-line) role wraps cleanly beneath the name while the
+  external-site arrow stays pinned to the right side of the card.
 
 i18n parity preserved at 235 keys.
