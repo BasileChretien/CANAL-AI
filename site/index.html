@@ -207,23 +207,33 @@
           <line class="fed-line fed-line--future" x1="400" y1="160" x2="400" y2="215" stroke="#8e939b" stroke-width="2"/>
 
           <g class="fed-node fed-node--caen">
+            <circle class="fed-node__boundary" cx="100" cy="130" r="58" fill="none" stroke="#0055A4" stroke-width="1.5" stroke-dasharray="4 3"/>
             <circle class="fed-node__halo" cx="100" cy="130" r="48" fill="#0055A4"/>
             <circle cx="100" cy="130" r="34" fill="#0055A4"/>
             <text x="100" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_caen">Caen</text>
             <text x="100" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_caen_sub">Univ. Hospital</text>
+            <text class="fed-node__stay" x="100" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#0b4d8f" data-i18n="how.diagram_stay">data stays on site</text>
           </g>
 
           <g class="fed-node fed-node--nagoya fed-node--delay">
+            <circle class="fed-node__boundary" cx="700" cy="130" r="58" fill="none" stroke="#BC002D" stroke-width="1.5" stroke-dasharray="4 3"/>
             <circle class="fed-node__halo" cx="700" cy="130" r="48" fill="#BC002D"/>
             <circle cx="700" cy="130" r="34" fill="#BC002D"/>
             <text x="700" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_nagoya">Nagoya</text>
             <text x="700" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_nagoya_sub">Univ. Hospital</text>
+            <text class="fed-node__stay" x="700" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#82001f" data-i18n="how.diagram_stay">data stays on site</text>
           </g>
 
           <g class="fed-agg">
             <rect class="fed-agg__rect" x="340" y="100" width="120" height="60" rx="10" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
             <text x="400" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1a1a1a">FedBioMed</text>
             <text x="400" y="143" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1a1a1a" data-i18n="how.diagram_agg">Aggregator</text>
+            <!-- Honest-but-curious cue: aggregator sees encrypted sum only -->
+            <g transform="translate(448, 108)" class="fed-agg__lock">
+              <circle r="8" fill="#0b4d8f"/>
+              <path d="M-3.2 -0.8h6.4v4H-3.2z M-2 -0.8v-2.2a2 2 0 014 0v2.2" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <text class="fed-agg__caption" x="400" y="182" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#5a5f66" data-i18n="how.diagram_agg_caption">gradients only — no patient data</text>
           </g>
 
           <g class="fed-future">
@@ -231,55 +241,73 @@
             <text x="400" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#1a1a1a" data-i18n="how.diagram_future">Future partner</text>
           </g>
 
-          <!-- Outbound parameter packets (Step 2: secure send) -->
+          <!-- Outbound encrypted updates (Step 2: secure send) — padlock glyphs -->
           <g class="fed-packets fed-packets--outbound">
-            <circle class="fed-packet" r="5" fill="#0055A4">
-              <animate attributeName="cx" values="140;340" dur="2.6s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="130;130" dur="2.6s" repeatCount="indefinite"/>
+            <g class="fed-packet fed-packet--caen" transform="translate(140, 130)">
+              <circle r="10" fill="#0055A4"/>
+              <path d="M-3 -1h6v4h-6z M-2 -1v-2.2a2 2 0 014 0v2.2" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <animateTransform attributeName="transform" type="translate" values="140,130;340,130" dur="2.6s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" repeatCount="indefinite"/>
-            </circle>
-            <circle class="fed-packet" r="5" fill="#BC002D">
-              <animate attributeName="cx" values="660;460" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="130;130" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+            </g>
+            <g class="fed-packet fed-packet--nagoya" transform="translate(660, 130)">
+              <circle r="10" fill="#BC002D"/>
+              <path d="M-3 -1h6v4h-6z M-2 -1v-2.2a2 2 0 014 0v2.2" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <animateTransform attributeName="transform" type="translate" values="660,130;460,130" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-            </circle>
+            </g>
           </g>
 
-          <!-- Return parameter packets (Step 4: update) -->
+          <!-- Return updated-model packets (Step 4: update) — padlock glyphs -->
           <g class="fed-packets fed-packets--return">
-            <circle class="fed-packet" r="4" fill="#0055A4">
-              <animate attributeName="cx" values="340;140" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-            </circle>
-            <circle class="fed-packet" r="4" fill="#BC002D">
-              <animate attributeName="cx" values="460;660" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
-              <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
-            </circle>
+            <g class="fed-packet fed-packet--return-caen" transform="translate(340, 130)">
+              <circle r="9" fill="#0055A4" opacity="0.85"/>
+              <path d="M-3 -1h6v4h-6z M-2 -1v-2.2a2 2 0 014 0v2.2" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <animateTransform attributeName="transform" type="translate" values="340,130;140,130" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+            </g>
+            <g class="fed-packet fed-packet--return-nagoya" transform="translate(460, 130)">
+              <circle r="9" fill="#BC002D" opacity="0.85"/>
+              <path d="M-3 -1h6v4h-6z M-2 -1v-2.2a2 2 0 014 0v2.2" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <animateTransform attributeName="transform" type="translate" values="460,130;660,130" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+            </g>
           </g>
 
-          <text x="240" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
-          <text x="560" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
+          <text x="240" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">encrypted model updates</text>
+          <text x="560" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">encrypted model updates</text>
+
+          <!-- Round counter -->
+          <g class="fed-round">
+            <rect x="688" y="14" width="96" height="26" rx="13" fill="#fff" stroke="#d6d1c5" stroke-width="1"/>
+            <text x="706" y="31" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#5a5f66">
+              <tspan data-i18n="how.round">Round</tspan>
+              <tspan class="fed-round__n" dx="6" font-weight="800" fill="#0b4d8f">1</tspan>
+              <tspan dx="4" fill="#8e939b">/ N</tspan>
+            </text>
+          </g>
         </svg>
       </figure>
 
-      <div class="fed-story__controls" role="group" aria-label="Steps">
-        <button type="button" class="fed-story__dot is-active" data-step="1" aria-current="true"
+      <div class="fed-story__controls" role="tablist" aria-label="Steps">
+        <button type="button" class="fed-story__dot is-active" data-step="1" role="tab" aria-current="true"
                 aria-label="Step 1" data-i18n-attr="aria-label:how.step1_title">
-          <span aria-hidden="true">1</span>
+          <span class="fed-story__dot-num" aria-hidden="true">1</span>
+          <span class="fed-story__dot-label" data-i18n="how.step1_title">Local training</span>
         </button>
-        <button type="button" class="fed-story__dot" data-step="2"
+        <button type="button" class="fed-story__dot" data-step="2" role="tab"
                 aria-label="Step 2" data-i18n-attr="aria-label:how.step2_title">
-          <span aria-hidden="true">2</span>
+          <span class="fed-story__dot-num" aria-hidden="true">2</span>
+          <span class="fed-story__dot-label" data-i18n="how.step2_title">Secure send</span>
         </button>
-        <button type="button" class="fed-story__dot" data-step="3"
+        <button type="button" class="fed-story__dot" data-step="3" role="tab"
                 aria-label="Step 3" data-i18n-attr="aria-label:how.step3_title">
-          <span aria-hidden="true">3</span>
+          <span class="fed-story__dot-num" aria-hidden="true">3</span>
+          <span class="fed-story__dot-label" data-i18n="how.step3_title">Average</span>
         </button>
-        <button type="button" class="fed-story__dot" data-step="4"
+        <button type="button" class="fed-story__dot" data-step="4" role="tab"
                 aria-label="Step 4" data-i18n-attr="aria-label:how.step4_title">
-          <span aria-hidden="true">4</span>
+          <span class="fed-story__dot-num" aria-hidden="true">4</span>
+          <span class="fed-story__dot-label" data-i18n="how.step4_title">Update and repeat</span>
         </button>
         <button type="button" class="fed-story__toggle" aria-pressed="false"
                 aria-label="Pause" data-i18n-attr="aria-label:how.story_pause">

@@ -235,18 +235,30 @@
     const dots  = Array.from(story.querySelectorAll(".fed-story__dot"));
     const toggle = story.querySelector(".fed-story__toggle");
     const progressFill = story.querySelector(".fed-story__progress-fill");
+    const roundEl = story.querySelector(".fed-round__n");
     if (cards.length === 0 || dots.length === 0) return;
 
     const STEPS = cards.length;
     const PERIOD_MS = 5000;
     let phase = 1;
+    let round = 1;
     let paused = false;
     let phaseStartedAt = 0;
     let raf = 0;
     let intersecting = true;
 
     function setPhase(n, resetTimer) {
-      phase = ((n - 1) % STEPS + STEPS) % STEPS + 1;
+      const requested = ((n - 1) % STEPS + STEPS) % STEPS + 1;
+      // Increment the round counter when the story wraps phase 4 -> phase 1.
+      if (phase === STEPS && requested === 1) {
+        round += 1;
+        if (roundEl) roundEl.textContent = String(round);
+        story.classList.remove("is-round-bump");
+        // Force a reflow so the CSS animation replays cleanly.
+        void story.offsetWidth;
+        story.classList.add("is-round-bump");
+      }
+      phase = requested;
       story.setAttribute("data-phase", String(phase));
       cards.forEach((c, i) => c.classList.toggle("is-active", i + 1 === phase));
       dots.forEach((d, i) => {
