@@ -222,6 +222,101 @@
       );
       obs.observe(diagram);
     }
+
+    initStory();
+  }
+
+  // ---------- How-it-works story controller ----------
+  function initStory() {
+    const story = document.querySelector(".fed-story");
+    if (!story) return;
+
+    const cards = Array.from(story.querySelectorAll(".fed-story__card"));
+    const dots  = Array.from(story.querySelectorAll(".fed-story__dot"));
+    const toggle = story.querySelector(".fed-story__toggle");
+    const progressFill = story.querySelector(".fed-story__progress-fill");
+    if (cards.length === 0 || dots.length === 0) return;
+
+    const STEPS = cards.length;
+    const PERIOD_MS = 5000;
+    let phase = 1;
+    let paused = false;
+    let phaseStartedAt = 0;
+    let raf = 0;
+    let intersecting = true;
+
+    function setPhase(n, resetTimer) {
+      phase = ((n - 1) % STEPS + STEPS) % STEPS + 1;
+      story.setAttribute("data-phase", String(phase));
+      cards.forEach((c, i) => c.classList.toggle("is-active", i + 1 === phase));
+      dots.forEach((d, i) => {
+        const on = i + 1 === phase;
+        d.classList.toggle("is-active", on);
+        d.setAttribute("aria-current", on ? "true" : "false");
+      });
+      if (resetTimer !== false) phaseStartedAt = performance.now();
+    }
+
+    function tick(now) {
+      raf = 0;
+      if (paused || !intersecting) return;
+      const elapsed = now - phaseStartedAt;
+      if (progressFill) {
+        const p = Math.min(1, elapsed / PERIOD_MS);
+        progressFill.style.transform = `scaleX(${p})`;
+      }
+      if (elapsed >= PERIOD_MS) {
+        setPhase(phase + 1);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (raf || paused || !intersecting) return;
+      phaseStartedAt = performance.now();
+      raf = requestAnimationFrame(tick);
+    }
+
+    function stop() {
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      if (progressFill) progressFill.style.transform = "scaleX(0)";
+    }
+
+    dots.forEach((d, i) => {
+      d.addEventListener("click", () => {
+        setPhase(i + 1);
+        if (!paused && intersecting) start();
+      });
+    });
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        paused = !paused;
+        toggle.setAttribute("aria-pressed", paused ? "true" : "false");
+        story.classList.toggle("is-paused", paused);
+        if (paused) stop(); else start();
+      });
+    }
+
+    // Reduced motion: show all steps side by side, no auto-rotate.
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      story.classList.add("is-all-steps");
+      cards.forEach((c) => c.classList.add("is-active"));
+      return;
+    }
+
+    // Pause when off-screen.
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        intersecting = entry.isIntersecting;
+        if (intersecting) start(); else stop();
+      }, { threshold: 0.2 });
+      io.observe(story);
+    } else {
+      start();
+    }
+
+    setPhase(1);
   }
 
   fetch("assets/i18n.json")

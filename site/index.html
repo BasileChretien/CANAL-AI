@@ -191,77 +191,141 @@
     <p class="section__subtitle" data-i18n="how.subtitle">Built on FedBioMed, scoped to what two hospitals can actually ship.</p>
     <p class="section__lede" data-i18n-html="how.p1">We will use FedBioMed, the open-source federated-learning framework developed by INRIA and Université Côte d'Azur. Each hospital runs a local FedBioMed node on harmonised OMOP-CDM data. An aggregator at a neutral location coordinates training rounds — parameters travel, data do not.</p>
 
-    <!-- Federated-learning diagram (animated) -->
-    <figure class="fed-diagram" aria-label="Federated learning diagram">
-      <svg viewBox="0 0 800 260" role="img">
-        <defs>
-          <linearGradient id="gradBlueRed" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0"   stop-color="#0055A4"/>
-            <stop offset="1"   stop-color="#BC002D"/>
-          </linearGradient>
-        </defs>
+    <!-- Federated-learning story: diagram + phased explanation -->
+    <div class="fed-story" data-phase="1" aria-roledescription="carousel" aria-label="How the federation works">
+      <figure class="fed-diagram" aria-label="Federated learning diagram">
+        <svg viewBox="0 0 800 260" role="img">
+          <defs>
+            <linearGradient id="gradBlueRed" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0"   stop-color="#0055A4"/>
+              <stop offset="1"   stop-color="#BC002D"/>
+            </linearGradient>
+          </defs>
 
-        <line class="fed-line" x1="140" y1="130" x2="340" y2="130" stroke="url(#gradBlueRed)" stroke-width="2.5"/>
-        <line class="fed-line" x1="460" y1="130" x2="660" y2="130" stroke="url(#gradBlueRed)" stroke-width="2.5"/>
-        <line class="fed-line fed-line--future" x1="400" y1="160" x2="400" y2="215" stroke="#8e939b" stroke-width="2"/>
+          <line class="fed-line fed-line--caen"   x1="140" y1="130" x2="340" y2="130" stroke="url(#gradBlueRed)" stroke-width="2.5"/>
+          <line class="fed-line fed-line--nagoya" x1="460" y1="130" x2="660" y2="130" stroke="url(#gradBlueRed)" stroke-width="2.5"/>
+          <line class="fed-line fed-line--future" x1="400" y1="160" x2="400" y2="215" stroke="#8e939b" stroke-width="2"/>
 
-        <g class="fed-node">
-          <circle class="fed-node__halo" cx="100" cy="130" r="48" fill="#0055A4"/>
-          <circle cx="100" cy="130" r="34" fill="#0055A4"/>
-          <text x="100" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_caen">Caen</text>
-          <text x="100" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_caen_sub">Univ. Hospital</text>
-        </g>
+          <g class="fed-node fed-node--caen">
+            <circle class="fed-node__halo" cx="100" cy="130" r="48" fill="#0055A4"/>
+            <circle cx="100" cy="130" r="34" fill="#0055A4"/>
+            <text x="100" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_caen">Caen</text>
+            <text x="100" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_caen_sub">Univ. Hospital</text>
+          </g>
 
-        <g class="fed-node fed-node--delay">
-          <circle class="fed-node__halo" cx="700" cy="130" r="48" fill="#BC002D"/>
-          <circle cx="700" cy="130" r="34" fill="#BC002D"/>
-          <text x="700" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_nagoya">Nagoya</text>
-          <text x="700" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_nagoya_sub">Univ. Hospital</text>
-        </g>
+          <g class="fed-node fed-node--nagoya fed-node--delay">
+            <circle class="fed-node__halo" cx="700" cy="130" r="48" fill="#BC002D"/>
+            <circle cx="700" cy="130" r="34" fill="#BC002D"/>
+            <text x="700" y="127" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" data-i18n="how.diagram_nagoya">Nagoya</text>
+            <text x="700" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" data-i18n="how.diagram_nagoya_sub">Univ. Hospital</text>
+          </g>
 
-        <g class="fed-agg">
-          <rect x="340" y="100" width="120" height="60" rx="10" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
-          <text x="400" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1a1a1a">FedBioMed</text>
-          <text x="400" y="143" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1a1a1a" data-i18n="how.diagram_agg">Aggregator</text>
-        </g>
+          <g class="fed-agg">
+            <rect class="fed-agg__rect" x="340" y="100" width="120" height="60" rx="10" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+            <text x="400" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#1a1a1a">FedBioMed</text>
+            <text x="400" y="143" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#1a1a1a" data-i18n="how.diagram_agg">Aggregator</text>
+          </g>
 
-        <g class="fed-future">
-          <circle cx="400" cy="230" r="22" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="3 3"/>
-          <text x="400" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#1a1a1a" data-i18n="how.diagram_future">Future partner</text>
-        </g>
+          <g class="fed-future">
+            <circle cx="400" cy="230" r="22" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="3 3"/>
+            <text x="400" y="234" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#1a1a1a" data-i18n="how.diagram_future">Future partner</text>
+          </g>
 
-        <circle class="fed-packet" r="5" fill="#0055A4">
-          <animate attributeName="cx" values="140;340" dur="2.6s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="130;130" dur="2.6s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" repeatCount="indefinite"/>
-        </circle>
-        <circle class="fed-packet" r="4" fill="#0055A4" opacity="0.7">
-          <animate attributeName="cx" values="340;140" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-        </circle>
-        <circle class="fed-packet" r="5" fill="#BC002D">
-          <animate attributeName="cx" values="660;460" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="130;130" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
-        </circle>
-        <circle class="fed-packet" r="4" fill="#BC002D" opacity="0.7">
-          <animate attributeName="cx" values="460;660" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
-        </circle>
+          <!-- Outbound parameter packets (Step 2: secure send) -->
+          <g class="fed-packets fed-packets--outbound">
+            <circle class="fed-packet" r="5" fill="#0055A4">
+              <animate attributeName="cx" values="140;340" dur="2.6s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="130;130" dur="2.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="fed-packet" r="5" fill="#BC002D">
+              <animate attributeName="cx" values="660;460" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="130;130" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+            </circle>
+          </g>
 
-        <text x="240" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
-        <text x="560" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
-      </svg>
-    </figure>
+          <!-- Return parameter packets (Step 4: update) -->
+          <g class="fed-packets fed-packets--return">
+            <circle class="fed-packet" r="4" fill="#0055A4">
+              <animate attributeName="cx" values="340;140" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="fed-packet" r="4" fill="#BC002D">
+              <animate attributeName="cx" values="460;660" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="130;130" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.1;0.85;1" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+            </circle>
+          </g>
 
-    <ul class="fed-steps" aria-label="How the federation works">
-      <li><span class="fed-steps__n" aria-hidden="true">1</span><span data-i18n="how.step1">Each hospital trains a model on its own patient data — locally, inside its own firewall.</span></li>
-      <li><span class="fed-steps__n" aria-hidden="true">2</span><span data-i18n="how.step2">Only the resulting model parameters are sent to the FedBioMed aggregator in a secure, encrypted form.</span></li>
-      <li><span class="fed-steps__n" aria-hidden="true">3</span><span data-i18n="how.step3">The aggregator averages parameters across sites and sends the updated model back.</span></li>
-      <li><span class="fed-steps__n" aria-hidden="true">4</span><span data-i18n="how.step4">After many rounds, every hospital holds a model that has learned from all of them — without any patient data ever leaving.</span></li>
-    </ul>
+          <text x="240" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
+          <text x="560" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#5a5f66" data-i18n="how.diagram_model">model parameters only</text>
+        </svg>
+      </figure>
+
+      <div class="fed-story__controls" role="group" aria-label="Steps">
+        <button type="button" class="fed-story__dot is-active" data-step="1" aria-current="true"
+                aria-label="Step 1" data-i18n-attr="aria-label:how.step1_title">
+          <span aria-hidden="true">1</span>
+        </button>
+        <button type="button" class="fed-story__dot" data-step="2"
+                aria-label="Step 2" data-i18n-attr="aria-label:how.step2_title">
+          <span aria-hidden="true">2</span>
+        </button>
+        <button type="button" class="fed-story__dot" data-step="3"
+                aria-label="Step 3" data-i18n-attr="aria-label:how.step3_title">
+          <span aria-hidden="true">3</span>
+        </button>
+        <button type="button" class="fed-story__dot" data-step="4"
+                aria-label="Step 4" data-i18n-attr="aria-label:how.step4_title">
+          <span aria-hidden="true">4</span>
+        </button>
+        <button type="button" class="fed-story__toggle" aria-pressed="false"
+                aria-label="Pause" data-i18n-attr="aria-label:how.story_pause">
+          <svg class="fed-story__icon fed-story__icon--pause" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/>
+            <rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/>
+          </svg>
+          <svg class="fed-story__icon fed-story__icon--play" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 5l12 7-12 7z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="fed-story__progress" aria-hidden="true"><div class="fed-story__progress-fill"></div></div>
+
+      <div class="fed-story__stage" aria-live="polite">
+        <article class="fed-story__card is-active" data-step="1">
+          <span class="fed-story__num" aria-hidden="true">1</span>
+          <div class="fed-story__body">
+            <h3 data-i18n="how.step1_title">Local training</h3>
+            <p data-i18n="how.step1">Each hospital trains a model on its own patient data — locally, inside its own firewall. Nothing leaves the building yet.</p>
+          </div>
+        </article>
+        <article class="fed-story__card" data-step="2">
+          <span class="fed-story__num" aria-hidden="true">2</span>
+          <div class="fed-story__body">
+            <h3 data-i18n="how.step2_title">Secure send</h3>
+            <p data-i18n="how.step2">Only the resulting model parameters are sent to the FedBioMed aggregator, encrypted via Joye-Libert secure aggregation.</p>
+          </div>
+        </article>
+        <article class="fed-story__card" data-step="3">
+          <span class="fed-story__num" aria-hidden="true">3</span>
+          <div class="fed-story__body">
+            <h3 data-i18n="how.step3_title">Average</h3>
+            <p data-i18n="how.step3">The aggregator averages parameters across sites to produce an updated shared model — no raw data, just maths.</p>
+          </div>
+        </article>
+        <article class="fed-story__card" data-step="4">
+          <span class="fed-story__num" aria-hidden="true">4</span>
+          <div class="fed-story__body">
+            <h3 data-i18n="how.step4_title">Update and repeat</h3>
+            <p data-i18n="how.step4">The updated model returns to every hospital. After many rounds, each one holds a model that has learned from all — without any patient data ever leaving.</p>
+          </div>
+        </article>
+      </div>
+    </div>
 
     <h3 class="stack__title" data-i18n="how.stack_title">The stack, with glosses</h3>
     <dl class="stack">
