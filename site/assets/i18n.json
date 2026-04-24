@@ -59,7 +59,7 @@
     "how.item_harmo_label": "Harmonisation",
     "how.item_harmo": "OMOP-CDM at each site, with a custom ETL into FedBioMed training-plan tensors. Publishing this ETL — alongside the APPI–GDPR governance documents — is one of our core deliverables.",
     "how.item_explain_label": "Explainability",
-    "how.item_explain": "SHAP attributions computed locally on each site's held-out cohort; attention-weight inspection for the MLP; clinician review of drivers by cardio-oncology experts.",
+    "how.item_explain": "SHAP attributions and permutation importance computed locally on each site's held-out cohort, with clinician review of the drivers by cardio-oncology experts.",
     "how.endpoint_label": "Endpoint",
     "how.endpoint": "Major Adverse Cardiovascular Events (MACE) within 24 months of ADT initiation — composite of myocardial infarction, ischaemic stroke, heart-failure hospitalisation, and cardiovascular death.",
 
@@ -211,7 +211,7 @@
     "how.item_harmo_label": "データ調和",
     "how.item_harmo": "各サイトでOMOP-CDMを用い、FedBioMedの学習プランへ橋渡しするカスタムETLを整備します。このETLとAPPI–GDPRガバナンス文書の公開は、本プロジェクトの主要成果物の一つです。",
     "how.item_explain_label": "説明可能性",
-    "how.item_explain": "各サイトのホールドアウトコホート上でSHAP寄与度を算出し、MLPのアテンション重みを検証します。心臓腫瘍学の臨床医がドライバーを臨床的にレビューします。",
+    "how.item_explain": "各サイトのホールドアウトコホート上で、SHAP寄与度と順列重要度（permutation importance）を局所的に算出します。主要なドライバーは心臓腫瘍学の臨床医が臨床的にレビューします。",
     "how.endpoint_label": "評価項目",
     "how.endpoint": "ADT開始後24か月以内の主要心血管イベント（MACE）。心筋梗塞、虚血性脳卒中、心不全による入院、心血管死の複合エンドポイントです。",
 
@@ -363,7 +363,7 @@
     "how.item_harmo_label": "Harmonisation",
     "how.item_harmo": "OMOP-CDM sur chaque site, avec un ETL sur mesure alimentant les plans d'entraînement FedBioMed. La publication de cet ETL, en parallèle des documents de gouvernance APPI–RGPD, fait partie de nos livrables principaux.",
     "how.item_explain_label": "Explicabilité",
-    "how.item_explain": "Attributions SHAP calculées localement sur la cohorte d'évaluation de chaque site&nbsp;; inspection des poids d'attention du MLP&nbsp;; revue clinique des facteurs par des experts en cardio-oncologie.",
+    "how.item_explain": "Attributions SHAP et importance par permutation calculées localement sur la cohorte d'évaluation de chaque site, avec revue clinique des principaux facteurs par des experts en cardio-oncologie.",
     "how.endpoint_label": "Critère principal",
     "how.endpoint": "Événement cardiovasculaire majeur (MACE) dans les 24&nbsp;mois suivant l'initiation de l'ADT — composite d'infarctus du myocarde, d'AVC ischémique, d'hospitalisation pour insuffisance cardiaque et de décès cardiovasculaire.",
 
