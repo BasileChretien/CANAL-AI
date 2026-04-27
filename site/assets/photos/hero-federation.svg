@@ -1,95 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 594" role="img"
-     aria-labelledby="hero-fed-title hero-fed-desc">
-  <title id="hero-fed-title">CANAL-AI federation diagram</title>
-  <desc id="hero-fed-desc">Two hospital nodes — Caen in France, Nagoya in Japan — exchange encrypted model updates through a neutral aggregator. Patient data stays inside each hospital.</desc>
+     aria-labelledby="hero-fed-title hero-fed-desc"
+     preserveAspectRatio="xMidYMid meet">
+  <title id="hero-fed-title">CANAL-AI federation visual</title>
+  <desc id="hero-fed-desc">Two hospital nodes — Caen and Nagoya — connected through a federated network. Encrypted updates flow as luminous pulses while patient data stays on each site.</desc>
 
   <defs>
-    <!-- Cream-to-paper background gradient -->
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#FBF7EE"/>
-      <stop offset="100%" stop-color="#F5EFE0"/>
-    </linearGradient>
-    <!-- Blue → red spectrum used by every line of the federation -->
-    <linearGradient id="bridge" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"  stop-color="#0055A4"/>
-      <stop offset="50%" stop-color="#5E325F"/>
-      <stop offset="100%" stop-color="#BC002D"/>
-    </linearGradient>
-    <!-- Soft halo for each node -->
-    <radialGradient id="halo-blue" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#0055A4" stop-opacity="0.35"/>
-      <stop offset="60%" stop-color="#0055A4" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#0055A4" stop-opacity="0"/>
+    <!-- Soft white halo for the central glow -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#fff" stop-opacity="0.55"/>
+      <stop offset="35%" stop-color="#fff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="halo-red" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#BC002D" stop-opacity="0.32"/>
-      <stop offset="60%" stop-color="#BC002D" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#BC002D" stop-opacity="0"/>
+    <!-- Thin connection stroke gradient (translucent white) -->
+    <linearGradient id="link" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#fff" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#fff" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#fff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Caen-side node halo (pale, on transparent so it reads on the blue) -->
+    <radialGradient id="haloCaen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#fff" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#9ec3eb" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#9ec3eb" stop-opacity="0"/>
     </radialGradient>
-    <!-- Subtle paper grain via noise filter -->
-    <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="5"/>
-      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
-      <feComposite in2="SourceGraphic" operator="in"/>
+    <!-- Nagoya-side node halo -->
+    <radialGradient id="haloNagoya" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#fff" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#f29ba6" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f29ba6" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Glow filter for pulses -->
+    <filter id="pulseGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="1040" height="594" fill="url(#bg)"/>
-  <rect width="1040" height="594" fill="url(#bg)" filter="url(#grain)"/>
+  <!-- Subtle radial glow behind the whole composition -->
+  <circle cx="520" cy="297" r="320" fill="url(#centerGlow)"/>
 
-  <!-- Node halos -->
-  <circle cx="220" cy="297" r="220" fill="url(#halo-blue)"/>
-  <circle cx="820" cy="297" r="220" fill="url(#halo-red)"/>
-
-  <!-- Bridge line: thin gradient rule connecting the two sites -->
-  <line x1="240" y1="297" x2="800" y2="297" stroke="url(#bridge)" stroke-width="1.5"
-        stroke-dasharray="0.6 5" stroke-linecap="round"/>
-
-  <!-- Aggregator placeholder: small neutral glyph at center -->
-  <g transform="translate(520 297)">
-    <circle r="34" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
-    <text y="5" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#1a1a1a">FedBioMed</text>
-    <text y="22" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#5a5f66">aggregator</text>
+  <!-- Thin, gracefully curved connection lines fanning out from a virtual center -->
+  <g stroke="url(#link)" fill="none" stroke-width="0.9" stroke-linecap="round">
+    <!-- Long arcs (Caen ↔ Nagoya bridge) -->
+    <path d="M 180 300 C 360 130, 680 130, 860 300" stroke-width="1.4" opacity="0.85"/>
+    <path d="M 180 300 C 380 460, 660 460, 860 300" stroke-width="1.0" opacity="0.55"/>
+    <!-- Secondary arcs (future partner anchors) -->
+    <path d="M 280 200 C 420 240, 620 240, 760 200" opacity="0.45"/>
+    <path d="M 280 400 C 420 360, 620 360, 760 400" opacity="0.45"/>
+    <path d="M 200 250 C 380 200, 660 380, 840 360" opacity="0.30"/>
+    <path d="M 200 360 C 380 400, 660 220, 840 240" opacity="0.30"/>
   </g>
 
-  <!-- Caen node (left, blue) -->
-  <g transform="translate(220 297)">
-    <circle r="62" fill="#0055A4" opacity="0.95"/>
-    <circle r="62" fill="none" stroke="#0055A4" stroke-width="1.5" stroke-opacity="0.45" stroke-dasharray="3 4" transform="scale(1.55)"/>
-    <text y="-4" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#fff">Caen</text>
-    <text y="14" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#fff" opacity="0.85">France · CHU</text>
-    <text y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0b4d8f">data stays on site</text>
+  <!-- Distant network nodes — small pinpoint stars suggesting future partners -->
+  <g fill="#fff" opacity="0.45">
+    <circle cx="280" cy="200" r="2.4"/>
+    <circle cx="760" cy="200" r="2.4"/>
+    <circle cx="280" cy="400" r="2.4"/>
+    <circle cx="760" cy="400" r="2.4"/>
+    <circle cx="380" cy="125" r="1.8"/>
+    <circle cx="660" cy="125" r="1.8"/>
+    <circle cx="380" cy="475" r="1.8"/>
+    <circle cx="660" cy="475" r="1.8"/>
+    <circle cx="200" cy="250" r="1.6" opacity="0.7"/>
+    <circle cx="840" cy="240" r="1.6" opacity="0.7"/>
+    <circle cx="200" cy="360" r="1.6" opacity="0.7"/>
+    <circle cx="840" cy="360" r="1.6" opacity="0.7"/>
   </g>
 
-  <!-- Nagoya node (right, red) -->
-  <g transform="translate(820 297)">
-    <circle r="62" fill="#BC002D" opacity="0.95"/>
-    <circle r="62" fill="none" stroke="#BC002D" stroke-width="1.5" stroke-opacity="0.45" stroke-dasharray="3 4" transform="scale(1.55)"/>
-    <text y="-4" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#fff">Nagoya</text>
-    <text y="14" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#fff" opacity="0.85">Japan · NUH</text>
-    <text y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#82001f">data stays on site</text>
+  <!-- Caen node (left, blue-tinted) -->
+  <g transform="translate(180 300)">
+    <circle r="56" fill="url(#haloCaen)"/>
+    <circle r="22" fill="#0055A4" opacity="0.92"/>
+    <circle r="22" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="0.8"/>
+    <circle r="34" fill="none" stroke="#fff" stroke-opacity="0.18" stroke-width="0.6" stroke-dasharray="2 4">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="36s" repeatCount="indefinite"/>
+    </circle>
+    <text y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#fff" opacity="0.95">Caen</text>
+    <text y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="9"  fill="#fff" opacity="0.7">France</text>
   </g>
 
-  <!-- Padlock packets in slow steady flow -->
-  <g class="hero-packets">
-    <g transform="translate(282 297)">
-      <circle r="11" fill="#0055A4"/>
-      <path d="M-3.5 -1.2h7v4.5h-7z M-2.2 -1.2v-2.4a2.2 2.2 0 014.4 0v2.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="282,297;486,297" dur="4s" repeatCount="indefinite"/>
-    </g>
-    <g transform="translate(758 297)">
-      <circle r="11" fill="#BC002D"/>
-      <path d="M-3.5 -1.2h7v4.5h-7z M-2.2 -1.2v-2.4a2.2 2.2 0 014.4 0v2.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4s" begin="0.7s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="758,297;554,297" dur="4s" begin="0.7s" repeatCount="indefinite"/>
-    </g>
+  <!-- Nagoya node (right, red-tinted) -->
+  <g transform="translate(860 300)">
+    <circle r="56" fill="url(#haloNagoya)"/>
+    <circle r="22" fill="#BC002D" opacity="0.92"/>
+    <circle r="22" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="0.8"/>
+    <circle r="34" fill="none" stroke="#fff" stroke-opacity="0.18" stroke-width="0.6" stroke-dasharray="2 4">
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="36s" repeatCount="indefinite"/>
+    </circle>
+    <text y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#fff" opacity="0.95">Nagoya</text>
+    <text y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="9"  fill="#fff" opacity="0.7">Japan</text>
   </g>
 
-  <!-- Caption strip at the bottom: bilingual subtitle -->
-  <g font-family="Inter, sans-serif" fill="#5a5f66" text-anchor="middle">
-    <text x="520" y="540" font-size="13" letter-spacing="0.05em">Caen × Nagoya — federated learning, no patient data crosses borders.</text>
+  <!-- Central aggregator: a simple glyph (no dominating presence) -->
+  <g transform="translate(520 300)">
+    <circle r="14" fill="#fff" opacity="0.92"/>
+    <path d="M-5 -1.5h10v6h-10z M-3 -1.5v-2.5a3 3 0 016 0v2.5"
+          fill="none" stroke="#0b3d77" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle r="22" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="0.7"/>
+    <circle r="32" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="0.5" stroke-dasharray="1 5">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Luminous pulses traveling along the main bridge arc — the "encrypted updates"
+       flowing across the federation. Two pulses out of phase, one in each direction. -->
+  <g filter="url(#pulseGlow)">
+    <circle r="4" fill="#fff" opacity="0.9">
+      <animateMotion dur="5s" repeatCount="indefinite" rotate="auto"
+                     path="M 180 300 C 360 130, 680 130, 860 300"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0" keyTimes="0;0.12;0.88;1" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="4" fill="#fff" opacity="0.9">
+      <animateMotion dur="5s" begin="2.5s" repeatCount="indefinite" rotate="auto"
+                     path="M 860 300 C 680 470, 360 470, 180 300"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0" keyTimes="0;0.12;0.88;1" dur="5s" begin="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Subtle secondary pulses on the lower-right and upper-left arcs -->
+    <circle r="2.2" fill="#fff" opacity="0.6">
+      <animateMotion dur="6s" begin="1.2s" repeatCount="indefinite"
+                     path="M 280 200 C 420 240, 620 240, 760 200"/>
+      <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.15;0.85;1" dur="6s" begin="1.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2.2" fill="#fff" opacity="0.6">
+      <animateMotion dur="6s" begin="3.5s" repeatCount="indefinite"
+                     path="M 760 400 C 620 360, 420 360, 280 400"/>
+      <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.15;0.85;1" dur="6s" begin="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Soft caption — set in the same fonts as the page, light and unobtrusive -->
+  <g font-family="Inter, sans-serif" fill="#fff" opacity="0.6" text-anchor="middle">
+    <text x="520" y="540" font-size="11" letter-spacing="0.18em" font-weight="600">FEDERATED · ENCRYPTED · NEVER SHARED</text>
   </g>
 </svg>

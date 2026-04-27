@@ -1930,7 +1930,10 @@ html[lang="ja"] #news a[target="_blank"]::after {
 
 .bridge-figure {
   margin: 0 auto;
-  max-width: 1100px;
+  /* Cap to a comfortable reading width so the image isn't an absurd full-
+     screen 16:9 panorama on wide desktops; render at native aspect-ratio,
+     no cropping. */
+  max-width: 920px;
   padding: 0 1.25rem;
 }
 
@@ -1946,9 +1949,6 @@ html[lang="ja"] #news a[target="_blank"]::after {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 380px;
-  object-fit: cover;
-  object-position: center 55%;
   aspect-ratio: 1040 / 594;
 }
 
