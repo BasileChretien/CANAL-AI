@@ -403,9 +403,16 @@ abbr[aria-label]:focus-visible::before {
 
 .hero__title {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 900;
+  /* Sized for the descriptive tagline ("Caen-Nagoya Alliance for AI in
+     Health Data" — ~40 chars), not for a 3-letter acronym. */
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+@media (max-width: 900px) {
+  .hero__title { max-width: none; font-size: clamp(2rem, 7vw, 3rem); }
 }
 
 .hero__tagline {
