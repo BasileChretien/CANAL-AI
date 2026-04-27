@@ -370,13 +370,17 @@ abbr[aria-label]:focus-visible::before {
   margin: 0;
   position: relative;
   justify-self: end;
-  max-width: 100%;
+  width: 100%;
+  max-width: 520px;
 }
 
 .hero__figure img {
   width: 100%;
   max-width: 520px;
   height: auto;
+  /* 4:5 portrait — fills the text-column height (~480-560 px on desktop)
+     and reserves space before the SVG loads to prevent CLS. */
+  aspect-ratio: 4 / 5;
   border-radius: 18px;
   box-shadow:
     0 30px 60px -20px rgba(0, 0, 0, 0.45),
@@ -385,11 +389,15 @@ abbr[aria-label]:focus-visible::before {
   transition: transform 0.35s ease;
 }
 
-.hero__figure img:hover { transform: scale(1.015); }
+.hero__figure img:hover { transform: scale(1.01); }
 
 @media (max-width: 900px) {
   .hero__figure { justify-self: center; }
-  .hero__figure img { max-width: 420px; }
+  .hero__figure img { max-width: 360px; aspect-ratio: 4 / 5; }
+}
+
+@media (max-width: 600px) {
+  .hero__figure img { max-width: 300px; }
 }
 
 .eyebrow {
