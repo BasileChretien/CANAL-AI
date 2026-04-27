@@ -170,6 +170,11 @@
     const navToggle = document.querySelector(".nav-toggle");
     const nav = document.getElementById("site-nav");
     if (navToggle && nav) {
+      const closeNav = () => {
+        navToggle.setAttribute("aria-expanded", "false");
+        nav.classList.remove("is-open");
+        document.body.classList.remove("nav-open");
+      };
       navToggle.addEventListener("click", () => {
         const open = navToggle.getAttribute("aria-expanded") === "true";
         navToggle.setAttribute("aria-expanded", open ? "false" : "true");
@@ -177,11 +182,14 @@
         document.body.classList.toggle("nav-open", !open);
       });
       nav.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", () => {
-          navToggle.setAttribute("aria-expanded", "false");
-          nav.classList.remove("is-open");
-          document.body.classList.remove("nav-open");
-        });
+        a.addEventListener("click", closeNav);
+      });
+      // Escape closes the open menu and returns focus to the toggle.
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && nav.classList.contains("is-open")) {
+          closeNav();
+          if (typeof navToggle.focus === "function") navToggle.focus();
+        }
       });
     }
 
@@ -246,8 +254,30 @@
       const message = (form.elements.message.value || "").trim();
       const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+      // Reset prior aria-invalid state on inputs and clear field-error messages
+      ["cf-name", "cf-email", "cf-message"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.setAttribute("aria-invalid", "false");
+        const errEl = document.getElementById(id + "-error");
+        if (errEl) { errEl.hidden = true; errEl.textContent = ""; }
+      });
+
       if (!name || !validEmail || !message) {
         if (errorEl) errorEl.hidden = false;
+        const lang = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
+        const bundle = (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[lang]) || {};
+        const markInvalid = (id, msgKey) => {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute("aria-invalid", "true");
+          const errEl = document.getElementById(id + "-error");
+          if (errEl) {
+            errEl.textContent = bundle[msgKey] || "";
+            errEl.hidden = false;
+          }
+        };
+        if (!name) markInvalid("cf-name", "contact.form_error_name");
+        if (!validEmail) markInvalid("cf-email", "contact.form_error_email");
+        if (!message) markInvalid("cf-message", "contact.form_error_message");
         const firstInvalid = !name
           ? form.elements.name
           : !validEmail
@@ -395,6 +425,13 @@
         paused = !paused;
         toggle.setAttribute("aria-pressed", paused ? "true" : "false");
         story.classList.toggle("is-paused", paused);
+        // Flip the accessible name so screen readers announce the next action.
+        const lang = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
+        const bundle = (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[lang]) || {};
+        const labelKey = paused ? "how.story_play" : "how.story_pause";
+        if (bundle[labelKey]) toggle.setAttribute("aria-label", bundle[labelKey]);
+        // Update data-i18n-attr so a future language switch picks up the right key.
+        toggle.setAttribute("data-i18n-attr", "aria-label:" + labelKey);
         if (paused) stop(); else start();
       });
     }

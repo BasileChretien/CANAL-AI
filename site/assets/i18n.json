@@ -299,6 +299,13 @@
     "fair.title": "Open data and FAIR outputs",
     "fair.body1": "CANAL-AI commits to <abbr title=\"Findable, Accessible, Interoperable, Reusable\">FAIR</abbr> principles for every output that does not require patient-level data. The OMOP-to-FedBioMed ETL, the APPI–GDPR operational framework, and the analysis code will be released under permissive licences (CC BY 4.0 for documentation; MIT for code), each with a persistent DOI via <a href=\"https://zenodo.org/\" rel=\"noopener\">Zenodo</a>.",
     "fair.body2": "Patient-level data remain at each hospital under the federated-learning architecture and are never released. A Data Management Plan (DMP) following the Horizon Europe template will be published before the first federated training round, and a project-level persistent identifier will be registered at award start."
+  ,
+    "contact.form_subject_optional": "(optional)",
+    "contact.form_error_name": "Please enter your name.",
+    "contact.form_error_email": "Please enter a valid email address.",
+    "contact.form_error_message": "Please enter a message.",
+    "how.diagram_title": "Federated-learning architecture",
+    "how.diagram_desc": "Caen and Nagoya University Hospitals each run a local FedBioMed node; encrypted model updates travel to a central aggregator and back; patient data never leaves either site."
   },
 
   "ja": {
@@ -601,6 +608,13 @@
     "fair.title": "オープンデータと FAIR 原則",
     "fair.body1": "CANAL-AIは、患者個人レベルのデータを必要としない全ての成果物について <abbr title=\"Findable, Accessible, Interoperable, Reusable — 検索可能・アクセス可能・相互運用可能・再利用可能\">FAIR</abbr> 原則の遵守をお約束いたします。OMOP→FedBioMed ETL、APPI–GDPR運用ブループリント、ならびに解析コードについては、寛容なライセンス（ドキュメントは CC BY 4.0、コードは MIT）にて公開し、いずれも <a href=\"https://zenodo.org/\" rel=\"noopener\">Zenodo</a> 経由で永続的なDOIを付与いたします。",
     "fair.body2": "患者個人レベルのデータは連合学習アーキテクチャに基づき各病院内に留まり、外部に提供されることはございません。ホライズン・ヨーロッパ（Horizon Europe）のテンプレートに準拠したデータ管理計画（DMP）を、最初の連合学習ラウンド開始前に公開いたします。プロジェクト単位の永続識別子は、研究助成開始時に登録予定です。"
+  ,
+    "contact.form_subject_optional": "（任意）",
+    "contact.form_error_name": "お名前をご入力ください。",
+    "contact.form_error_email": "有効なメールアドレスをご入力ください。",
+    "contact.form_error_message": "メッセージをご入力ください。",
+    "how.diagram_title": "連合学習アーキテクチャ",
+    "how.diagram_desc": "カーン大学病院と名古屋大学医学部附属病院がそれぞれ自施設内に FedBioMed ノードを運用し、暗号化されたモデル更新が中央のアグリゲーターとの間で双方向に往復します。患者データが施設外へ出ることはありません。"
   },
 
   "fr": {
@@ -903,5 +917,12 @@
     "fair.title": "Données ouvertes et productions FAIR",
     "fair.body1": "CANAL-AI s'engage en faveur des principes <abbr title=\"Findable, Accessible, Interoperable, Reusable ; en français : faciles à trouver, accessibles, interopérables, réutilisables\">FAIR</abbr> pour toute production ne nécessitant pas de données individuelles de patient. L'ETL OMOP → FedBioMed, le cadre opérationnel APPI–RGPD et le code d'analyse seront diffusés sous licences permissives (CC BY 4.0 pour la documentation ; MIT pour le code), chacun avec un DOI pérenne via <a href=\"https://zenodo.org/\" rel=\"noopener\">Zenodo</a>.",
     "fair.body2": "Les données individuelles de patients restent dans chaque hôpital, sous l'architecture d'apprentissage fédéré, et ne sont jamais diffusées. Un plan de gestion des données (PGD/DMP) suivant le canevas Horizon Europe sera publié avant le premier cycle d'entraînement fédéré, et un identifiant pérenne au niveau du projet sera enregistré au démarrage du financement."
+  ,
+    "contact.form_subject_optional": "(facultatif)",
+    "contact.form_error_name": "Merci d'indiquer votre nom.",
+    "contact.form_error_email": "Merci d'indiquer une adresse e-mail valide.",
+    "contact.form_error_message": "Merci de saisir un message.",
+    "how.diagram_title": "Architecture d'apprentissage fédéré",
+    "how.diagram_desc": "Le CHU de Caen Normandie et l'Hôpital universitaire de Nagoya exploitent chacun un nœud FedBioMed local ; les mises à jour chiffrées du modèle circulent vers un agrégateur central puis reviennent ; les données des patients ne quittent jamais leur site."
   }
 }

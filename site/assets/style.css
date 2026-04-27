@@ -1906,6 +1906,94 @@ html[lang="ja"] #news a[target="_blank"]::after {
 
 .footer__link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
 
+/* ===========================================================================
+   Accessibility, mobile-UX, and visual-polish improvements (post design review)
+   =========================================================================== */
+
+/* H3 type-ramp fix — avoid the cliff between H2 (~2rem) and body (~1rem) */
+h3 {
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+  line-height: 1.35;
+}
+
+/* Negative tracking is for display sizes only; reset at H3/H4 */
+h3, h4 { letter-spacing: 0; }
+
+/* Multi-script line-height: CJK glyphs need looser leading than Latin */
+html[lang="ja"] body { line-height: 1.8; }
+html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
+  line-height: 1.4; letter-spacing: 0;
+}
+
+/* Tighter prose container for text-only sections */
+.container--prose { max-width: 48rem; }
+
+/* Drop the nth-child color cycling on cards: card colour was decorative,
+   never semantic. Reserve fr-blue/jp-red for actual Caen-vs-Nagoya markers. */
+.timeline li:nth-child(even),
+.timeline li:nth-child(4n+3),
+.roadmap li:nth-child(even),
+.roadmap li:nth-child(4n+3) { border-top-color: var(--accent); }
+
+/* Funding callout: drop the JP-red bar (could imply Japan-only funding) */
+.funding { border-left-color: var(--accent); }
+.funding h3 { color: var(--accent); }
+
+/* Abbr touch fallback: on no-hover devices, append the gloss inline so it's
+   visible (instead of relying on a hover/focus tooltip that touch can't trigger) */
+@media (hover: none) {
+  abbr[aria-label]::after {
+    content: " (" attr(aria-label) ")";
+    font-size: 0.85em;
+    color: var(--muted);
+    font-style: italic;
+  }
+}
+
+/* Contact form per-field error display */
+.contact-form__field-error {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--jp-red);
+  font-weight: 500;
+}
+
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-color: var(--jp-red);
+  box-shadow: 0 0 0 1px var(--jp-red);
+}
+
+.contact-form__optional {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+/* Mobile-nav: max-height + scroll on small landscape phones; smoother look */
+@media (max-width: 920px) {
+  .topbar__nav.is-open {
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Mobile: drop backdrop-filter on small viewports (GPU-expensive) */
+@media (max-width: 720px), (prefers-reduced-transparency: reduce) {
+  .topbar {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.96);
+  }
+}
+
+/* Reduced-motion: also halt the news flip-card outer rotation, not just inner */
+@media (prefers-reduced-motion: reduce) {
+  .timeline__flip-inner { animation: none !important; transform: none !important; }
+}
+
 /* ---------- Per-language team ordering (JA: Nishida first, then Basile, then Charles) ---------- */
 
 [lang="ja"] .team .person[data-person="nishida"] { order: -3; }
