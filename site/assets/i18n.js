@@ -127,6 +127,18 @@
       btn.setAttribute("aria-pressed", isActive ? "true" : "false");
       btn.classList.toggle("is-active", isActive);
     });
+
+    // Per-language privacy notice link: redirect [data-href-privacy] anchors
+    // to privacy.fr.html / privacy.ja.html as appropriate, falling back to
+    // the canonical English privacy.html for any other language.
+    document.querySelectorAll("[data-href-privacy]").forEach((a) => {
+      const file = lang === "fr"
+        ? "privacy.fr.html"
+        : lang === "ja"
+          ? "privacy.ja.html"
+          : "privacy.html";
+      a.setAttribute("href", file);
+    });
   }
 
   function init(dict) {

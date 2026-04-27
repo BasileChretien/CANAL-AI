@@ -10,4 +10,13 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://basilechretien.github.io/CANAL-AI/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://basilechretien.github.io/CANAL-AI/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://basilechretien.github.io/CANAL-AI/privacy.ja.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://basilechretien.github.io/CANAL-AI/privacy.fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://basilechretien.github.io/CANAL-AI/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

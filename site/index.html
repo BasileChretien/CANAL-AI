@@ -805,6 +805,52 @@
   </div>
 </section>
 
+<!-- Outputs and deliverables -->
+<section id="outputs" class="section">
+  <div class="container">
+    <p class="kicker" data-i18n="outputs.kicker">Deliverables</p>
+    <h2 data-i18n="outputs.title">Outputs and deliverables</h2>
+    <p class="section__lede" data-i18n="outputs.intro">Each deliverable is tagged with its target audience, target year, licence, and persistent identifier on release.</p>
+    <ol class="roadmap">
+      <li>
+        <h3 class="roadmap__date" data-i18n="outputs.d1_date">Q3 2027</h3>
+        <p data-i18n-html="outputs.d1_body"><strong>Methods paper</strong> — open-access; audience: methodologists, cardio-oncologists; preprint + peer-reviewed venue.</p>
+      </li>
+      <li>
+        <h3 class="roadmap__date" data-i18n="outputs.d2_date">Q4 2027</h3>
+        <p data-i18n-html="outputs.d2_body"><strong>APPI–GDPR operational framework</strong> — CC BY 4.0; archived on Zenodo with DOI; audience: hospital DPOs, IRBs, FL consortia.</p>
+      </li>
+      <li>
+        <h3 class="roadmap__date" data-i18n="outputs.d3_date">Q1 2028</h3>
+        <p data-i18n-html="outputs.d3_body"><strong>OMOP-to-FedBioMed ETL</strong> — MIT licence on GitHub + Zenodo DOI; audience: data engineers and biomedical-informatics teams.</p>
+      </li>
+      <li>
+        <h3 class="roadmap__date" data-i18n="outputs.d4_date">2028</h3>
+        <p data-i18n-html="outputs.d4_body"><strong>Clinical paper</strong> — open-access; audience: oncologists, cardiologists, regulators.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Patient and public involvement -->
+<section id="ppi" class="section section--band">
+  <div class="container">
+    <p class="kicker" data-i18n="ppi.kicker">Community</p>
+    <h2 data-i18n="ppi.title">Patient and public involvement</h2>
+    <p data-i18n-html="ppi.body">CANAL-AI is a methodological pilot using retrospective hospital data — no patients are recruited or examined for this work. As the consortium grows toward prospective validation, a patient advisory group jointly convened in France and Japan will be established to review lay summaries, the cardio-oncology endpoint definition, and any future deployment pathway. Plain-language summaries of the project are available in English, French, and Japanese on this site.</p>
+  </div>
+</section>
+
+<!-- FAIR data-management -->
+<section id="fair" class="section">
+  <div class="container">
+    <p class="kicker" data-i18n="fair.kicker">Open science</p>
+    <h2 data-i18n="fair.title">Open data and FAIR outputs</h2>
+    <p data-i18n-html="fair.body1">CANAL-AI commits to <abbr title="Findable, Accessible, Interoperable, Reusable">FAIR</abbr> principles for every output that does not require patient-level data. The OMOP-to-FedBioMed ETL, the APPI–GDPR operational framework, and the analysis code will be released under permissive licences (CC BY 4.0 for documentation; MIT for code), each with a persistent DOI via <a href="https://zenodo.org/" rel="noopener noreferrer">Zenodo</a>.</p>
+    <p data-i18n-html="fair.body2">Patient-level data remain at each hospital under the federated-learning architecture and are never released. A Data Management Plan (DMP) following the Horizon Europe template will be published before the first federated training round, and a project-level persistent identifier will be registered at award start.</p>
+  </div>
+</section>
+
 <!-- Risks -->
 <section id="risks" class="section">
   <div class="container">
@@ -891,7 +937,7 @@
   <div class="container footer__inner">
     <p data-i18n="footer.license">Code MIT · Documentation and site content CC BY 4.0 · Portraits displayed with permission; all rights reserved.</p>
     <div class="footer__links">
-      <a href="privacy.html" class="footer__link" data-i18n="footer.privacy">Privacy</a>
+      <a href="privacy.html" class="footer__link" data-i18n="footer.privacy" data-href-privacy="true">Privacy</a>
       <a href="https://github.com/BasileChretien/CANAL-AI" rel="noopener noreferrer" class="footer__repo">
         <svg width="18" height="18" aria-hidden="true"><use href="#icon-github"/></svg>
         <span data-i18n="footer.repo">GitHub repository</span>
