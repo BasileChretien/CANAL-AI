@@ -951,53 +951,80 @@ abbr[aria-label]:focus-visible::before {
   font-size: 1.25rem;
 }
 
+/* Spec-sheet panel: a single bordered card with one row per stack item.
+   Length variance between rows is natural (each row sizes to its own
+   content), so translation can grow or shrink any cell without making
+   neighbours look hollow. */
 .stack {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 1rem;
   margin: 0;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md, 12px);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .stack__item {
+  display: grid;
+  grid-template-columns: minmax(10rem, 22%) 1fr;
+  align-items: baseline;
+  gap: 0.6rem 2rem;
+  padding: 0.95rem 1.4rem;
   background: #fff;
-  border: 1px solid var(--line);
+  border: 0;
+  border-bottom: 1px solid var(--line);
   border-left: 3px solid var(--fr-blue);
-  border-radius: var(--radius-sm);
-  padding: 1rem 1.1rem;
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
 }
+.stack__item:last-child { border-bottom: 0; }
 
 .stack__item:nth-child(2) { border-left-color: var(--jp-red); }
 .stack__item:nth-child(3) { border-left-color: var(--accent); }
 .stack__item:nth-child(4) { border-left-color: var(--fr-blue); }
 .stack__item:nth-child(5) { border-left-color: var(--jp-red); }
 .stack__item:nth-child(6) { border-left-color: var(--accent); }
+.stack__item:nth-child(7) { border-left-color: var(--fr-blue); }
+
+/* Subtle alternating tint to help row scanning */
+.stack__item:nth-child(even) {
+  background: rgba(11, 77, 143, 0.025);
+}
 
 .stack__item--accent {
   border-left-color: var(--ink) !important;
   background: var(--ink);
   color: #fff;
 }
-
 .stack__item--accent dt,
 .stack__item--accent dd { color: #fff; }
+.stack__item--accent dt { color: rgba(255, 255, 255, 0.82); }
 
 .stack__item dt {
+  margin: 0;
   font-weight: 700;
   font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--accent);
-  margin-bottom: 0.3rem;
+  align-self: start;
+  padding-top: 0.15rem;
 }
-
-.stack__item--accent dt { color: rgba(255, 255, 255, 0.82); }
 
 .stack__item dd {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.97rem;
   color: var(--ink-2);
-  line-height: 1.55;
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .stack__item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 0.85rem 1rem;
+  }
 }
 
 /* Regulatory status block */
@@ -2298,17 +2325,10 @@ html[lang="ja"] #news a[target="_blank"]::after {
   transform: translateY(-2px);
 }
 
-/* The .stack__item is a content card (definition-list inside How section)
-   — give it the same baseline but keep the left-rule callout style since
-   it's a vertical list rather than a grid. */
-.stack__item {
-  padding: var(--card-pad-y) var(--card-pad-x);
-  background: var(--card-bg);
-  border: var(--card-border);
-  border-left: var(--card-accent);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
-}
+/* .stack__item is now a row inside the spec-sheet panel — see the
+   .stack rules earlier. We deliberately do NOT apply the generic card
+   token padding/border/shadow here, so each row reads as a row, not
+   as a free-floating card. */
 
 /* H3 type-ramp fix — avoid the cliff between H2 (~2rem) and body (~1rem) */
 h3 {
