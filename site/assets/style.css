@@ -1910,7 +1910,8 @@ html[lang="ja"] #news a[target="_blank"]::after {
    Round 2 of design review — hero / footer / brand-mark / bridge motif
    =========================================================================== */
 
-/* Hero brand lockup: small line above the descriptive H1 */
+/* Hero brand lockup: small line above the descriptive H1.
+   Text is white-on-gradient, so the eyebrow uses translucent white. */
 .hero__brand {
   display: flex;
   align-items: center;
@@ -1920,16 +1921,18 @@ html[lang="ja"] #news a[target="_blank"]::after {
   font-family: var(--sans);
   font-size: 0.82rem;
   letter-spacing: 0.06em;
-  color: var(--ink-2);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hero__brand-mark {
   display: inline-flex;
   align-items: center;
-  /* Overlap the two dots slightly to produce a third blended tone — the
-     federation visualised in the brand mark itself. */
   isolation: isolate;
   height: 14px;
+  /* Tiny white halo behind the dots so they remain readable on any gradient stop */
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 999px;
 }
 .hero__brand-mark .brand-dot {
   width: 14px;
@@ -1945,34 +1948,42 @@ html[lang="ja"] #news a[target="_blank"]::after {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--ink);
+  color: #fff;
 }
 
 .hero__brand-eyebrow {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.78);
 }
 .hero__brand-eyebrow::before {
   content: "·";
   margin: 0 0.55em;
-  color: var(--muted-2);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Status badge in the hero — keeps the "no patient data" trust signal
-   permanently visible above the fold. */
+   permanently visible above the fold. Translucent-white over hero gradient. */
 .hero__status {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.35rem 0.7rem;
-  margin: 0.5rem 0 0.8rem;
-  background: rgba(11, 77, 143, 0.08);
-  color: var(--accent);
-  border-left: 3px solid var(--accent);
+  padding: 0.35rem 0.75rem;
+  margin: 0.55rem 0 0.85rem;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border-left: 3px solid rgba(255, 255, 255, 0.85);
   border-radius: 4px;
   font-family: var(--sans);
   font-size: 0.82rem;
   font-weight: 500;
   line-height: 1.4;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.hero__status::before {
+  content: "●";
+  color: #6ee7b7;
+  margin-right: 0.1em;
+  font-size: 0.65em;
 }
 
 /* Apply the same overlapping-dot brand-mark to the topbar so the motif
@@ -2072,6 +2083,59 @@ html[lang="ja"] #news a[target="_blank"]::after {
 /* ===========================================================================
    Accessibility, mobile-UX, and visual-polish improvements (post design review)
    =========================================================================== */
+
+/* ===========================================================================
+   Card system unification — single set of tokens used by every card variant
+   =========================================================================== */
+/* Every card-shaped element on the site (announcements, deliverables,
+   roadmap, partners, risks, fund-ask, person, thanks) shares the same
+   padding, border-radius, top-border accent, shadow, and hover lift. */
+:root {
+  --card-pad-y: 1.1rem;
+  --card-pad-x: 1.15rem;
+  --card-radius: var(--radius-sm);
+  --card-shadow: var(--shadow-sm);
+  --card-shadow-hover: var(--shadow-md);
+  --card-border: 1px solid var(--line);
+  --card-accent: 3px solid var(--accent);
+  --card-bg: #fff;
+}
+
+.timeline li,
+.timeline__flip-face,
+.roadmap li,
+.fund-ask li,
+.risks li,
+.partners__card {
+  padding: var(--card-pad-y) var(--card-pad-x);
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-top: var(--card-accent);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.timeline li:hover,
+.roadmap li:hover,
+.fund-ask li:hover,
+.risks li:hover,
+.partners__card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* The .stack__item is a content card (definition-list inside How section)
+   — give it the same baseline but keep the left-rule callout style since
+   it's a vertical list rather than a grid. */
+.stack__item {
+  padding: var(--card-pad-y) var(--card-pad-x);
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-left: var(--card-accent);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
 
 /* H3 type-ramp fix — avoid the cliff between H2 (~2rem) and body (~1rem) */
 h3 {

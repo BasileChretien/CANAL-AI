@@ -31,9 +31,9 @@
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 
-<!-- Preload hero LCP image for faster paint -->
-<link rel="preload" as="image" type="image/webp"
-      href="assets/photos/CANAL_AI_Normandie.webp" fetchpriority="high">
+<!-- Preload hero LCP image (SVG) for faster paint -->
+<link rel="preload" as="image" type="image/svg+xml"
+      href="assets/photos/hero-federation.svg" fetchpriority="high">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='20' cy='32' r='14' fill='%230055A4'/%3E%3Ccircle cx='44' cy='32' r='14' fill='%23BC002D'/%3E%3C/svg%3E">
 
 <!-- Structured data -->
@@ -58,6 +58,13 @@
   "inLanguage": ["en", "ja", "fr"]
 }
 </script>
+
+<!-- PWA / iOS / theme color -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<meta name="theme-color" content="#0055A4">
 </head>
 <body>
 
@@ -155,13 +162,10 @@
       </div>
     </div>
     <figure class="hero__figure">
-      <picture>
-        <source type="image/webp" srcset="assets/photos/CANAL_AI_Normandie.webp">
-        <img src="assets/photos/CANAL_AI_Normandie-1040.jpg"
-             width="1040" height="594"
-             alt="CANAL-AI — Mont-Saint-Michel and Nagoya Castle bridged by a river"
-             fetchpriority="high" decoding="async">
-      </picture>
+      <img src="assets/photos/hero-federation.svg"
+           width="1040" height="594"
+           alt="CANAL-AI federation diagram — two hospital nodes, Caen in France and Nagoya in Japan, exchanging encrypted model updates through a neutral aggregator while patient data stays on each site"
+           fetchpriority="high" decoding="async">
     </figure>
   </div>
 </section>

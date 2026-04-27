@@ -152,6 +152,26 @@
         a.removeAttribute("rel");
       }
     });
+
+    // Conditionally load the Japanese font stylesheet (Noto Sans JP, ~330 KB)
+    // only when the active language is Japanese. EN/FR visitors avoid the
+    // ~330 KB cost; JA visitors get the right fonts on first interaction.
+    ensureJapaneseFonts(lang === "ja");
+  }
+
+  function ensureJapaneseFonts(load) {
+    let link = document.getElementById("canal-ai-jp-fonts");
+    if (load) {
+      if (link) return;
+      link = document.createElement("link");
+      link.id = "canal-ai-jp-fonts";
+      link.rel = "stylesheet";
+      link.href = "assets/fonts/fonts-jp.css";
+      document.head.appendChild(link);
+    }
+    // Once injected, leave the link in place — re-removing it on a language
+    // switch back to EN/FR would force a re-download if the user toggled JA
+    // again later.
   }
 
   function init(dict) {

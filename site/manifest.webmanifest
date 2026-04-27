@@ -1,0 +1,32 @@
+{
+  "name": "CANAL-AI — Caen-Nagoya Alliance for AI in Health Data",
+  "short_name": "CANAL-AI",
+  "description": "Franco-Japanese federated-learning pilot in cardio-oncology. Patient data never moves; only model parameters cross borders.",
+  "id": "/CANAL-AI/",
+  "start_url": "/CANAL-AI/",
+  "scope": "/CANAL-AI/",
+  "display": "minimal-ui",
+  "orientation": "portrait-primary",
+  "theme_color": "#0055A4",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "lang": "en",
+  "categories": ["medical", "education", "health"]
+}
