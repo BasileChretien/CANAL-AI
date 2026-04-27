@@ -1798,12 +1798,47 @@ abbr[aria-label]:focus-visible::before {
   line-height: 1.45;
 }
 
-.contact-form__error {
+.contact-form__status {
   margin: 0;
-  font-size: 0.88rem;
-  color: var(--jp-red);
+  font-size: 0.9rem;
   font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
 }
+
+.contact-form__status--error,
+.contact-form__status--server-error {
+  color: var(--jp-red);
+  background: rgba(188, 0, 45, 0.08);
+  border-left: 3px solid var(--jp-red);
+}
+
+.contact-form__status--success {
+  color: #1a5e20;
+  background: rgba(46, 125, 50, 0.08);
+  border-left: 3px solid #2e7d32;
+}
+
+.contact-form__status--sending {
+  color: var(--accent);
+  background: rgba(11, 77, 143, 0.06);
+  border-left: 3px solid var(--accent);
+}
+
+/* Honeypot: invisible to humans, present in DOM so bots fill it. */
+.contact-form__honey {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.contact-form button[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+/* Backwards-compat: keep the old class working in case it's cached anywhere */
+.contact-form__error { color: var(--jp-red); font-weight: 600; margin: 0; }
 
 /* External-link cue on Japanese announcements (per JP web convention) */
 html[lang="ja"] #news a[target="_blank"]::after {

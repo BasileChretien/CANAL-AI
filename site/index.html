@@ -833,7 +833,14 @@
     <p class="kicker" data-i18n="contact.kicker">Contact</p>
     <h2 data-i18n="contact.title">Reach the team</h2>
     <p data-i18n="contact.body">For scientific, institutional, or funding enquiries, fill in the form below — your message will reach the three principal investigators in one email.</p>
-    <form class="contact-form" id="contact-form" novalidate>
+    <form class="contact-form" id="contact-form" novalidate
+          action="https://api.web3forms.com/submit" method="POST">
+      <!-- Web3Forms public access key (binds submissions to the configured inbox; no addresses in this repo) -->
+      <input type="hidden" name="access_key" value="62e2d6d1-0e50-42ab-b0ff-cddea5372983">
+      <input type="hidden" name="from_name" value="CANAL-AI contact form">
+      <!-- Honeypot: hidden from real users, bots fill it → Web3Forms drops the submission -->
+      <input type="checkbox" name="botcheck" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
       <div class="contact-form__row">
         <label for="cf-name" data-i18n="contact.form_name_label">Your name</label>
         <input id="cf-name" name="name" type="text" required autocomplete="name"
@@ -858,12 +865,15 @@
                   data-i18n-attr="placeholder:contact.form_message_placeholder"
                   placeholder="Tell us a bit about your enquiry…"></textarea>
       </div>
-      <button type="submit" class="btn btn--primary btn--lg">
+      <button type="submit" class="btn btn--primary btn--lg" id="contact-form-submit">
         <svg width="18" height="18" aria-hidden="true"><use href="#icon-mail"/></svg>
         <span data-i18n="contact.form_submit">Send message</span>
       </button>
-      <p class="contact-form__note" data-i18n="contact.form_note">Submitting will open your default email application with the message pre-filled. No data is sent to any server from this site.</p>
-      <p class="contact-form__error" id="contact-form-error" role="alert" hidden data-i18n="contact.form_error">Please fill in your name, a valid email, and a message.</p>
+      <p class="contact-form__note" data-i18n="contact.form_note">Your message is delivered to the team through Web3Forms. The team's email addresses are never shown on this site.</p>
+      <p class="contact-form__status contact-form__status--error" id="contact-form-error" role="alert" hidden data-i18n="contact.form_error">Please fill in your name, a valid email, and a message.</p>
+      <p class="contact-form__status contact-form__status--success" id="contact-form-success" role="status" hidden data-i18n="contact.form_status_success">Thank you — your message has been sent. We'll reply by email shortly.</p>
+      <p class="contact-form__status contact-form__status--sending" id="contact-form-sending" role="status" hidden data-i18n="contact.form_status_sending">Sending your message…</p>
+      <p class="contact-form__status contact-form__status--server-error" id="contact-form-server-error" role="alert" hidden data-i18n="contact.form_status_error">Sorry — your message could not be sent. Please try again in a moment.</p>
     </form>
   </div>
 </section>

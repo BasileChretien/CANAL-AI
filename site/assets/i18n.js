@@ -10,21 +10,9 @@
   const DEFAULT = "en";
   const STORAGE_KEY = "canal-ai.lang";
 
-  // Three principal-investigator mailboxes, base64-encoded so the addresses
-  // are not present in plaintext in this script. This is light obfuscation
-  // (a determined human running the JS can still recover them); for a
-  // strict "never appears in source" guarantee, route the form through a
-  // third-party form-to-email service (Web3Forms / Formspree / FormSubmit)
-  // and remove these encoded entries entirely.
-  const TEAM_MAILBOXES = {
-    team: [
-      "bmlzaGlkYS5rYXp1a2kubjZAZi5tYWlsLm5hZ295YS11LmFjLmpw",
-      "Y2hhcmxlcy5kb2xsYWRpbGxlQHVuaWNhZW4uZnI=",
-      "Y2hyZXRpZW4uYmFzaWxlLmplYW4uYmVybmFyZC51NEBzLm1haWwubmFnb3lhLXUuYWMuanA="
-    ].map((s) => {
-      try { return atob(s); } catch (_) { return ""; }
-    }).filter(Boolean)
-  };
+  // The contact form posts to Web3Forms (form-to-email proxy). The team
+  // mailboxes are configured in the Web3Forms dashboard, not in this
+  // repo — no email address ever ships to the browser.
 
   // Whitelist parser for data-i18n-html: only <strong>, <em>, and <a href="https?://"> are kept.
   // Defence-in-depth: the JSON is author-controlled today, but this removes any
@@ -93,25 +81,6 @@
     return SUPPORTED.includes(nav) ? nav : DEFAULT;
   }
 
-  function resolveRecipients(token) {
-    if (Array.isArray(TEAM_MAILBOXES[token])) return TEAM_MAILBOXES[token].slice();
-    return (token || "").split(",").map((s) => s.trim()).filter(Boolean);
-  }
-
-  function buildMailto(token, subject, body) {
-    // RFC 6068: put first recipient in the path, additional in cc= query param.
-    const recipients = resolveRecipients(token);
-    if (recipients.length === 0) return "#";
-    const primary = encodeURIComponent(recipients[0]);
-    const cc = recipients.slice(1).map(encodeURIComponent).join(",");
-    const params = [];
-    if (cc) params.push("cc=" + cc);
-    if (subject) params.push("subject=" + encodeURIComponent(subject));
-    if (body) params.push("body=" + encodeURIComponent(body));
-    const q = params.length ? "?" + params.join("&") : "";
-    return "mailto:" + primary + q;
-  }
-
   function applyLang(dict, lang) {
     const bundle = dict[lang];
     if (!bundle) return;
@@ -150,14 +119,6 @@
           const val = bundle[key];
           if (attr && val !== undefined) el.setAttribute(attr, val);
         });
-    });
-
-    // Mailto buttons: RFC-6068 multi-recipient using cc= query parameter.
-    document.querySelectorAll("[data-i18n-mailto]").forEach((a) => {
-      const to = a.getAttribute("data-i18n-mailto");
-      const subject = bundle["contact.subject"] || "";
-      const body = bundle["contact.body_mail"] || "";
-      a.setAttribute("href", buildMailto(to, subject, body));
     });
 
     // Language switcher active state
@@ -248,22 +209,28 @@
     initContactForm();
   }
 
-  // ---------- Contact form: build a mailto: from form fields, no backend ----------
+  // ---------- Contact form: POST to Web3Forms (no backend, no addresses in source) ----------
   function initContactForm() {
     const form = document.getElementById("contact-form");
     if (!form) return;
-    const errorEl = document.getElementById("contact-form-error");
+    const errorEl   = document.getElementById("contact-form-error");
+    const sendingEl = document.getElementById("contact-form-sending");
+    const successEl = document.getElementById("contact-form-success");
+    const serverErrEl = document.getElementById("contact-form-server-error");
+    const submitBtn = document.getElementById("contact-form-submit");
 
-    function activeBundle() {
-      const lang = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
-      return (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[lang]) || {};
+    const ENDPOINT = "https://api.web3forms.com/submit";
+
+    function hideAll() {
+      [errorEl, sendingEl, successEl, serverErrEl].forEach((el) => { if (el) el.hidden = true; });
     }
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+      hideAll();
+
       const name = (form.elements.name.value || "").trim();
       const email = (form.elements.email.value || "").trim();
-      const subjectInput = (form.elements.subject.value || "").trim();
       const message = (form.elements.message.value || "").trim();
       const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -277,16 +244,38 @@
         if (firstInvalid && typeof firstInvalid.focus === "function") firstInvalid.focus();
         return;
       }
-      if (errorEl) errorEl.hidden = true;
 
-      const bundle = activeBundle();
-      const subject = subjectInput || bundle["contact.subject"] || "CANAL-AI — enquiry";
-      const greeting = bundle["contact.body_mail"] || "";
-      const fromLabel = bundle["contact.form_from_label"] || "From";
-      const emailLabel = bundle["contact.form_email_label"] || "Email";
-      const body = greeting + message + "\n\n--\n" + fromLabel + ": " + name + "\n" + emailLabel + ": " + email;
+      if (sendingEl) sendingEl.hidden = false;
+      if (submitBtn) submitBtn.disabled = true;
 
-      window.location.href = buildMailto("team", subject, body);
+      // Default a subject if the user left it blank, so the team's inbox stays tidy.
+      const subjectField = form.elements.subject;
+      if (subjectField && !subjectField.value.trim()) {
+        const bundle = (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[(document.documentElement.getAttribute("lang") || "en").slice(0, 2)]) || {};
+        subjectField.value = bundle["contact.subject"] || "CANAL-AI — enquiry";
+      }
+
+      fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(form)
+      })
+        .then((r) => r.json().then((j) => ({ ok: r.ok, body: j })))
+        .then(({ ok, body }) => {
+          if (sendingEl) sendingEl.hidden = true;
+          if (submitBtn) submitBtn.disabled = false;
+          if (ok && body && body.success) {
+            if (successEl) successEl.hidden = false;
+            form.reset();
+          } else {
+            if (serverErrEl) serverErrEl.hidden = false;
+          }
+        })
+        .catch(() => {
+          if (sendingEl) sendingEl.hidden = true;
+          if (submitBtn) submitBtn.disabled = false;
+          if (serverErrEl) serverErrEl.hidden = false;
+        });
     });
   }
 
