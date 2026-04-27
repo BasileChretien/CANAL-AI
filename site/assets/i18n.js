@@ -239,6 +239,49 @@
 
     initStory();
     initFlipCards();
+    initContactForm();
+  }
+
+  // ---------- Contact form: build a mailto: from form fields, no backend ----------
+  function initContactForm() {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+    const errorEl = document.getElementById("contact-form-error");
+
+    function activeBundle() {
+      const lang = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
+      return (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[lang]) || {};
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = (form.elements.name.value || "").trim();
+      const email = (form.elements.email.value || "").trim();
+      const subjectInput = (form.elements.subject.value || "").trim();
+      const message = (form.elements.message.value || "").trim();
+      const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!name || !validEmail || !message) {
+        if (errorEl) errorEl.hidden = false;
+        const firstInvalid = !name
+          ? form.elements.name
+          : !validEmail
+            ? form.elements.email
+            : form.elements.message;
+        if (firstInvalid && typeof firstInvalid.focus === "function") firstInvalid.focus();
+        return;
+      }
+      if (errorEl) errorEl.hidden = true;
+
+      const bundle = activeBundle();
+      const subject = subjectInput || bundle["contact.subject"] || "CANAL-AI — enquiry";
+      const greeting = bundle["contact.body_mail"] || "";
+      const fromLabel = bundle["contact.form_from_label"] || "From";
+      const emailLabel = bundle["contact.form_email_label"] || "Email";
+      const body = greeting + message + "\n\n--\n" + fromLabel + ": " + name + "\n" + emailLabel + ": " + email;
+
+      window.location.href = buildMailto("team", subject, body);
+    });
   }
 
   // ---------- Manual flip + expand controls for the news flip-card ----------

@@ -1713,6 +1713,74 @@ abbr[aria-label]:focus-visible::before {
 .contact { max-width: 48rem; text-align: left; }
 .contact .btn { margin-top: 1rem; }
 
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-form__row { display: grid; gap: 0.35rem; }
+
+.contact-form label {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(11, 77, 143, 0.18);
+}
+
+.contact-form textarea { resize: vertical; min-height: 8rem; line-height: 1.5; }
+
+.contact-form .btn { justify-self: start; margin-top: 0.25rem; }
+
+.contact-form__note {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.contact-form__error {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--jp-red);
+  font-weight: 600;
+}
+
+/* External-link cue on Japanese announcements (per JP web convention) */
+html[lang="ja"] #news a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-left: 0.15em;
+}
+
 /* ---------- Footer ---------- */
 
 .footer {
