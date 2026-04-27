@@ -837,6 +837,7 @@
           action="https://api.web3forms.com/submit" method="POST">
       <!-- Web3Forms public access key (binds submissions to the configured inbox; no addresses in this repo) -->
       <input type="hidden" name="access_key" value="62e2d6d1-0e50-42ab-b0ff-cddea5372983">
+      <!-- from_name and subject are populated by JS on submit so each email is identifiable in the team's inbox. -->
       <input type="hidden" name="from_name" value="CANAL-AI contact form">
       <!-- Honeypot: hidden from real users, bots fill it → Web3Forms drops the submission -->
       <input type="checkbox" name="botcheck" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">

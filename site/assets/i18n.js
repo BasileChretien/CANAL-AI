@@ -248,12 +248,20 @@
       if (sendingEl) sendingEl.hidden = false;
       if (submitBtn) submitBtn.disabled = true;
 
-      // Default a subject if the user left it blank, so the team's inbox stays tidy.
+      // Compose a clear, project-prefixed subject and a sender display name so
+      // the team can spot CANAL-AI messages in their inbox even if Web3Forms'
+      // default email-subject template isn't customised in their dashboard.
+      const lang = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
+      const bundle = (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[lang]) || {};
       const subjectField = form.elements.subject;
-      if (subjectField && !subjectField.value.trim()) {
-        const bundle = (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[(document.documentElement.getAttribute("lang") || "en").slice(0, 2)]) || {};
-        subjectField.value = bundle["contact.subject"] || "CANAL-AI — enquiry";
-      }
+      const fromNameField = form.elements.from_name;
+      const userSubject = subjectField ? subjectField.value.trim() : "";
+      const fallbackSubject = bundle["contact.subject"] || "CANAL-AI — enquiry";
+      const composedSubject = userSubject
+        ? "CANAL-AI — " + userSubject
+        : fallbackSubject;
+      if (subjectField) subjectField.value = composedSubject;
+      if (fromNameField) fromNameField.value = "CANAL-AI website — " + name;
 
       fetch(ENDPOINT, {
         method: "POST",
