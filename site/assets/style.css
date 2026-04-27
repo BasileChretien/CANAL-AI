@@ -1914,38 +1914,39 @@ html[lang="ja"] #news a[target="_blank"]::after {
 .footer__link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
 
 /* ===========================================================================
-   Bridge: full-bleed photographic interlude between Pilot and Why
+   Bridge: photographic interlude between Pilot and Why
    ===========================================================================
-   The image (Mont-Saint-Michel + Nagoya Castle bridged by a river under
-   sunset) is intentionally symbolic — see the disclosure caption below it.
-   Sized at native aspect ratio with a max-height to keep the page rhythm
-   from being dominated. */
+   Image sits full-bleed at the native aspect-ratio (capped); the caption
+   sits below in the regular page palette as a museum-style label
+   ("kicker · italic disclosure"), so the image floats inside the
+   cream-and-white visual rhythm rather than fighting it. */
 .section--bridge {
   position: relative;
-  background: #0f1218;
-  /* Full-bleed (edge-to-edge); cancel the default container width. */
   margin: 0;
-  padding: 0;
+  padding: 2.5rem 0 2.75rem;
+  background: var(--cream-2, #f6f1e1);
   overflow: hidden;
 }
 
 .bridge-figure {
-  margin: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0 1.25rem;
 }
 
 .bridge-figure picture {
   display: block;
   line-height: 0;
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .bridge-figure img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 420px;
+  max-height: 380px;
   object-fit: cover;
   object-position: center 55%;
   aspect-ratio: 1040 / 594;
@@ -1954,44 +1955,44 @@ html[lang="ja"] #news a[target="_blank"]::after {
 .bridge-figure__caption {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.5rem 1.4rem;
+  gap: 0.45rem 1.3rem;
   align-items: baseline;
-  padding: 0.95rem 1.5rem 1.05rem;
-  background: rgba(15, 18, 24, 0.95);
-  color: #e8ecef;
+  margin: 0.9rem 0.25rem 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink-2);
   font-family: var(--sans);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 0;
 }
 
 .bridge-figure__kicker {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--accent);
   white-space: nowrap;
 }
 
 .bridge-figure__disclosure {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.45;
+  color: var(--muted);
+  line-height: 1.5;
 }
+.bridge-figure__disclosure em { font-style: italic; color: var(--ink); font-weight: 500; }
 
 @media (max-width: 720px) {
-  .bridge-figure img { max-height: 280px; }
+  .bridge-figure img { max-height: 260px; }
   .bridge-figure__caption {
     grid-template-columns: 1fr;
-    gap: 0.3rem;
-    padding: 0.8rem 1.1rem;
+    gap: 0.25rem;
   }
   .bridge-figure__kicker { white-space: normal; }
-  .bridge-figure__disclosure { font-size: 0.78rem; }
 }
 
-/* The bridge band already has its own dark background so the universal
-   gradient-hairline divider would clash; suppress it on either side. */
+/* Suppress the universal gradient-hairline divider on either side of
+   #bridge so the image stands cleanly between Pilot and Why. */
 #bridge::before { display: none !important; }
 #bridge + .section::before { display: none !important; }
 
