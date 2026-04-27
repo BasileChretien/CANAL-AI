@@ -306,6 +306,14 @@
     "contact.form_error_message": "Please enter a message.",
     "how.diagram_title": "Federated-learning architecture",
     "how.diagram_desc": "Caen and Nagoya University Hospitals each run a local FedBioMed node; encrypted model updates travel to a central aggregator and back; patient data never leaves either site."
+  ,
+    "hero.status_badge": "Status: regulatory phase · No patient data processed yet",
+    "hero.cta_how": "How it works",
+    "footer.lead_heading": "Lead institutions",
+    "footer.method_heading": "Methodology partner",
+    "footer.funder_heading": "Founding funder",
+    "footer.sitemap_heading": "Sitemap",
+    "footer.updated_label": "Last updated:"
   },
 
   "ja": {
@@ -615,6 +623,14 @@
     "contact.form_error_message": "メッセージをご入力ください。",
     "how.diagram_title": "連合学習アーキテクチャ",
     "how.diagram_desc": "カーン大学病院と名古屋大学医学部附属病院がそれぞれ自施設内に FedBioMed ノードを運用し、暗号化されたモデル更新が中央のアグリゲーターとの間で双方向に往復します。患者データが施設外へ出ることはありません。"
+  ,
+    "hero.status_badge": "ステータス：規制対応フェーズ／患者データの処理は未着手",
+    "hero.cta_how": "仕組み",
+    "footer.lead_heading": "中核機関",
+    "footer.method_heading": "方法論パートナー",
+    "footer.funder_heading": "最初の助成団体",
+    "footer.sitemap_heading": "サイトマップ",
+    "footer.updated_label": "最終更新："
   },
 
   "fr": {
@@ -924,5 +940,13 @@
     "contact.form_error_message": "Merci de saisir un message.",
     "how.diagram_title": "Architecture d'apprentissage fédéré",
     "how.diagram_desc": "Le CHU de Caen Normandie et l'Hôpital universitaire de Nagoya exploitent chacun un nœud FedBioMed local ; les mises à jour chiffrées du modèle circulent vers un agrégateur central puis reviennent ; les données des patients ne quittent jamais leur site."
+  ,
+    "hero.status_badge": "Statut : phase réglementaire · Aucune donnée patient n'a encore été traitée",
+    "hero.cta_how": "Fonctionnement",
+    "footer.lead_heading": "Institutions porteuses",
+    "footer.method_heading": "Partenaire méthodologique",
+    "footer.funder_heading": "Premier financeur",
+    "footer.sitemap_heading": "Plan du site",
+    "footer.updated_label": "Dernière mise à jour :"
   }
 }

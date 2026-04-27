@@ -139,6 +139,19 @@
           : "privacy.html";
       a.setAttribute("href", file);
     });
+
+    // News tiles: open in a new tab only on Japanese (per Japanese-website
+    // convention for お知らせ external links). EN/FR keep same-tab navigation
+    // so the back button works as expected for click-through reading.
+    document.querySelectorAll("[data-blank-ja]").forEach((a) => {
+      if (lang === "ja") {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener noreferrer");
+      } else {
+        a.removeAttribute("target");
+        a.removeAttribute("rel");
+      }
+    });
   }
 
   function init(dict) {

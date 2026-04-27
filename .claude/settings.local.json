@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import json; json.load\\(open\\('site/assets/i18n.json', encoding='utf-8'\\)\\); print\\('JSON valid'\\)\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
