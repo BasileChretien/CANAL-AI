@@ -31,9 +31,9 @@
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 
-<!-- Preload hero LCP image (SVG) for faster paint -->
-<link rel="preload" as="image" type="image/svg+xml"
-      href="assets/photos/hero-federation.svg" fetchpriority="high">
+<!-- Preload hero LCP image for faster paint -->
+<link rel="preload" as="image" type="image/webp"
+      href="assets/photos/CANAL_AI_Normandie.webp" fetchpriority="high">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='20' cy='32' r='14' fill='%230055A4'/%3E%3Ccircle cx='44' cy='32' r='14' fill='%23BC002D'/%3E%3C/svg%3E">
 
 <!-- Structured data -->
@@ -161,11 +161,24 @@
         <a class="btn btn--ghost"   href="#how" data-i18n="hero.cta_how">How it works</a>
       </div>
     </div>
-    <figure class="hero__figure">
-      <img src="assets/photos/hero-federation.svg"
-           width="520" height="650"
-           alt="CANAL-AI federation diagram: CHU de Caen Normandie and Nagoya University Hospital each enclose a sealed clinical data warehouse where patient data stays on site; only encrypted model parameters are exchanged between them."
-           fetchpriority="high" decoding="async">
+    <figure class="hero__photo">
+      <picture>
+        <source type="image/webp" srcset="assets/photos/CANAL_AI_Normandie.webp">
+        <img src="assets/photos/CANAL_AI_Normandie-1040.jpg"
+             width="1040" height="594"
+             data-i18n-attr="alt:bridge.alt"
+             alt="Symbolic illustration of Caen and Nagoya, the two cities of the CANAL-AI consortium, joined across a single river under a shared sunset"
+             fetchpriority="high" decoding="async">
+      </picture>
+      <figcaption class="hero__photo-caption">
+        <span class="hero__photo-rule" aria-hidden="true"></span>
+        <span class="hero__photo-mark" aria-hidden="true">
+          <span class="brand-dot brand-dot--blue"></span>
+          <span class="brand-dot brand-dot--red"></span>
+        </span>
+        <span class="hero__photo-kicker" data-i18n="bridge.kicker">Two cities, one federation</span>
+        <span class="hero__photo-disclosure" data-i18n-html="bridge.disclosure">Symbolic illustration — Mont-Saint-Michel (Normandy) and Nagoya Castle (Aichi) as cultural emblems of the two regions joined by the pilot. AI-rendered composite, not a depiction of the hospital sites.</span>
+      </figcaption>
     </figure>
   </div>
 </section>
@@ -278,24 +291,6 @@
       <p data-i18n-html="pilot.p3">Beyond Caen–Nagoya, any hospital willing to keep patient data on-site and participate in federated learning is a candidate partner — see <a href="#join">Become a partner hospital</a>.</p>
     </div>
   </div>
-</section>
-
-<!-- Bridge: symbolic visual interlude between Pilot and Why -->
-<section id="bridge" class="section--bridge" aria-labelledby="bridge-kicker">
-  <figure class="bridge-figure">
-    <picture>
-      <source type="image/webp" srcset="assets/photos/CANAL_AI_Normandie.webp">
-      <img src="assets/photos/CANAL_AI_Normandie-1040.jpg"
-           width="1040" height="594"
-           data-i18n-attr="alt:bridge.alt"
-           alt="Symbolic illustration of Caen and Nagoya, the two cities of the CANAL-AI consortium, joined across a single river under a shared sunset"
-           loading="lazy" decoding="async">
-    </picture>
-    <figcaption class="bridge-figure__caption">
-      <span class="bridge-figure__kicker" id="bridge-kicker" data-i18n="bridge.kicker">Two cities, one federation</span>
-      <span class="bridge-figure__disclosure" data-i18n-html="bridge.disclosure">Symbolic illustration — Mont-Saint-Michel (Normandy) and Nagoya Castle (Aichi) as cultural emblems of the two regions joined by the pilot. AI-rendered composite, not a depiction of the hospital sites.</span>
-    </figcaption>
-  </figure>
 </section>
 
 <!-- Why -->
