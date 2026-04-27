@@ -10,14 +10,20 @@
   const DEFAULT = "en";
   const STORAGE_KEY = "canal-ai.lang";
 
-  // Single source of truth for the three principal-investigator mailboxes.
-  // To change a contact, edit here only — every CTA picks it up.
+  // Three principal-investigator mailboxes, base64-encoded so the addresses
+  // are not present in plaintext in this script. This is light obfuscation
+  // (a determined human running the JS can still recover them); for a
+  // strict "never appears in source" guarantee, route the form through a
+  // third-party form-to-email service (Web3Forms / Formspree / FormSubmit)
+  // and remove these encoded entries entirely.
   const TEAM_MAILBOXES = {
     team: [
-      "nishida.kazuki.n6@f.mail.nagoya-u.ac.jp",
-      "charles.dolladille@unicaen.fr",
-      "chretien.basile.jean.bernard.u4@s.mail.nagoya-u.ac.jp"
-    ]
+      "bmlzaGlkYS5rYXp1a2kubjZAZi5tYWlsLm5hZ295YS11LmFjLmpw",
+      "Y2hhcmxlcy5kb2xsYWRpbGxlQHVuaWNhZW4uZnI=",
+      "Y2hyZXRpZW4uYmFzaWxlLmplYW4uYmVybmFyZC51NEBzLm1haWwubmFnb3lhLXUuYWMuanA="
+    ].map((s) => {
+      try { return atob(s); } catch (_) { return ""; }
+    }).filter(Boolean)
   };
 
   // Whitelist parser for data-i18n-html: only <strong>, <em>, and <a href="https?://"> are kept.
@@ -284,39 +290,15 @@
     });
   }
 
-  // ---------- Manual flip + expand controls for the news flip-card ----------
+  // ---------- Manual flip control for the news flip-card ----------
   function initFlipCards() {
-    const flips = document.querySelectorAll(".timeline__flip");
-    flips.forEach((card) => {
-      const flipButtons = card.querySelectorAll('[data-action="flip"]');
-      flipButtons.forEach((btn) => {
+    document.querySelectorAll(".timeline__flip").forEach((card) => {
+      card.querySelectorAll('[data-action="flip"]').forEach((btn) => {
         btn.addEventListener("click", () => {
           const state = card.getAttribute("data-flip-state") || "auto";
           card.setAttribute("data-flip-state", state === "back" ? "front" : "back");
         });
       });
-
-      const expandBtn = card.querySelector('[data-action="expand"]');
-      if (expandBtn) {
-        expandBtn.addEventListener("click", () => {
-          const expanded = card.getAttribute("data-expanded") === "true";
-          if (expanded) {
-            card.removeAttribute("data-expanded");
-          } else {
-            card.setAttribute("data-expanded", "true");
-            card.setAttribute("data-flip-state", "front");
-          }
-          // Swap the button label between "Read more" and "Show less".
-          const nextKey = expanded ? expandBtn.dataset.i18nMore : expandBtn.dataset.i18nLess;
-          if (nextKey) expandBtn.setAttribute("data-i18n", nextKey);
-          // Re-hydrate this node's label in the active language.
-          const active = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
-          const bundle = window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[active];
-          if (bundle && nextKey && bundle[nextKey] !== undefined) {
-            expandBtn.textContent = bundle[nextKey];
-          }
-        });
-      }
     });
   }
 

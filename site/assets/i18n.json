@@ -220,6 +220,8 @@
     "news.item4_body": "This site goes live. Its purpose is to share the pilot's progress, open the door to new hospital partners, and make funding conversations easier.",
     "news.none_yet": "No patient data has been processed to date — these are regulatory and institutional milestones ahead of the federated training phase.",
     "news.expand_label": "Show details",
+    "news.read_more": "Read more",
+    "news.back_to_news": "← Back to announcements",
 
     "fund.kicker": "Funding",
     "fund.title": "Fund the pilot",
@@ -500,6 +502,8 @@
     "news.item4_body": "本サイトを公開しました。パイロットの進捗共有、新たな病院パートナーへの門戸開放、資金面での対話促進を目的としています。",
     "news.none_yet": "現時点で患者データの処理は一切行っていません。上記は連合学習段階に先立つ規制・機関面のマイルストーンです。",
     "news.expand_label": "詳細を表示",
+    "news.read_more": "続きを読む",
+    "news.back_to_news": "← お知らせ一覧へ戻る",
 
     "fund.kicker": "ご支援",
     "fund.title": "パイロットを支援する",
@@ -780,6 +784,8 @@
     "news.item4_body": "Ce site est mis en ligne. Son rôle&nbsp;: partager l'avancement du pilote, ouvrir la porte à de nouveaux hôpitaux partenaires, et faciliter les conversations de financement.",
     "news.none_yet": "Aucune donnée patient n'a été traitée à ce jour — il s'agit de jalons réglementaires et institutionnels en amont de la phase d'entraînement fédéré.",
     "news.expand_label": "Voir les détails",
+    "news.read_more": "Lire la suite",
+    "news.back_to_news": "← Retour aux annonces",
 
     "fund.kicker": "Soutenir",
     "fund.title": "Soutenir le pilote",

@@ -1419,6 +1419,38 @@ abbr[aria-label]:focus-visible::before {
 .timeline__title { font-family: var(--serif); font-size: 1rem; margin: 0 0 0.3rem; line-height: 1.3; }
 .timeline__body  { margin: 0; color: var(--ink-2); font-size: 0.88rem; line-height: 1.5; }
 
+/* Link tile: each announcement now opens its own page in a new window */
+.timeline__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  outline-offset: 4px;
+}
+
+.timeline__link:focus-visible { outline: 2px solid var(--accent); border-radius: var(--radius-sm); }
+.timeline__link:hover .timeline__title { color: var(--accent); }
+
+.timeline__cta {
+  margin-top: auto;
+  padding-top: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+.timeline__link:hover .timeline__cta,
+.timeline__link:focus-visible .timeline__cta { color: var(--jp-red); }
+
+.timeline__cta svg { stroke: currentColor; }
+
 /* Auto-flipping news tile: front shows the text card, back shows the photo.
    Uses a 3D rotation on the inner wrapper. Both faces share the same grid
    cell via grid-template-areas so the parent sizes to the taller face and
@@ -1839,74 +1871,98 @@ html[lang="ja"] #news a[target="_blank"]::after {
 
 .footer__link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
 
-/* ---------- Expandable announcement items (sitetree pattern, per Dr Nishida) ---------- */
-
-.timeline__item { padding: 0; }
-
-.timeline__item > details {
-  display: block;
-  width: 100%;
-}
-
-.timeline__item > details > summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 1rem 2.4rem 1rem 1.1rem;
-  position: relative;
-  display: block;
-  border-radius: var(--radius-sm);
-}
-
-.timeline__item > details > summary::-webkit-details-marker { display: none; }
-
-.timeline__item > details > summary::after {
-  content: "";
-  position: absolute;
-  top: 1.1rem;
-  right: 1rem;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-right: 2px solid var(--muted);
-  border-bottom: 2px solid var(--muted);
-  transform: rotate(45deg);
-  transform-origin: 65% 65%;
-  transition: transform 0.18s ease, border-color 0.18s ease;
-}
-
-.timeline__item > details[open] > summary::after {
-  transform: rotate(-135deg);
-  border-color: var(--accent);
-}
-
-.timeline__item > details > summary:hover::after,
-.timeline__item > details > summary:focus-visible::after { border-color: var(--accent); }
-
-.timeline__item > details > summary:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.timeline__item > details > summary > .timeline__date,
-.timeline__item > details > summary > .timeline__title { display: block; }
-
-.timeline__item > details > .timeline__body {
-  padding: 0 1.1rem 1.1rem;
-  margin: 0;
-}
-
-.timeline__item > details > .timeline__body a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.timeline__item > details > .timeline__body a:hover { color: var(--jp-red); }
-
 /* ---------- Per-language team ordering (JA: Nishida first, then Basile, then Charles) ---------- */
 
 [lang="ja"] .team .person[data-person="nishida"] { order: -3; }
 [lang="ja"] .team .person[data-person="basile"]  { order: -2; }
 [lang="ja"] .team .person[data-person="charles"] { order: -1; }
+
+/* ---------- News article page (news.html?id=X) ---------- */
+
+.news-article {
+  background: var(--cream);
+  padding: 3rem 0 4rem;
+  min-height: calc(100vh - 240px);
+}
+
+.news-article > .container { max-width: 48rem; }
+
+.news-article__back { margin: 0 0 1.5rem; font-size: 0.92rem; }
+.news-article__back--bottom { margin: 2.5rem 0 0; }
+
+.news-article__back a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  padding: 0.4rem 0;
+}
+
+.news-article__back a:hover,
+.news-article__back a:focus-visible { color: var(--jp-red); text-decoration: underline; }
+
+.news-article__header { margin: 0 0 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); }
+
+.news-article__header .kicker { margin-bottom: 0.75rem; }
+
+.news-article__date {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.news-article__title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  line-height: 1.25;
+  margin: 0;
+  color: var(--ink);
+}
+
+.news-article__body {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 0 0 1.5rem;
+}
+
+.news-article__body p:first-child { margin-top: 0; }
+
+.news-article__body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.news-article__body a:hover { color: var(--jp-red); }
+
+.news-article__figure {
+  margin: 1.5rem 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.news-article__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* External-link cue on Japanese news article page (per JP web convention) */
+html[lang="ja"] .news-article__body a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-left: 0.15em;
+}
 
 /* ---------- Reduced motion ---------- */
 
