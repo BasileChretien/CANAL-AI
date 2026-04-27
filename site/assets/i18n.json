@@ -314,6 +314,10 @@
     "footer.funder_heading": "Founding funder",
     "footer.sitemap_heading": "Sitemap",
     "footer.updated_label": "Last updated:"
+  ,
+    "bridge.kicker": "Two cities, one federation",
+    "bridge.alt": "Symbolic illustration of Caen and Nagoya, the two cities of the CANAL-AI consortium, joined across a single river under a shared sunset",
+    "bridge.disclosure": "<em>Symbolic illustration</em> — Mont-Saint-Michel (Normandy) and Nagoya Castle (Aichi) as cultural emblems of the two regions joined by the pilot. AI-rendered composite, not a depiction of the hospital sites."
   },
 
   "ja": {
@@ -631,6 +635,10 @@
     "footer.funder_heading": "最初の助成団体",
     "footer.sitemap_heading": "サイトマップ",
     "footer.updated_label": "最終更新："
+  ,
+    "bridge.kicker": "二つの都市、一つの連携",
+    "bridge.alt": "CANAL-AI コンソーシアムを構成するカーンと名古屋の二都市が、同じ川と同じ夕焼けによって結ばれている象徴的なイラスト",
+    "bridge.disclosure": "<em>象徴的なイラスト</em>：モン・サン＝ミシェル（ノルマンディー地方）と名古屋城（愛知県）を、本パイロット研究で結ばれた両地域の文化的シンボルとして配置しています。AIによる合成画像であり、病院施設の実景を描いたものではございません。"
   },
 
   "fr": {
@@ -948,5 +956,9 @@
     "footer.funder_heading": "Premier financeur",
     "footer.sitemap_heading": "Plan du site",
     "footer.updated_label": "Dernière mise à jour :"
+  ,
+    "bridge.kicker": "Deux villes, une fédération",
+    "bridge.alt": "Illustration symbolique de Caen et Nagoya, les deux villes du consortium CANAL-AI, réunies de part et d'autre d'un même fleuve sous un même coucher de soleil",
+    "bridge.disclosure": "<em>Illustration symbolique</em> — le Mont-Saint-Michel (Normandie) et le château de Nagoya (Aichi), pris comme emblèmes culturels des deux régions réunies par le pilote. Composition générée par IA ; il ne s'agit pas d'une représentation des sites hospitaliers."
   }
 }

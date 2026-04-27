@@ -1914,6 +1914,88 @@ html[lang="ja"] #news a[target="_blank"]::after {
 .footer__link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
 
 /* ===========================================================================
+   Bridge: full-bleed photographic interlude between Pilot and Why
+   ===========================================================================
+   The image (Mont-Saint-Michel + Nagoya Castle bridged by a river under
+   sunset) is intentionally symbolic — see the disclosure caption below it.
+   Sized at native aspect ratio with a max-height to keep the page rhythm
+   from being dominated. */
+.section--bridge {
+  position: relative;
+  background: #0f1218;
+  /* Full-bleed (edge-to-edge); cancel the default container width. */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.bridge-figure {
+  margin: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.bridge-figure picture {
+  display: block;
+  line-height: 0;
+}
+
+.bridge-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center 55%;
+  aspect-ratio: 1040 / 594;
+}
+
+.bridge-figure__caption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.4rem;
+  align-items: baseline;
+  padding: 0.95rem 1.5rem 1.05rem;
+  background: rgba(15, 18, 24, 0.95);
+  color: #e8ecef;
+  font-family: var(--sans);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bridge-figure__kicker {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.bridge-figure__disclosure {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .bridge-figure img { max-height: 280px; }
+  .bridge-figure__caption {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 0.8rem 1.1rem;
+  }
+  .bridge-figure__kicker { white-space: normal; }
+  .bridge-figure__disclosure { font-size: 0.78rem; }
+}
+
+/* The bridge band already has its own dark background so the universal
+   gradient-hairline divider would clash; suppress it on either side. */
+#bridge::before { display: none !important; }
+#bridge + .section::before { display: none !important; }
+
+/* ===========================================================================
    Round 2 of design review — hero / footer / brand-mark / bridge motif
    =========================================================================== */
 
