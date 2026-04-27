@@ -354,50 +354,78 @@ abbr[aria-label]:focus-visible::before {
 
 .hero__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 3rem;
-}
-
-@media (max-width: 900px) {
-  .hero__inner { grid-template-columns: 1fr; gap: 1.75rem; }
-}
-
-.hero__text { min-width: 0; }
-
-.hero__figure {
-  margin: 0;
-  position: relative;
-  justify-self: end;
-  width: 100%;
-  max-width: 520px;
-}
-
-.hero__figure img {
-  width: 100%;
-  max-width: 520px;
-  height: auto;
-  /* 4:5 portrait — fills the text-column height (~480-560 px on desktop)
-     and reserves space before the SVG loads to prevent CLS. */
-  aspect-ratio: 4 / 5;
-  border-radius: 18px;
-  box-shadow:
-    0 30px 60px -20px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.25);
   display: block;
-  transition: transform 0.35s ease;
 }
 
-.hero__figure img:hover { transform: scale(1.01); }
-
-@media (max-width: 900px) {
-  .hero__figure { justify-self: center; }
-  .hero__figure img { max-width: 360px; aspect-ratio: 4 / 5; }
+.hero__text {
+  min-width: 0;
+  max-width: 60rem;
 }
 
-@media (max-width: 600px) {
-  .hero__figure img { max-width: 300px; }
+/* ---------- Hero panoramic photo ---------- */
+.hero__photo {
+  margin: 2.5rem auto 0;
+  max-width: 920px;
+}
+
+.hero__photo picture {
+  display: block;
+  line-height: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.hero__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1040 / 594;
+  transition: transform 0.4s ease;
+}
+
+.hero__photo:hover img { transform: scale(1.005); }
+
+.hero__photo-caption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.45rem 1.3rem;
+  align-items: baseline;
+  margin: 0.9rem 0.25rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--sans);
+}
+
+.hero__photo-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+}
+
+.hero__photo-disclosure {
+  font-size: 0.83rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+}
+.hero__photo-disclosure em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .hero__photo { margin-top: 1.75rem; }
+  .hero__photo-caption {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  .hero__photo-kicker { white-space: normal; }
 }
 
 .eyebrow {
@@ -1999,10 +2027,6 @@ html[lang="ja"] #news a[target="_blank"]::after {
   .bridge-figure__kicker { white-space: normal; }
 }
 
-/* Suppress the universal gradient-hairline divider on either side of
-   #bridge so the image stands cleanly between Pilot and Why. */
-#bridge::before { display: none !important; }
-#bridge + .section::before { display: none !important; }
 
 /* ===========================================================================
    Round 2 of design review — hero / footer / brand-mark / bridge motif
