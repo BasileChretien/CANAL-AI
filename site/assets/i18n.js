@@ -251,16 +251,20 @@
       // Compose a clear, project-prefixed subject and a sender display name so
       // the team can spot CANAL-AI messages in their inbox even if Web3Forms'
       // default email-subject template isn't customised in their dashboard.
+      // The user's typed subject lives in "Subject_of_enquiry" so Web3Forms
+      // echoes it in the email body; we ALSO copy it into the hidden "subject"
+      // system field so it becomes the email Subject: header.
       const lang = (document.documentElement.getAttribute("lang") || "en").slice(0, 2);
       const bundle = (window.__CANAL_AI_I18N__ && window.__CANAL_AI_I18N__[lang]) || {};
-      const subjectField = form.elements.subject;
+      const visibleSubjectField = form.elements["Subject_of_enquiry"];
+      const subjectHeaderField = form.elements.subject;
       const fromNameField = form.elements.from_name;
-      const userSubject = subjectField ? subjectField.value.trim() : "";
+      const userSubject = visibleSubjectField ? visibleSubjectField.value.trim() : "";
       const fallbackSubject = bundle["contact.subject"] || "CANAL-AI — enquiry";
       const composedSubject = userSubject
         ? "CANAL-AI — " + userSubject
         : fallbackSubject;
-      if (subjectField) subjectField.value = composedSubject;
+      if (subjectHeaderField) subjectHeaderField.value = composedSubject;
       if (fromNameField) fromNameField.value = "CANAL-AI website — " + name;
 
       fetch(ENDPOINT, {

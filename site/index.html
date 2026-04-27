@@ -837,7 +837,11 @@
           action="https://api.web3forms.com/submit" method="POST">
       <!-- Web3Forms public access key (binds submissions to the configured inbox; no addresses in this repo) -->
       <input type="hidden" name="access_key" value="62e2d6d1-0e50-42ab-b0ff-cddea5372983">
-      <!-- from_name and subject are populated by JS on submit so each email is identifiable in the team's inbox. -->
+      <!-- "subject" and "from_name" are special Web3Forms fields used for the
+           email Subject: header and sender display name; they're populated by
+           JS at submit-time. The user-facing subject lives in the "Subject" /
+           topic field below so that it ALSO appears in the email body. -->
+      <input type="hidden" name="subject" value="">
       <input type="hidden" name="from_name" value="CANAL-AI contact form">
       <!-- Honeypot: hidden from real users, bots fill it → Web3Forms drops the submission -->
       <input type="checkbox" name="botcheck" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -856,7 +860,9 @@
       </div>
       <div class="contact-form__row">
         <label for="cf-subject" data-i18n="contact.form_subject_label">Subject</label>
-        <input id="cf-subject" name="subject" type="text"
+        <!-- Visible to user; named "Subject_of_enquiry" so Web3Forms shows it
+             in the email body (it does not echo the special "subject" field). -->
+        <input id="cf-subject" name="Subject_of_enquiry" type="text"
                data-i18n-attr="placeholder:contact.form_subject_placeholder"
                placeholder="Funding enquiry">
       </div>
