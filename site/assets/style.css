@@ -1366,6 +1366,13 @@ abbr[aria-label]:focus-visible::before {
   gap: 0.75rem;
 }
 
+@media (min-width: 60rem) {
+  .thanks--row-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .thanks--row-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.thanks + .thanks { margin-top: -1rem; }
+
 .thanks a {
   display: grid;
   grid-template-columns: 1fr auto;
