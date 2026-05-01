@@ -6,10 +6,10 @@
 <title>Privacy — CANAL-AI</title>
 <meta name="description" content="Privacy notice for the CANAL-AI project website: what the site does and does not collect, third parties involved, and your rights under GDPR and APPI.">
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://basilechretien.github.io/CANAL-AI/privacy.html">
-<link rel="alternate" hreflang="en" href="https://basilechretien.github.io/CANAL-AI/privacy.html">
-<link rel="alternate" hreflang="ja" href="https://basilechretien.github.io/CANAL-AI/privacy.ja.html">
-<link rel="alternate" hreflang="fr" href="https://basilechretien.github.io/CANAL-AI/privacy.fr.html">
+<link rel="canonical" href="https://canal-ai.org/privacy.html">
+<link rel="alternate" hreflang="en" href="https://canal-ai.org/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://canal-ai.org/privacy.ja.html">
+<link rel="alternate" hreflang="fr" href="https://canal-ai.org/privacy.fr.html">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='20' cy='32' r='14' fill='%230055A4'/%3E%3Ccircle cx='44' cy='32' r='14' fill='%23BC002D'/%3E%3C/svg%3E">
@@ -56,8 +56,12 @@
 
     <h2>The short version</h2>
     <ul>
-      <li>This site does not use cookies, trackers, analytics, or advertising.</li>
-      <li>No personal data is collected by us through the site, except via the contact form (see below).</li>
+      <li>This site does not use cookies and does not display advertising.</li>
+      <li>We use <strong>GoatCounter</strong>, a privacy-friendly, cookieless analytics tool, to count
+        page visits. No IP address is stored, no visitor is tracked across sites, and no personal data
+        is collected (see "Analytics" below).</li>
+      <li>No other personal data is collected by us through the site, except via the contact form
+        (see below).</li>
       <li>The site is hosted on GitHub Pages (GitHub, Inc., USA), which logs visitor IP addresses
         for abuse protection.</li>
       <li>The contact form is delivered by Web3Forms (a third-party form-to-email relay) so that the
@@ -68,11 +72,11 @@
     </ul>
 
     <h2>What the site collects</h2>
-    <p>Directly: nothing automated. There is no analytics script, no cookie, and no tracker on this
-      site. The only client-side storage we use is a <code>localStorage</code> key named
-      <code>canal-ai.lang</code> that remembers your chosen language (<code>en</code>, <code>ja</code>,
-      or <code>fr</code>). It contains no personal data and is deleted if you clear your browser's
-      site data.</p>
+    <p>Directly: only aggregated visit counts via <strong>GoatCounter</strong> (see "Analytics"
+      below). No cookies are set. The only client-side storage we use is a <code>localStorage</code>
+      key named <code>canal-ai.lang</code> that remembers your chosen language (<code>en</code>,
+      <code>ja</code>, or <code>fr</code>). It contains no personal data and is deleted if you clear
+      your browser's site data.</p>
     <p>The contact form, when you submit it, sends the fields you entered (name, email, optional
       subject, message) to Web3Forms (see "Third-party requests" below) which relays them by email
       to the team. The data is not stored on this site; we do not save it to a database or to GitHub.</p>
@@ -89,6 +93,19 @@
       <li>When you click an external link (ORCID, LinkedIn, a partner's website, SECOM, FedBioMed,
         the GitHub repo), your browser contacts that third party directly. Their privacy policies
         apply.</li>
+      <li><strong>Analytics (GoatCounter).</strong> Each page load triggers one HTTPS request to
+        <a href="https://www.goatcounter.com" rel="noopener noreferrer">GoatCounter</a>
+        (operated by Arp242 B.V., the Netherlands; servers in Germany — Hetzner, Falkenstein) to
+        record an aggregate page-view counter. <strong>No cookies</strong> are set; <strong>your IP
+        address is not stored</strong> (it is used only momentarily, together with your browser's
+        User-Agent and a server-side daily-rotating salt, to compute a one-way hash that
+        de-duplicates same-day visits, then immediately discarded). Country (derived from IP
+        before discard), browser, operating system, screen size, and the referring page are
+        recorded in aggregate form. Visitors are not tracked across sites and no profile is built.
+        See the <a href="https://www.goatcounter.com/help/privacy" rel="noopener noreferrer">GoatCounter
+        privacy policy</a>. Data is hosted in the EU, which Japan's Personal Information Protection
+        Commission recognises as offering an adequate level of data protection (APPI Article 28
+        white-list).</li>
       <li><strong>Contact form (Web3Forms).</strong> When you submit the contact form on the home
         page, the form data (name, email, optional subject, message) is sent over HTTPS to
         <a href="https://web3forms.com" rel="noopener noreferrer">Web3Forms</a>, which relays the
@@ -132,6 +149,10 @@
     <p class="footer__small">CANAL-AI — Caen–Nagoya Alliance for AI in Health Data.</p>
   </div>
 </footer>
+
+<!-- GoatCounter — privacy-friendly, cookieless analytics. See "Analytics (GoatCounter)" above. -->
+<script data-goatcounter="https://canal-ai.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>

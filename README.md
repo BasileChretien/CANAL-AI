@@ -10,7 +10,7 @@ additional partner hospitals.
 > **Only model parameters cross the border. Patient data never moves.**
 > FedBioMed · OMOP-CDM · designed for GDPR + APPI conformity.
 
-**Public site:** <https://basilechretien.github.io/CANAL-AI/> —
+**Public site:** <https://canal-ai.org/> —
 trilingual EN / 日本語 / FR.
 
 **Research-use-only pilot.** No patient data has been processed to date.
@@ -117,7 +117,7 @@ CANAL-AI/
 - **Université de Caen Normandie** — French institutional partner.
 - **FedBioMed** — INRIA / Université Côte d'Azur (methodology, in-kind).
 
-Further collaborators are acknowledged on the [public site](https://basilechretien.github.io/CANAL-AI/#ack);
+Further collaborators are acknowledged on the [public site](https://canal-ai.org/#ack);
 internal planning is tracked in gitignored documents.
 
 ---
@@ -132,7 +132,7 @@ To enable after first push:
 1. **Settings → Pages**
 2. **Source**: *GitHub Actions*
 3. Push to `main` — the workflow publishes to
-   <https://basilechretien.github.io/CANAL-AI/>.
+   <https://canal-ai.org/>.
 
 Local preview:
 
@@ -158,10 +158,10 @@ is persisted in `localStorage`.
 
 ## Calls to action
 
-- **Funders** — see <https://basilechretien.github.io/CANAL-AI/#fund>.
+- **Funders** — see <https://canal-ai.org/#fund>.
   Target pilot budget ≈ €450k over 24 months. SECOM has committed the
   first tranche; additional funders are warmly welcome.
-- **Partner hospitals** — see <https://basilechretien.github.io/CANAL-AI/#join>.
+- **Partner hospitals** — see <https://canal-ai.org/#join>.
   Requirements: a structured data warehouse, willingness to harmonise to
   OMOP-CDM, local IRB support, willingness to participate in federated
   learning, and a workstation capable of running a FedBioMed node.
@@ -179,7 +179,7 @@ is persisted in `localStorage`.
 ## Contact
 
 Enquiries are best addressed through the single "Email the team" button
-on the public site (<https://basilechretien.github.io/CANAL-AI/#contact>),
+on the public site (<https://canal-ai.org/#contact>),
 which reaches the three principal investigators in one message. For
 institutional correspondence, write to Nagoya University's Graduate
 School of Medicine or to Caen University Hospital's Department of

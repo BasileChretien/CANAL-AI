@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://basilechretien.github.io/CANAL-AI/sitemap.xml
+Sitemap: https://canal-ai.org/sitemap.xml

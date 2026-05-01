@@ -6,10 +6,10 @@
 <title>プライバシーに関するお知らせ — CANAL-AI</title>
 <meta name="description" content="CANAL-AI プロジェクトのウェブサイトに関するプライバシーに関するお知らせ：本サイトが取得する情報・取得しない情報、関与する第三者、ならびにEU一般データ保護規則（GDPR）および個人情報の保護に関する法律（個人情報保護法、APPI）に基づく権利について説明します。">
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://basilechretien.github.io/CANAL-AI/privacy.ja.html">
-<link rel="alternate" hreflang="en" href="https://basilechretien.github.io/CANAL-AI/privacy.html">
-<link rel="alternate" hreflang="ja" href="https://basilechretien.github.io/CANAL-AI/privacy.ja.html">
-<link rel="alternate" hreflang="fr" href="https://basilechretien.github.io/CANAL-AI/privacy.fr.html">
+<link rel="canonical" href="https://canal-ai.org/privacy.ja.html">
+<link rel="alternate" hreflang="en" href="https://canal-ai.org/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://canal-ai.org/privacy.ja.html">
+<link rel="alternate" hreflang="fr" href="https://canal-ai.org/privacy.fr.html">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='20' cy='32' r='14' fill='%230055A4'/%3E%3Ccircle cx='44' cy='32' r='14' fill='%23BC002D'/%3E%3C/svg%3E">
@@ -55,8 +55,9 @@
 
     <h2>要点</h2>
     <ul>
-      <li>本サイトでは、Cookie、トラッカー、アクセス解析、広告のいずれも一切使用しておりません。</li>
-      <li>本サイトを通じて研究チームが個人情報を取得することはございません。ただし、お問い合わせフォームを通じてご送信いただいた場合を除きます（後述）。</li>
+      <li>本サイトでは、Cookie の利用および広告の表示は一切行っておりません。</li>
+      <li>ページの閲覧数を集計する目的で、プライバシー配慮型かつ Cookie レスのアクセス解析サービスである <strong>GoatCounter</strong> を利用しております。IP アドレスは保存されず、訪問者をサイト横断的に追跡することもなく、個人情報の取得も行いません（後述「アクセス解析（GoatCounter）」をご参照ください）。</li>
+      <li>上記以外に本サイトを通じて研究チームが個人情報を取得することはございません。ただし、お問い合わせフォームを通じてご送信いただいた場合を除きます（後述）。</li>
       <li>本サイトは GitHub Pages（GitHub, Inc.（米国））上でホスティングされており、不正利用防止の目的で訪問者の IP アドレス等が短期間ログとして記録されます。</li>
       <li>お問い合わせフォームは、研究チームのメールアドレスがサイト上に露出しないよう、Web3Forms（フォーム送信内容をメールに中継するサービス）を経由して送信されます。</li>
       <li>フォントはサイト内で自己ホスティングしており、Google Fonts その他の第三者 CDN への通信は発生いたしません。</li>
@@ -64,7 +65,7 @@
     </ul>
 
     <h2>本サイトが取得する情報</h2>
-    <p>本サイトが自動的に取得する情報はございません。アクセス解析スクリプト、Cookie、トラッカーのいずれも設置しておりません。クライアント側で利用する唯一の保存領域は、<code>canal-ai.lang</code> という名称の <code>localStorage</code> キーであり、利用者様が選択された表示言語（<code>en</code>、<code>ja</code>、<code>fr</code> のいずれか）を記憶するためにのみ用いられます。当該キーには個人情報は一切含まれず、ブラウザのサイトデータを消去された場合には削除されます。</p>
+    <p>本サイトが直接取得する情報は、<strong>GoatCounter</strong>（後述「アクセス解析（GoatCounter）」をご参照ください）による集計形式のページ閲覧数のみでございます。Cookie は一切設置しておりません。クライアント側で利用する唯一の保存領域は、<code>canal-ai.lang</code> という名称の <code>localStorage</code> キーであり、利用者様が選択された表示言語（<code>en</code>、<code>ja</code>、<code>fr</code> のいずれか）を記憶するためにのみ用いられます。当該キーには個人情報は一切含まれず、ブラウザのサイトデータを消去された場合には削除されます。</p>
     <p>お問い合わせフォームをご送信いただいた場合には、入力された項目（氏名、メールアドレス、任意の件名、メッセージ本文）が Web3Forms（後述「本サイトから発生する第三者への通信」をご参照ください）に送信され、同サービスがメールにて研究チームへ中継いたします。当該データは本サイト上には保管されず、データベースや GitHub のリポジトリに保存することもございません。</p>
 
     <h2>ホスティングおよびアクセスログ</h2>
@@ -74,6 +75,7 @@
     <h2>本サイトから発生する第三者への通信</h2>
     <ul>
       <li>外部リンク（ORCID、LinkedIn、共同研究機関のウェブサイト、SECOM 科学技術振興財団、FedBioMed、GitHub リポジトリ等）をクリックされた場合、ご利用のブラウザが直接当該第三者と通信を行います。これらについては各事業者のプライバシーポリシーが適用されます。</li>
+      <li><strong>アクセス解析（GoatCounter）。</strong> 各ページの読み込みごとに、集計形式のページ閲覧数を記録する目的で、<a href="https://www.goatcounter.com" rel="noopener noreferrer">GoatCounter</a>（運営：Arp242 B.V.（オランダ）／サーバ所在地：ドイツ・ファルケンシュタイン（Hetzner））に対し HTTPS による通信が 1 件発生いたします。<strong>Cookie は一切設置されません。</strong>また、<strong>IP アドレスがサーバ側に保存されることはございません</strong>（IP アドレスは、ブラウザの User-Agent およびサーバ側で日次更新されるソルトと組み合わせて一方向ハッシュ関数によりハッシュ値を算出し、同日中の重複訪問を排除する目的で一時的にのみ用いられ、算出後は直ちに破棄されます）。集計形式で記録される項目は、国名（破棄前の IP アドレスから導出）、ブラウザ、オペレーティングシステム、画面サイズ、参照元ページに限られます。訪問者をサイト横断的に追跡することはなく、プロファイルの作成も行いません。詳細は <a href="https://www.goatcounter.com/help/privacy" rel="noopener noreferrer">GoatCounter のプライバシーポリシー</a>をご参照ください。データはEU域内において処理されており、EU は個人情報保護委員会規則第15条により、個人情報保護法第28条にいう「個人の権利利益を保護する上で我が国と同等の水準にあると認められる個人情報の保護に関する制度を有している外国」として指定されております。</li>
       <li><strong>お問い合わせフォーム（Web3Forms）。</strong> トップページのお問い合わせフォームをご送信いただいた場合、入力データ（氏名、メールアドレス、任意の件名、メッセージ本文）は HTTPS により <a href="https://web3forms.com" rel="noopener noreferrer">Web3Forms</a> へ送信され、同サービスがメールにて研究チームへ中継いたします。研究チームのメールアドレスは Web3Forms の管理画面上で設定されており、本サイト上に掲載されることはございません。Web3Forms は研究チームの委託先（個人情報の取扱いを委託する事業者）として送信内容を処理いたします。詳細は
         <a href="https://web3forms.com/privacy" rel="noopener noreferrer">Web3Forms のプライバシーに関するお知らせ</a>
         および <a href="https://web3forms.com/terms" rel="noopener noreferrer">利用規約</a> をご参照ください。なお、フォーム送信内容を本サイトまたは当該リポジトリに保管することは一切ございません。Web3Forms のサーバが日本国外に所在し得ることから、本送信は個人情報保護法第28条に定める外国にある第三者への提供に該当する場合がございます。</li>
@@ -104,6 +106,10 @@
     <p class="footer__small">CANAL-AI — Caen–Nagoya Alliance for AI in Health Data（カーン・名古屋 医療データ AI 連携）。</p>
   </div>
 </footer>
+
+<!-- GoatCounter — プライバシー配慮型・Cookieレスのアクセス解析。詳細は本ページの「アクセス解析（GoatCounter）」をご参照ください。 -->
+<script data-goatcounter="https://canal-ai.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
