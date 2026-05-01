@@ -6,10 +6,10 @@
 <title>Confidentialité — CANAL-AI</title>
 <meta name="description" content="Politique de confidentialité du site web du projet CANAL-AI : ce que le site collecte ou ne collecte pas, les tiers impliqués et vos droits au titre du RGPD et de l'APPI.">
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://basilechretien.github.io/CANAL-AI/privacy.fr.html">
-<link rel="alternate" hreflang="en" href="https://basilechretien.github.io/CANAL-AI/privacy.html">
-<link rel="alternate" hreflang="ja" href="https://basilechretien.github.io/CANAL-AI/privacy.ja.html">
-<link rel="alternate" hreflang="fr" href="https://basilechretien.github.io/CANAL-AI/privacy.fr.html">
+<link rel="canonical" href="https://canal-ai.org/privacy.fr.html">
+<link rel="alternate" hreflang="en" href="https://canal-ai.org/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://canal-ai.org/privacy.ja.html">
+<link rel="alternate" hreflang="fr" href="https://canal-ai.org/privacy.fr.html">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='20' cy='32' r='14' fill='%230055A4'/%3E%3Ccircle cx='44' cy='32' r='14' fill='%23BC002D'/%3E%3C/svg%3E">
@@ -57,8 +57,12 @@
 
     <h2>En résumé</h2>
     <ul>
-      <li>Ce site n'utilise ni cookies, ni traceurs, ni outils de mesure d'audience, ni publicité.</li>
-      <li>Ce site ne réalise aucune collecte automatique de données à caractère personnel, à
+      <li>Ce site n'utilise pas de cookies et n'affiche aucune publicité.</li>
+      <li>Nous utilisons <strong>GoatCounter</strong>, un outil de mesure d'audience respectueux de
+        la vie privée et sans cookies, pour comptabiliser les consultations de pages. Aucune
+        adresse IP n'est conservée, aucun visiteur n'est suivi entre sites et aucune donnée à
+        caractère personnel n'est collectée (voir « Mesure d'audience (GoatCounter) » ci-dessous).</li>
+      <li>Aucune autre donnée à caractère personnel n'est collectée par nous via le site, à
         l'exception du formulaire de contact (voir ci-dessous).</li>
       <li>Le site est hébergé sur GitHub Pages (GitHub, Inc., États-Unis), qui journalise les
         adresses IP des visiteurs à des fins de prévention des abus.</li>
@@ -73,12 +77,13 @@
     </ul>
 
     <h2>Ce que le site collecte</h2>
-    <p>Directement : aucune collecte automatisée. Aucun script de mesure d'audience, aucun cookie
-      et aucun traceur n'est déposé par ce site. Le seul stockage côté navigateur que nous
-      utilisons est une clé <code>localStorage</code> nommée <code>canal-ai.lang</code>, qui
-      mémorise la langue que vous avez choisie (<code>en</code>, <code>ja</code> ou
-      <code>fr</code>). Elle ne contient aucune donnée à caractère personnel et est supprimée si
-      vous effacez les données de site de votre navigateur.</p>
+    <p>Directement : uniquement des comptages agrégés de consultations de pages, via
+      <strong>GoatCounter</strong> (voir « Mesure d'audience (GoatCounter) » ci-dessous). Aucun
+      cookie n'est déposé. Le seul stockage côté navigateur que nous utilisons est une clé
+      <code>localStorage</code> nommée <code>canal-ai.lang</code>, qui mémorise la langue que vous
+      avez choisie (<code>en</code>, <code>ja</code> ou <code>fr</code>). Elle ne contient aucune
+      donnée à caractère personnel et est supprimée si vous effacez les données de site de votre
+      navigateur.</p>
     <p>Lorsque vous soumettez le formulaire de contact, les champs renseignés (nom, courriel,
       sujet facultatif, message) sont transmis à Web3Forms (voir « Requêtes vers des tiers »
       ci-dessous), qui les relaie par courriel à l'équipe. Ces données ne sont pas conservées sur
@@ -96,6 +101,24 @@
       <li>Lorsque vous cliquez sur un lien externe (ORCID, LinkedIn, le site d'un partenaire,
         SECOM, FedBioMed, le dépôt GitHub), votre navigateur contacte directement le tiers
         concerné. Les politiques de confidentialité de ces tiers s'appliquent alors.</li>
+      <li><strong>Mesure d'audience (GoatCounter).</strong> Chaque chargement de page déclenche
+        une requête HTTPS vers
+        <a href="https://www.goatcounter.com" rel="noopener noreferrer">GoatCounter</a>
+        (exploité par Arp242 B.V., Pays-Bas ; serveurs en Allemagne — Hetzner, Falkenstein) afin
+        d'incrémenter un compteur de consultations agrégé. <strong>Aucun cookie</strong> n'est
+        déposé ; <strong>votre adresse IP n'est pas conservée</strong> (elle est utilisée
+        uniquement de façon transitoire, conjointement avec le User-Agent de votre navigateur et
+        un sel renouvelé quotidiennement côté serveur, pour calculer un condensat à sens unique
+        permettant d'éviter de comptabiliser deux fois la même visite dans la journée, puis
+        immédiatement supprimée). Sont enregistrés sous forme agrégée : le pays (déduit de l'IP
+        avant suppression), le navigateur, le système d'exploitation, la taille d'écran et la
+        page de provenance. Les visiteurs ne sont pas suivis entre sites et aucun profil n'est
+        constitué. Voir la
+        <a href="https://www.goatcounter.com/help/privacy" rel="noopener noreferrer">politique de
+        confidentialité de GoatCounter</a>. Les données sont hébergées dans l'Union européenne,
+        que la Commission japonaise de protection des informations personnelles reconnaît comme
+        offrant un niveau de protection des données adéquat (liste blanche au sens de l'article 28
+        de la loi APPI).</li>
       <li><strong>Formulaire de contact (Web3Forms).</strong> Lorsque vous soumettez le
         formulaire de contact présent sur la page d'accueil, les données du formulaire (nom,
         courriel, sujet facultatif, message) sont transmises en HTTPS à
@@ -148,6 +171,10 @@
     <p class="footer__small">CANAL-AI — Caen–Nagoya Alliance for AI in Health Data.</p>
   </div>
 </footer>
+
+<!-- GoatCounter — mesure d'audience respectueuse de la vie privée, sans cookies. Voir « Mesure d'audience (GoatCounter) » ci-dessus. -->
+<script data-goatcounter="https://canal-ai.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
