@@ -290,16 +290,52 @@
 
     function closeAll(except) {
       document.querySelectorAll("abbr[aria-label].is-open").forEach((el) => {
-        if (el !== except) el.classList.remove("is-open");
+        if (el !== except) {
+          el.classList.remove("is-open");
+          el.style.removeProperty("--tt-shift-x");
+        }
       });
+    }
+
+    // Clamp the tooltip into the viewport by computing the worst-case shift
+    // needed (using the CSS max-width as the upper bound on tooltip width).
+    // When the term sits near an edge, the tooltip is nudged back inside.
+    function positionTooltip(el) {
+      const rect = el.getBoundingClientRect();
+      const vw = window.innerWidth || document.documentElement.clientWidth;
+      const margin = 8; // breathing room from the viewport edge
+      // Mirror the CSS: max-width: min(280px, calc(100vw - 2rem)). 2rem ≈ 32px.
+      const ttMax = Math.min(280, vw - 32);
+      const center = rect.left + rect.width / 2;
+      const desiredLeft = center - ttMax / 2;
+      const minLeft = margin;
+      const maxLeft = vw - ttMax - margin;
+      let shift = 0;
+      if (desiredLeft < minLeft) shift = minLeft - desiredLeft;
+      else if (desiredLeft > maxLeft) shift = maxLeft - desiredLeft;
+      el.style.setProperty("--tt-shift-x", shift + "px");
+    }
+
+    function open(el) {
+      closeAll(el);
+      el.classList.add("is-open");
+      positionTooltip(el);
+    }
+
+    function close(el) {
+      el.classList.remove("is-open");
+      el.style.removeProperty("--tt-shift-x");
+    }
+
+    function toggle(el) {
+      if (el.classList.contains("is-open")) close(el);
+      else open(el);
     }
 
     document.addEventListener("click", (e) => {
       const target = e.target instanceof Element ? e.target.closest("abbr[aria-label]") : null;
       if (target) {
-        const wasOpen = target.classList.contains("is-open");
-        closeAll(target);
-        target.classList.toggle("is-open", !wasOpen);
+        toggle(target);
         return;
       }
       closeAll(null);
@@ -309,12 +345,17 @@
       if (e.key === "Escape") closeAll(null);
       if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.matches && document.activeElement.matches("abbr[aria-label]")) {
         e.preventDefault();
-        const el = document.activeElement;
-        const wasOpen = el.classList.contains("is-open");
-        closeAll(el);
-        el.classList.toggle("is-open", !wasOpen);
+        toggle(document.activeElement);
       }
     });
+
+    // Re-clamp on viewport resize / orientation change while open.
+    window.addEventListener("resize", () => {
+      document.querySelectorAll("abbr[aria-label].is-open").forEach(positionTooltip);
+    });
+    window.addEventListener("scroll", () => {
+      document.querySelectorAll("abbr[aria-label].is-open").forEach(positionTooltip);
+    }, { passive: true });
   }
 
   // ---------- Contact form: POST to Web3Forms (no backend, no addresses in source) ----------

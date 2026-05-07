@@ -99,7 +99,9 @@ abbr[aria-label].is-open::after {
   position: absolute;
   left: 50%;
   bottom: calc(100% + 10px);
-  transform: translateX(-50%);
+  /* --tt-shift-x is set by JS on open to nudge the tooltip back inside the
+     viewport when the term sits near a screen edge. Defaults to 0. */
+  transform: translateX(calc(-50% + var(--tt-shift-x, 0px)));
   background: var(--ink);
   color: #fff;
   padding: 0.55rem 0.85rem;
