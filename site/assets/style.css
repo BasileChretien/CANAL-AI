@@ -89,10 +89,12 @@ abbr[aria-label] {
 }
 
 abbr[aria-label]:hover,
-abbr[aria-label]:focus-visible { text-decoration-color: var(--accent); }
+abbr[aria-label]:focus-visible,
+abbr[aria-label].is-open { text-decoration-color: var(--accent); }
 
 abbr[aria-label]:hover::after,
-abbr[aria-label]:focus-visible::after {
+abbr[aria-label]:focus-visible::after,
+abbr[aria-label].is-open::after {
   content: attr(aria-label);
   position: absolute;
   left: 50%;
@@ -108,7 +110,7 @@ abbr[aria-label]:focus-visible::after {
   line-height: 1.45;
   white-space: normal;
   width: max-content;
-  max-width: 280px;
+  max-width: min(280px, calc(100vw - 2rem));
   text-align: left;
   letter-spacing: normal;
   text-decoration: none;
@@ -119,7 +121,8 @@ abbr[aria-label]:focus-visible::after {
 }
 
 abbr[aria-label]:hover::before,
-abbr[aria-label]:focus-visible::before {
+abbr[aria-label]:focus-visible::before,
+abbr[aria-label].is-open::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -2366,14 +2369,23 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 .funding { border-left-color: var(--accent); }
 .funding h3 { color: var(--accent); }
 
-/* Abbr touch fallback: on no-hover devices, append the gloss inline so it's
-   visible (instead of relying on a hover/focus tooltip that touch can't trigger) */
+/* Abbr touch UX: on no-hover devices, mark the term with a small ⓘ glyph so
+   users know it can be tapped. Tap toggles `.is-open` (handled in i18n.js),
+   which surfaces the same styled tooltip used on desktop via the global
+   `.is-open::after` rule near the top of this file. The previous inline
+   "(definition)" fallback was dropped — it cluttered mobile paragraphs. */
 @media (hover: none) {
-  abbr[aria-label]::after {
-    content: " (" attr(aria-label) ")";
-    font-size: 0.85em;
+  abbr[aria-label] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Marker is suppressed while the popover is open so the global tooltip
+     rule can repurpose ::after for the styled gloss. */
+  abbr[aria-label]:not(.is-open)::after {
+    content: "\00a0\24D8"; /* NBSP + ⓘ */
+    font-size: 0.78em;
     color: var(--muted);
-    font-style: italic;
+    text-decoration: none;
+    vertical-align: 0.05em;
   }
 }
 

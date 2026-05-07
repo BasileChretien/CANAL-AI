@@ -44,6 +44,10 @@
           // aria-label; the visible tooltip is driven by CSS attr(aria-label).
           const title = n.getAttribute("title") || n.getAttribute("aria-label");
           if (title) safe.setAttribute("aria-label", title);
+          // Make tap- and keyboard-focusable so the styled tooltip can open
+          // on touch (no :hover) via the click toggle below.
+          safe.setAttribute("tabindex", "0");
+          safe.setAttribute("role", "button");
           walk(n, safe);
           dst.appendChild(safe);
           return;
@@ -157,6 +161,10 @@
     // only when the active language is Japanese. EN/FR visitors avoid the
     // ~330 KB cost; JA visitors get the right fonts on first interaction.
     ensureJapaneseFonts(lang === "ja");
+
+    // Notify downstream enhancements (e.g. abbr tooltip upgrades) that the
+    // DOM has just been re-rendered for a new language.
+    document.dispatchEvent(new CustomEvent("canal-ai:lang-applied", { detail: { lang: lang } }));
   }
 
   function ensureJapaneseFonts(load) {
@@ -260,6 +268,53 @@
     initStory();
     initFlipCards();
     initContactForm();
+    initAbbrTooltips();
+  }
+
+  // ---------- Abbr tooltips: tap-to-toggle on touch devices ----------
+  // Desktop already shows the styled tooltip on :hover / :focus-visible. On
+  // touch (no :hover), tapping an abbr toggles `.is-open` so the same styled
+  // tooltip appears — replaces the previous inline "(definition)" fallback,
+  // which cluttered mobile paragraphs.
+  function initAbbrTooltips() {
+    function enhance(root) {
+      (root || document).querySelectorAll("abbr[aria-label]").forEach((el) => {
+        if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
+        if (!el.hasAttribute("role")) el.setAttribute("role", "button");
+      });
+    }
+    enhance(document);
+    // applyLang() re-creates abbr nodes via safeFragment; re-enhance any
+    // static or newly-rendered abbrs after a language switch.
+    document.addEventListener("canal-ai:lang-applied", () => enhance(document));
+
+    function closeAll(except) {
+      document.querySelectorAll("abbr[aria-label].is-open").forEach((el) => {
+        if (el !== except) el.classList.remove("is-open");
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      const target = e.target instanceof Element ? e.target.closest("abbr[aria-label]") : null;
+      if (target) {
+        const wasOpen = target.classList.contains("is-open");
+        closeAll(target);
+        target.classList.toggle("is-open", !wasOpen);
+        return;
+      }
+      closeAll(null);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll(null);
+      if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.matches && document.activeElement.matches("abbr[aria-label]")) {
+        e.preventDefault();
+        const el = document.activeElement;
+        const wasOpen = el.classList.contains("is-open");
+        closeAll(el);
+        el.classList.toggle("is-open", !wasOpen);
+      }
+    });
   }
 
   // ---------- Contact form: POST to Web3Forms (no backend, no addresses in source) ----------
