@@ -271,11 +271,13 @@
     initAbbrTooltips();
   }
 
-  // ---------- Abbr tooltips: tap-to-toggle on touch devices ----------
-  // Desktop already shows the styled tooltip on :hover / :focus-visible. On
-  // touch (no :hover), tapping an abbr toggles `.is-open` so the same styled
-  // tooltip appears — replaces the previous inline "(definition)" fallback,
-  // which cluttered mobile paragraphs.
+  // ---------- Abbr tooltips ----------
+  // The styled tooltip is rendered as a real DOM element appended to <body>
+  // (`.abbr-tip`) so we can measure its actual dimensions and clamp it into
+  // the viewport on both axes. A pseudo-element couldn't be measured, so a
+  // long gloss near a screen edge would spill off-screen on phones.
+  // Triggers: tap (touch + desktop click), keyboard Enter/Space, and hover/
+  // focus on devices that support hover.
   function initAbbrTooltips() {
     function enhance(root) {
       (root || document).querySelectorAll("abbr[aria-label]").forEach((el) => {
@@ -284,52 +286,105 @@
       });
     }
     enhance(document);
-    // applyLang() re-creates abbr nodes via safeFragment; re-enhance any
-    // static or newly-rendered abbrs after a language switch.
-    document.addEventListener("canal-ai:lang-applied", () => enhance(document));
+    document.addEventListener("canal-ai:lang-applied", () => {
+      enhance(document);
+      // The active abbr may have been replaced by safeFragment; close.
+      closeTip();
+    });
 
-    function closeAll(except) {
-      document.querySelectorAll("abbr[aria-label].is-open").forEach((el) => {
-        if (el !== except) {
-          el.classList.remove("is-open");
-          el.style.removeProperty("--tt-shift-x");
-        }
-      });
+    let tipEl = null;
+    let activeAbbr = null;
+
+    function ensureTip() {
+      if (tipEl) return tipEl;
+      tipEl = document.createElement("div");
+      tipEl.className = "abbr-tip";
+      tipEl.setAttribute("role", "tooltip");
+      const arrow = document.createElement("span");
+      arrow.className = "abbr-tip__arrow";
+      tipEl.appendChild(arrow);
+      const text = document.createElement("span");
+      text.className = "abbr-tip__text";
+      tipEl.appendChild(text);
+      document.body.appendChild(tipEl);
+      return tipEl;
     }
 
-    // Clamp the tooltip into the viewport by computing the worst-case shift
-    // needed (using the CSS max-width as the upper bound on tooltip width).
-    // When the term sits near an edge, the tooltip is nudged back inside.
-    function positionTooltip(el) {
-      const rect = el.getBoundingClientRect();
-      const vw = window.innerWidth || document.documentElement.clientWidth;
-      const margin = 8; // breathing room from the viewport edge
-      // Mirror the CSS: max-width: min(280px, calc(100vw - 2rem)). 2rem ≈ 32px.
-      const ttMax = Math.min(280, vw - 32);
-      const center = rect.left + rect.width / 2;
-      const desiredLeft = center - ttMax / 2;
-      const minLeft = margin;
-      const maxLeft = vw - ttMax - margin;
-      let shift = 0;
-      if (desiredLeft < minLeft) shift = minLeft - desiredLeft;
-      else if (desiredLeft > maxLeft) shift = maxLeft - desiredLeft;
-      el.style.setProperty("--tt-shift-x", shift + "px");
-    }
-
-    function open(el) {
-      closeAll(el);
+    function openTip(el) {
+      const tip = ensureTip();
+      tip.querySelector(".abbr-tip__text").textContent = el.getAttribute("aria-label") || "";
+      // Reset placement before measuring so styles are deterministic.
+      tip.dataset.placement = "above";
+      tip.style.visibility = "hidden";
+      tip.style.left = "0px";
+      tip.style.top = "0px";
+      // Force layout so we can measure
+      void tip.offsetWidth;
+      if (activeAbbr && activeAbbr !== el) activeAbbr.classList.remove("is-open");
+      activeAbbr = el;
       el.classList.add("is-open");
-      positionTooltip(el);
+      positionTip();
+      tip.style.visibility = "visible";
     }
 
-    function close(el) {
-      el.classList.remove("is-open");
-      el.style.removeProperty("--tt-shift-x");
+    function closeTip() {
+      if (activeAbbr) activeAbbr.classList.remove("is-open");
+      activeAbbr = null;
+      if (tipEl) tipEl.style.visibility = "hidden";
+    }
+
+    function positionTip() {
+      if (!activeAbbr || !tipEl) return;
+      const margin = 8;
+      const arrowGap = 10;
+      const abbrRect = activeAbbr.getBoundingClientRect();
+      const tipRect = tipEl.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth || window.innerWidth;
+      const vh = document.documentElement.clientHeight || window.innerHeight;
+
+      // Horizontal: center on the abbr, then clamp into the viewport.
+      const abbrCenterX = abbrRect.left + abbrRect.width / 2;
+      let left = abbrCenterX - tipRect.width / 2;
+      const minLeft = margin;
+      const maxLeft = vw - margin - tipRect.width;
+      if (maxLeft < minLeft) left = minLeft; // viewport narrower than tooltip
+      else if (left < minLeft) left = minLeft;
+      else if (left > maxLeft) left = maxLeft;
+
+      // Vertical: prefer above; flip below if there's no room above.
+      let top = abbrRect.top - tipRect.height - arrowGap;
+      let placement = "above";
+      if (top < margin) {
+        const below = abbrRect.bottom + arrowGap;
+        if (below + tipRect.height <= vh - margin) {
+          top = below;
+          placement = "below";
+        } else {
+          // No room above OR fully below — keep above and clamp top into view.
+          top = Math.max(margin, top);
+        }
+      }
+
+      tipEl.style.left = left + "px";
+      tipEl.style.top = top + "px";
+      tipEl.dataset.placement = placement;
+
+      // Arrow points at the abbr center; clamp inside the tooltip.
+      const arrow = tipEl.querySelector(".abbr-tip__arrow");
+      if (arrow) {
+        const arrowHalf = 6;
+        const arrowMin = 10;
+        const arrowMax = tipRect.width - arrowMin - arrowHalf * 2;
+        let arrowLeft = abbrCenterX - left - arrowHalf;
+        if (arrowLeft < arrowMin) arrowLeft = arrowMin;
+        if (arrowLeft > arrowMax) arrowLeft = arrowMax;
+        arrow.style.left = arrowLeft + "px";
+      }
     }
 
     function toggle(el) {
-      if (el.classList.contains("is-open")) close(el);
-      else open(el);
+      if (activeAbbr === el) closeTip();
+      else openTip(el);
     }
 
     document.addEventListener("click", (e) => {
@@ -338,24 +393,55 @@
         toggle(target);
         return;
       }
-      closeAll(null);
+      if (tipEl && e.target instanceof Element && e.target.closest(".abbr-tip")) return;
+      closeTip();
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeAll(null);
-      if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.matches && document.activeElement.matches("abbr[aria-label]")) {
+      if (e.key === "Escape") {
+        closeTip();
+        return;
+      }
+      if ((e.key === "Enter" || e.key === " ") &&
+          document.activeElement &&
+          document.activeElement.matches &&
+          document.activeElement.matches("abbr[aria-label]")) {
         e.preventDefault();
         toggle(document.activeElement);
       }
     });
 
-    // Re-clamp on viewport resize / orientation change while open.
-    window.addEventListener("resize", () => {
-      document.querySelectorAll("abbr[aria-label].is-open").forEach(positionTooltip);
+    // Hover / focus on pointer devices: open on enter, close on leave.
+    document.addEventListener("mouseover", (e) => {
+      if (!(e.target instanceof Element)) return;
+      const a = e.target.closest("abbr[aria-label]");
+      if (a) openTip(a);
     });
-    window.addEventListener("scroll", () => {
-      document.querySelectorAll("abbr[aria-label].is-open").forEach(positionTooltip);
-    }, { passive: true });
+    document.addEventListener("mouseout", (e) => {
+      if (!(e.target instanceof Element)) return;
+      const a = e.target.closest("abbr[aria-label]");
+      if (!a) return;
+      // Only close if leaving the abbr entirely (not a child)
+      const next = e.relatedTarget;
+      if (next instanceof Element && a.contains(next)) return;
+      // Don't close on hover-out if user opened via tap/keyboard recently —
+      // simplest: close. Click toggles will reopen as needed.
+      if (activeAbbr === a) closeTip();
+    });
+    document.addEventListener("focusin", (e) => {
+      if (!(e.target instanceof Element)) return;
+      const a = e.target.closest("abbr[aria-label]");
+      if (a) openTip(a);
+    });
+    document.addEventListener("focusout", (e) => {
+      if (!(e.target instanceof Element)) return;
+      const a = e.target.closest("abbr[aria-label]");
+      if (a && activeAbbr === a) closeTip();
+    });
+
+    // Reposition on viewport changes while open.
+    window.addEventListener("resize", () => { if (activeAbbr) positionTip(); });
+    window.addEventListener("scroll", () => { if (activeAbbr) positionTip(); }, { passive: true });
   }
 
   // ---------- Contact form: POST to Web3Forms (no backend, no addresses in source) ----------

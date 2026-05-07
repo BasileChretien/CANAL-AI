@@ -92,16 +92,11 @@ abbr[aria-label]:hover,
 abbr[aria-label]:focus-visible,
 abbr[aria-label].is-open { text-decoration-color: var(--accent); }
 
-abbr[aria-label]:hover::after,
-abbr[aria-label]:focus-visible::after,
-abbr[aria-label].is-open::after {
-  content: attr(aria-label);
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 10px);
-  /* --tt-shift-x is set by JS on open to nudge the tooltip back inside the
-     viewport when the term sits near a screen edge. Defaults to 0. */
-  transform: translateX(calc(-50% + var(--tt-shift-x, 0px)));
+/* Tooltip is rendered as a real DOM element appended to <body> by i18n.js
+   (.abbr-tip). Pseudo-element approaches couldn't measure the actual width
+   to clamp inside narrow viewports, so we control both axes from JS. */
+.abbr-tip {
+  position: fixed;
   background: var(--ink);
   color: #fff;
   padding: 0.55rem 0.85rem;
@@ -110,9 +105,7 @@ abbr[aria-label].is-open::after {
   font-size: 0.82rem;
   font-weight: 400;
   line-height: 1.45;
-  white-space: normal;
-  width: max-content;
-  max-width: min(280px, calc(100vw - 2rem));
+  max-width: min(280px, calc(100vw - 16px));
   text-align: left;
   letter-spacing: normal;
   text-decoration: none;
@@ -120,20 +113,26 @@ abbr[aria-label].is-open::after {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
   pointer-events: none;
   z-index: 1000;
+  /* JS sets left/top after measuring */
+  left: 0;
+  top: 0;
 }
 
-abbr[aria-label]:hover::before,
-abbr[aria-label]:focus-visible::before,
-abbr[aria-label].is-open::before {
-  content: "";
+.abbr-tip__arrow {
   position: absolute;
-  left: 50%;
-  bottom: calc(100% + 4px);
-  transform: translateX(-50%);
+  width: 0;
+  height: 0;
   border: 6px solid transparent;
+}
+
+.abbr-tip[data-placement="above"] .abbr-tip__arrow {
+  bottom: -12px;
   border-top-color: var(--ink);
-  pointer-events: none;
-  z-index: 1000;
+}
+
+.abbr-tip[data-placement="below"] .abbr-tip__arrow {
+  top: -12px;
+  border-bottom-color: var(--ink);
 }
 
 /* Skip link */
