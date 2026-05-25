@@ -191,6 +191,34 @@
     <h2 data-i18n="news.title">Announcements</h2>
     <ol class="timeline">
 
+      <!-- Duke-NUS visit (flip card with photo) -->
+      <li class="timeline__flip" data-flip-state="auto">
+        <div class="timeline__flip-inner">
+          <div class="timeline__flip-face timeline__flip-face--front">
+            <time class="timeline__date" data-i18n="news.dukenus_date">21 May 2026</time>
+            <h3 class="timeline__title" data-i18n="news.dukenus_title">CANAL-AI presented at Duke-NUS Medical School, Singapore</h3>
+            <p class="timeline__body" data-i18n="news.dukenus_body">On 21 May 2026, the CANAL-AI team from Nagoya University visited Duke-NUS Medical School in Singapore to present the CANAL-AI project and to discuss opportunities for collaboration in federated learning for health data.</p>
+            <div class="timeline__flip-controls">
+              <a class="timeline__flip-link" href="news.html?id=dukenus" data-blank-ja="true"
+                 data-i18n="news.visit_read_more">Read more</a>
+              <button type="button" class="timeline__flip-link timeline__flip-link--icon" data-action="flip"
+                      data-i18n="news.visit_see_photo">See photo</button>
+            </div>
+          </div>
+          <div class="timeline__flip-face timeline__flip-face--back">
+            <picture>
+              <source type="image/webp" srcset="assets/photos/visit-duke.webp">
+              <img src="assets/photos/visit-duke.jpg"
+                   width="1477" height="1108" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:news.dukenus_alt"
+                   alt="The CANAL-AI team from Nagoya University with their hosts at Duke-NUS Medical School, Singapore, 21 May 2026">
+            </picture>
+            <button type="button" class="timeline__flip-link timeline__flip-link--overlay" data-action="flip"
+                    data-i18n="news.visit_see_text">Read text</button>
+          </div>
+        </div>
+      </li>
+
       <!-- Nishida joint travel grant (most recent) -->
       <li class="timeline__item">
         <a class="timeline__link" href="news.html?id=grant" data-blank-ja="true">

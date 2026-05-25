@@ -7,6 +7,8 @@
   "use strict";
 
   const NEWS = {
+    dukenus: { date: "news.dukenus_date", title: "news.dukenus_title", body: "news.dukenus_body", html: false,
+               photo: { jpg: "assets/photos/visit-duke.jpg", webp: "assets/photos/visit-duke.webp", alt: "news.dukenus_alt" } },
     grant:   { date: "news.grant_date", title: "news.grant_title", body: "news.grant_body", html: true  },
     visit:   { date: "news.visit_date", title: "news.visit_title", body: "news.visit_body", html: false,
                photo: { jpg: "assets/photos/visit-nagoya.jpg", webp: "assets/photos/visit-nagoya.webp", alt: "news.visit_alt" } },
