@@ -191,6 +191,34 @@
     <h2 data-i18n="news.title">Announcements</h2>
     <ol class="timeline">
 
+      <!-- Grant award ceremony at the Residence of France (flip card with photo) -->
+      <li class="timeline__flip" data-flip-state="auto">
+        <div class="timeline__flip-inner">
+          <div class="timeline__flip-face timeline__flip-face--front">
+            <time class="timeline__date" data-i18n="news.award_date">11 June 2026</time>
+            <h3 class="timeline__title" data-i18n="news.award_title">Joint grant award ceremony at the Residence of France</h3>
+            <p class="timeline__body" data-i18n="news.award_body">On 11 June 2026, Dr Kazuki Nishida of Nagoya University attended the award ceremony and reception for the joint grant of the Embassy of France in Japan and the Goto Kiyoko – Paul Bourdarie Cancer Foundation, held at the Residence of France in Tokyo. He had the opportunity to speak directly with H.E. Béatrice Le Fraper du Hellen, Ambassador of France to Japan, Dr Adeline Lassaux (Science &amp; Technology Attaché, Embassy of France in Japan), and members of the selection committee. The grant will support an on-site research stay at Caen University Hospital, advancing the Franco-Japanese federated-learning collaboration at the heart of CANAL-AI.</p>
+            <div class="timeline__flip-controls">
+              <a class="timeline__flip-link" href="news.html?id=award" data-blank-ja="true"
+                 data-i18n="news.visit_read_more">Read more</a>
+              <button type="button" class="timeline__flip-link timeline__flip-link--icon" data-action="flip"
+                      data-i18n="news.visit_see_photo">See photo</button>
+            </div>
+          </div>
+          <div class="timeline__flip-face timeline__flip-face--back">
+            <picture>
+              <source type="image/webp" srcset="assets/photos/award-residence.webp">
+              <img src="assets/photos/award-residence.jpg"
+                   width="1600" height="1200" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:news.award_alt"
+                   alt="Dr Kazuki Nishida with H.E. Béatrice Le Fraper du Hellen, Ambassador of France to Japan, at the Residence of France, Tokyo, 11 June 2026">
+            </picture>
+            <button type="button" class="timeline__flip-link timeline__flip-link--overlay" data-action="flip"
+                    data-i18n="news.visit_see_text">Read text</button>
+          </div>
+        </div>
+      </li>
+
       <!-- Duke-NUS visit (flip card with photo) -->
       <li class="timeline__flip" data-flip-state="auto">
         <div class="timeline__flip-inner">
