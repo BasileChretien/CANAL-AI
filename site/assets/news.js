@@ -7,6 +7,11 @@
   "use strict";
 
   const NEWS = {
+    caen:    { date: "news.caen_date", title: "news.caen_title", body: "news.caen_body", html: false,
+               photos: [
+                 { jpg: "assets/photos/visit-caen.jpg",   webp: "assets/photos/visit-caen.webp",   alt: "news.caen_alt",  w: 1600, h: 1200 },
+                 { jpg: "assets/photos/visit-caen-2.jpg", webp: "assets/photos/visit-caen-2.webp", alt: "news.caen_alt2", w: 1024, h: 768  }
+               ] },
     award:   { date: "news.award_date", title: "news.award_title", body: "news.award_body", html: false,
                photos: [
                  { jpg: "assets/photos/award-residence.jpg",   webp: "assets/photos/award-residence.webp",   alt: "news.award_alt",  w: 1600, h: 1200 },

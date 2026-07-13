@@ -191,6 +191,34 @@
     <h2 data-i18n="news.title">Announcements</h2>
     <ol class="timeline">
 
+      <!-- Université de Caen Normandie delegation visit to Nagoya (flip card with photo) -->
+      <li class="timeline__flip" data-flip-state="auto">
+        <div class="timeline__flip-inner">
+          <div class="timeline__flip-face timeline__flip-face--front">
+            <time class="timeline__date" data-i18n="news.caen_date">13 July 2026</time>
+            <h3 class="timeline__title" data-i18n="news.caen_title">Université de Caen Normandie delegation visits Nagoya University</h3>
+            <p class="timeline__body" data-i18n="news.caen_body">On 13 July 2026, a delegation from Université de Caen Normandie visited Nagoya University. The delegation — Prof. Christophe Rochais (Vice-President for Innovation), Prof. Éric Leroy du Cardonnoy (Vice-President for International Affairs), Prof. Julien Gibelin and Ms Stéphanie Gouttry (International Development Manager) — was received by the Dean of Nagoya University Graduate School of Medicine, Prof. Masahisa Katsuno, together with faculty members and the CANAL-AI team, and CANAL-AI was presented as part of the programme. The visit strengthened the growing partnership between the two universities that is at the heart of the project.</p>
+            <div class="timeline__flip-controls">
+              <a class="timeline__flip-link" href="news.html?id=caen" data-blank-ja="true"
+                 data-i18n="news.visit_read_more">Read more</a>
+              <button type="button" class="timeline__flip-link timeline__flip-link--icon" data-action="flip"
+                      data-i18n="news.visit_see_photo">See photo</button>
+            </div>
+          </div>
+          <div class="timeline__flip-face timeline__flip-face--back">
+            <picture>
+              <source type="image/webp" srcset="assets/photos/visit-caen.webp">
+              <img src="assets/photos/visit-caen.jpg"
+                   width="1600" height="1200" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:news.caen_alt"
+                   alt="The Université de Caen Normandie delegation with Nagoya University faculty and the CANAL-AI team, 13 July 2026">
+            </picture>
+            <button type="button" class="timeline__flip-link timeline__flip-link--overlay" data-action="flip"
+                    data-i18n="news.visit_see_text">Read text</button>
+          </div>
+        </div>
+      </li>
+
       <!-- Grant award ceremony at the Residence of France (flip card with photo) -->
       <li class="timeline__flip" data-flip-state="auto">
         <div class="timeline__flip-inner">
