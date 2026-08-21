@@ -7,6 +7,7 @@
   "use strict";
 
   const NEWS = {
+    irb:     { date: "news.irb_date", title: "news.irb_title", body: "news.irb_body", html: false },
     caen:    { date: "news.caen_date", title: "news.caen_title", body: "news.caen_body", html: false,
                photos: [
                  { jpg: "assets/photos/visit-caen.jpg",   webp: "assets/photos/visit-caen.webp",   alt: "news.caen_alt",  w: 1600, h: 1200 },

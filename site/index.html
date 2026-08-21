@@ -152,7 +152,7 @@
         <span class="hero__brand-eyebrow" data-i18n="hero.eyebrow">A Franco-Japanese federated-learning pilot</span>
       </p>
       <h1 class="hero__title" data-i18n="hero.tagline">Caen–Nagoya Alliance for AI in Health Data</h1>
-      <p class="hero__status" data-i18n="hero.status_badge">Status: regulatory phase · No patient data processed yet</p>
+      <p class="hero__status" data-i18n="hero.status_badge">Status: ethics approvals obtained at both sites · implementation set-up phase · no patient data processed yet</p>
       <p class="pledge">
         <svg class="pledge__icon" width="18" height="18" aria-hidden="true"><use href="#icon-lock"/></svg>
         <span data-i18n="hero.pledge">Only model parameters cross the border. Patient data never moves.</span>
@@ -190,6 +190,18 @@
   <div class="container">
     <h2 data-i18n="news.title">Announcements</h2>
     <ol class="timeline">
+
+      <!-- Nagoya University ethics committee approval -->
+      <li class="timeline__item">
+        <a class="timeline__link" href="news.html?id=irb" data-blank-ja="true">
+          <time class="timeline__date" data-i18n="news.irb_date">21 August 2026</time>
+          <h3 class="timeline__title" data-i18n="news.irb_title">Nagoya University ethics committee approves the CANAL-AI protocol</h3>
+          <span class="timeline__cta">
+            <span data-i18n="news.read_more">Read more</span>
+            <svg width="13" height="13" aria-hidden="true"><use href="#icon-external"/></svg>
+          </span>
+        </a>
+      </li>
 
       <!-- Université de Caen Normandie delegation visit to Nagoya (flip card with photo) -->
       <li class="timeline__flip" data-flip-state="auto">
@@ -596,7 +608,7 @@
     <!-- Regulatory status -->
     <div class="reg-status">
       <h3 data-i18n="reg.title">Regulatory status and ethics</h3>
-      <p data-i18n-html="reg.p1"><strong>Research-use-only pilot.</strong> Caen Scientific &amp; Ethics Committee favourable opinion received 30 March 2026. Nagoya IRB application and GDPR DPIA in progress. <strong>No patient data has been processed to date.</strong></p>
+      <p data-i18n-html="reg.p1"><strong>Research-use-only pilot.</strong> Caen Scientific &amp; Ethics Committee favourable opinion received 30 March 2026; Nagoya University ethics committee approval received 21 August 2026. GDPR DPIA and the Caen data-access agreement in progress. <strong>No patient data has been processed to date.</strong></p>
       <p data-i18n-html="reg.p2">Any clinical deployment would require separate CE-marking (EU MDR 2017/745, Class IIa software, Rule 11) and PMDA SaMD clearance in Japan. French processing will follow MR-003/MR-004; Japanese processing will follow APPI Article 76 — final modalities subject to IRB approval.</p>
     </div>
 
@@ -669,11 +681,11 @@
   <div class="container">
     <p class="kicker" data-i18n="roadmap.kicker">12–24 month plan</p>
     <h2 data-i18n="roadmap.title">Roadmap</h2>
-    <p class="section__lede" data-i18n="roadmap.intro">Indicative milestones; detailed timing is subject to IRB and convention outcomes.</p>
+    <p class="section__lede" data-i18n="roadmap.intro">Indicative milestones; detailed timing is subject to the DPIA and convention outcomes.</p>
     <ol class="roadmap">
       <li>
         <h3 class="roadmap__date" data-i18n="roadmap.q2_2026_title">Q2–Q3 2026</h3>
-        <p data-i18n="roadmap.q2_2026_body">Nagoya IRB submission. DPIA. Data-access convention at Caen. FedBioMed kickoff.</p>
+        <p data-i18n="roadmap.q2_2026_body">Nagoya IRB approval obtained (21 August 2026). DPIA. Data-access convention at Caen. FedBioMed kickoff.</p>
       </li>
       <li>
         <h3 class="roadmap__date" data-i18n="roadmap.q4_2026_title">Q4 2026</h3>
@@ -702,8 +714,8 @@
     <p class="section__lede" data-i18n="risks.intro">Transparency with funders and partners:</p>
     <ul class="risks">
       <li>
-        <h3 data-i18n="risks.r1_label">IRB timing</h3>
-        <p data-i18n-html="risks.r1_body">Nagoya IRB and the DPIA set the pace. Mitigation: blueprint work proceeds in parallel.</p>
+        <h3 data-i18n="risks.r1_label">Regulatory and data-access timing</h3>
+        <p data-i18n-html="risks.r1_body">Nagoya ethics review closed on 21 August 2026; the DPIA and the Caen data-access agreement now set the pace. Mitigation: blueprint work proceeds in parallel.</p>
       </li>
       <li>
         <h3 data-i18n="risks.r2_label">Sample size and event rate</h3>
