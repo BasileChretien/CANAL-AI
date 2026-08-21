@@ -15,7 +15,8 @@ trilingual EN / 日本語 / FR.
 
 **Research-use-only pilot.** No patient data has been processed to date.
 Caen Scientific & Ethics Committee favourable opinion (30 March 2026);
-Nagoya IRB and GDPR DPIA in progress.
+Nagoya University ethics committee approval (21 August 2026).
+GDPR DPIA and the Caen data-access convention in progress.
 
 ---
 
@@ -87,7 +88,7 @@ CANAL-AI/
 
 | Window | Milestones |
 |---|---|
-| **Q2–Q3 2026** | Nagoya IRB submission · DPIA · Caen data-access convention · FedBioMed kickoff with INRIA/UCA |
+| **Q2–Q3 2026** | Nagoya IRB approval obtained (21 Aug 2026) · DPIA · Caen data-access convention · FedBioMed kickoff with INRIA/UCA |
 | **Q4 2026** | OMOP variable list locked · Cohort definition frozen · Synthetic-data prototype end-to-end |
 | **Q1–Q2 2027** | First federated round · MLP baseline with secure aggregation · Sample-size and power report |
 | **Q3–Q4 2027** | Model comparison · Methods paper submitted · APPI–GDPR blueprint published (CC BY 4.0) |
