@@ -191,6 +191,34 @@
     <h2 data-i18n="news.title">Announcements</h2>
     <ol class="timeline">
 
+      <!-- University of Helsinki delegation visit to Nagoya (flip card with photo) -->
+      <li class="timeline__flip" data-flip-state="auto">
+        <div class="timeline__flip-inner">
+          <div class="timeline__flip-face timeline__flip-face--front">
+            <time class="timeline__date" data-i18n="news.helsinki_date">27 August 2026</time>
+            <h3 class="timeline__title" data-i18n="news.helsinki_title">University of Helsinki delegation visits Nagoya University</h3>
+            <p class="timeline__body" data-i18n="news.helsinki_body">On 27 August 2026, a delegation from the University of Helsinki visited Nagoya University. CANAL-AI was presented as part of the programme, and the two sides are now planning to work together on the project. The day closed with a dinner bringing the Finnish delegation together with their Nagoya University hosts.</p>
+            <div class="timeline__flip-controls">
+              <a class="timeline__flip-link" href="news.html?id=helsinki" data-blank-ja="true"
+                 data-i18n="news.visit_read_more">Read more</a>
+              <button type="button" class="timeline__flip-link timeline__flip-link--icon" data-action="flip"
+                      data-i18n="news.visit_see_photo">See photo</button>
+            </div>
+          </div>
+          <div class="timeline__flip-face timeline__flip-face--back">
+            <picture>
+              <source type="image/webp" srcset="assets/photos/visit-helsinki.webp">
+              <img src="assets/photos/visit-helsinki.jpg"
+                   width="1600" height="1200" loading="lazy" decoding="async"
+                   data-i18n-attr="alt:news.helsinki_alt"
+                   alt="CANAL-AI presented to the University of Helsinki delegation at Nagoya University, 27 August 2026">
+            </picture>
+            <button type="button" class="timeline__flip-link timeline__flip-link--overlay" data-action="flip"
+                    data-i18n="news.visit_see_text">Read text</button>
+          </div>
+        </div>
+      </li>
+
       <!-- Nagoya University ethics committee approval -->
       <li class="timeline__item">
         <a class="timeline__link" href="news.html?id=irb" data-blank-ja="true">

@@ -7,6 +7,11 @@
   "use strict";
 
   const NEWS = {
+    helsinki:{ date: "news.helsinki_date", title: "news.helsinki_title", body: "news.helsinki_body", html: false,
+               photos: [
+                 { jpg: "assets/photos/visit-helsinki.jpg",   webp: "assets/photos/visit-helsinki.webp",   alt: "news.helsinki_alt",  w: 1600, h: 1200 },
+                 { jpg: "assets/photos/visit-helsinki-2.jpg", webp: "assets/photos/visit-helsinki-2.webp", alt: "news.helsinki_alt2", w: 1600, h: 1200 }
+               ] },
     irb:     { date: "news.irb_date", title: "news.irb_title", body: "news.irb_body", html: false },
     caen:    { date: "news.caen_date", title: "news.caen_title", body: "news.caen_body", html: false,
                photos: [
