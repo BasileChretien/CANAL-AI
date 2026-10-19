@@ -7,6 +7,7 @@
   "use strict";
 
   const NEWS = {
+    preprint:{ date: "news.preprint_date", title: "news.preprint_title", body: "news.preprint_body", html: true },
     helsinki:{ date: "news.helsinki_date", title: "news.helsinki_title", body: "news.helsinki_body", html: false,
                photos: [
                  { jpg: "assets/photos/visit-helsinki.jpg",   webp: "assets/photos/visit-helsinki.webp",   alt: "news.helsinki_alt",  w: 1600, h: 1200 },
